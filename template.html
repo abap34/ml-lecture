@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<meta charset="UTF-8">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-10Y7GMS7GV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-10Y7GMS7GV');
+    </script>
+
+    <script type="text/javascript" src="//code.typesquare.com/static/ZDbTe4IzCko%253D/ts106f.js"
+        charset="utf-8"></script>
+
+    <title>{{ title }}</title>
+
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:image" content="{{ ogp_url }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:url" content="{{ url }}">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="{{ site_name }}">
+    <meta property="og:locale" content="ja_JP">
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="{{ twitter_site }}" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/{{ syntax_theme }}.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/julia.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/julia-repl.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <style>
+
+    {{ style|safe }}
+    
+    </style>
+
+    <script>
+        var page_contents = [];
+    </script>
+
+    {{ runner|safe }}
+
+</head>
+
+<body>
+
+    <div class="article-header">
+
+        <div class="title">
+            {{ title }}
+        </div>
+
+        <script>
+            var title = document.querySelector(".title").innerHTML;
+        </script>
+
+        <br>
+        <div class="date">
+            {{ date }}
+        </div>
+        <br>
+        <div class="tag-placeholder">
+            <!-- loop tags -->
+            {% for tag in tags %}
+            <div class="tag">
+                <a href="https://abap34.com/posts.html?tags={{ tag }}"> # {{ tag }}</a>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div class="article-body">
+        <div class="content">
+            {{ content|safe }}
+
+            <hr>
+
+            <script src="https://utteranc.es/client.js" repo="abap34/abap34com-comment" issue-term="og:title"
+                label="comment" theme="github-light" crossorigin="anonymous" async></script>
+
+        </div>
+
+        <div class="side">
+            <div class="side-sticky">
+                <div class="sidebar">
+                    <ul id="toc"></ul>
+                </div>
+
+                <div class="links">
+                    <div class="to-links">
+                        <a href="https://abap34.com/posts.html"> <i class="fas fa-book-open" id="toposts"></i> 記事一覧 </a>
+                        <br>
+                        <a href="https://abap34.com"> <i class="fas fa-home" id="tohome"></i> ホーム </a>
+                        <br><br><br>
+                        <a href="https://www.abap34.com/rss.xml"> <i class="fas fa-rss" id="torss"></i> RSS </a>
+                    </div>
+                    <br><br>
+                    <p><i class="icon fab fa-twitter" id="twitter"></i><a href="https://twitter.com/{{ twitter_id }}"
+                            class="tolink"> @{{ twitter_id }}</a></p>
+                    <p><i class="icon fab fa-github" id="github"></i><a href="https://github.com/{{ github_id }}"
+                            class="tolink"> @{{ github_id }}</a></p>
+                    <p><i class="icon fas fa-envelope" id="mail"></i><a href="mailto:{{ mail }}" class="tolink">
+                            {{ mail }}</a></p>
+
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                        data-show-count="false" data-via="abap34">Tweet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+                    <footer>
+                        <p>&copy; {{ author }}</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const tocContainer = document.querySelector("#toc");
+        const tocTitle = document.createElement("div");
+        tocTitle.innerHTML = title;
+        tocTitle.classList.add("toc_title");
+        tocContainer.appendChild(tocTitle);
+
+        page_contents.forEach(item => {
+            if (item.type == "H1" || item.type === "H2" || item.type === "H3") {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<a href="#${item.id}">${item.title}</a>`;
+                listItem.classList.add("toc_" + item.type);
+                tocContainer.appendChild(listItem);
+            }
+        });
+
+        const options = {
+            root: null,
+            rootMargin: "-50% 0px",
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver(onIntersection, options);
+
+        page_contents.forEach(item => {
+            const element = document.getElementById(item.id);
+            if (element) {
+                observer.observe(element);
+            }
+        });
+
+        // page_contents の先頭を active にしておく
+        const first_item = document.querySelector(`#toc a[href="#${page_contents[0].id}"]`);
+        first_item.classList.add("active");
+
+        let prev_item = first_item;
+
+        function onIntersection(entries) {
+            entries.forEach(entry => {
+                const id = entry.target.id;
+                const tocItem = document.querySelector(`#toc a[href="#${id}"]`);
+                if (tocItem) {
+                    if (entry.isIntersecting) {
+                        tocItem.classList.add("active");
+                        prev_item.classList.remove("active");
+                        prev_item = tocItem;
+                    }
+                }
+            });
+        }
+
+        
+    </script>
+
+</body>
+
+</html>
