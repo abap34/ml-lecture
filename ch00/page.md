@@ -83,13 +83,13 @@ twitter_site: abap34
 
 そこでこの講習会のためのオンラインジャッジシステムを開発しました。
 
-![開発中の画像なのできっともう少し見た目が良くなるはず...](ch00/img/oj-preview.png)
+![開発中の画像なのできっともう少し見た目が良くなるはず...](img/oj-preview.png)
 
 
 この講習会で扱ったアルゴリズムや、主要な機械学習に関連するパッケージの使用方法に関連する問題を用意しているので、
 学んだことの実践の場として活用してください。
 
-![順位表なども用意しています。頑張って上位を目指しましょう！](ch00/img/confetti.png)
+![順位表なども用意しています。頑張って上位を目指しましょう！](img/confetti.png)
 
 (更新予定: 講習会が終了次第、開発したオンラインジャッジシステムはOSSとして公開する予定です)
 
@@ -100,7 +100,7 @@ twitter_site: abap34
 
 上位チームには賞品を用意しています。
 
-![](ch00/img/dacq-v2.png)
+![](img/dacq-v2.png)
 
 (更新予定: 講習会が終了次第、開発したコンペプラットフォームはOSSとして公開する予定です)
 
@@ -116,20 +116,20 @@ twitter_site: abap34
 
 まずは、 [https://colab.research.google.com/?hl=ja](https://colab.research.google.com/?hl=ja) にアクセスしてみてください。
 
-![](ch00/img/colab.png)
+![](img/colab.png)
 
 
 このような画面が出てきたかと思います。
 まずは、右上の青い「ログイン」を押してください。
 
 
-![](ch00/img/notebookcreate.png)
+![](img/notebookcreate.png)
 
 するとこのような画面になると思うので、
 次に真ん中のポップアップの下にある青い文字の「ノートブックを新規作成」をクリックしてください。
 
 
-![](ch00/img/notebook.png)
+![](img/notebook.png)
 
 このような画面になっていれば成功です！
 
@@ -143,14 +143,14 @@ twitter_site: abap34
 まず、先ほどの画面の「1」と書いてあるところの右をクリックしてみてください。
 入力可能になっているかと思います。
 
-![](ch00/img/input.png)
+![](img/input.png)
 
 
 そこに　`print('Hello Jupyter!')` と書き、左の再生ボタンをクリックしてみましょう。
 (初めてこれをクリックした場合は、接続が入って少し待たされますが正常なのでじっと待ってください)
 
 
-![](ch00/img/image-1.png)
+![](img/image-1.png)
 
 
 
@@ -169,7 +169,7 @@ twitter_site: abap34
 
 `print('今日の天気は' + weather)` と書き、実行してみます。
 
-![](ch00/img/image-2.png)
+![](img/image-2.png)
 
 すると、`今日の天気は晴れ` と表示されました。
 
