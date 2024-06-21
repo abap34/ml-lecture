@@ -96,12 +96,21 @@ h1 {
     font-size: 0.8rem;
     border-radius: 5px;
     border: 1px solid gray;
-}
-
-.tag a {
     color: #666;
     text-decoration-line: none;
 }
+
+/* ボタンも同じような見た目に */
+button {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+}
+
 
 
 .toc_title {
