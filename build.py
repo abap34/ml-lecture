@@ -1,9 +1,12 @@
 import os
 import glob
 
-# 2023/ 以下を除く全ての *.md ファイルを取得
 files = glob.glob('**/*.md', recursive=True)
-files = [f for f in files if not f.startswith('2023/')]
+
+def isexcluded(file):
+    return file.startswith('2023/') or file.endswith('slide.md')
+
+files = [file for file in files if not isexcluded(file)]
 
 for file in files:
     basename = file.split('.')[0]
