@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<meta charset="UTF-8">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-10Y7GMS7GV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-10Y7GMS7GV');
+    </script>
+
+    <script type="text/javascript" src="//code.typesquare.com/static/ZDbTe4IzCko%253D/ts106f.js"
+        charset="utf-8"></script>
+
+    <title>Google Colaboratory の使い方</title>
+
+    <meta property="og:title" content="Google Colaboratory の使い方">
+    <meta property="og:image" content="https://abap34.github.io/ml-lecture/supplement/img/colab.png">
+    <meta property="og:description" content="機械学習講習会 第0回の講義資料です。">
+    <meta property="og:url" content="https://abap34.com">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="abap34.com">
+    <meta property="og:locale" content="ja_JP">
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="abap34" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/julia.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/julia-repl.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <style>
+        body {
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: rgb(240, 244, 246);
+    font-family: "UD新ゴNT M", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    color: #333;
+}
+
+
+.article-body {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+    .side #toc {
+        display: none;
+    }
+
+    .article-body {
+        display: block !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        margin: 10px !important;
+    }
+
+}
+
+h1 {
+    text-align: center !important;
+}
+
+.side {
+    order: 1;
+    border-right: solid 1px #ddd;
+    padding-right: 20px;
+}
+
+.content {
+    order: 2;
+    padding: 20px;
+    width: 95%;
+    max-width: 900px;
+    margin: auto;
+    padding: auto;
+}
+
+
+.side-sticky {
+    position: sticky;
+    top: 20px;
+}
+
+
+.article-header {
+    padding-top: 30px;
+    margin: 10px;
+}
+
+
+
+.article-header .title {
+    color: #001e43;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border-bottom: dotted 3px #001e43;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.date {
+    font-size: 14px;
+    text-align: center;
+    color: gray;
+}
+
+.date::before {
+    content: "\f073";
+    font-family: "Font Awesome 5 Free";
+}
+
+.tag-placeholder {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tag {
+    display: inline-block;
+    margin-right: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid gray;
+    color: #666;
+    text-decoration-line: none;
+}
+
+/* ボタンも同じような見た目に */
+button {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+}
+
+
+
+.toc_title {
+    display: none;
+}
+
+.math-block {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.math-inline {
+    display: inline-grid;
+    overflow-x: hidden;
+    ;
+}
+
+mjx-container {
+    display: inline-block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+}
+
+h2 {
+    border-left: solid 5px #85c0ff;
+    padding-left: 10px;
+}
+
+
+img {
+    max-width: 100% !important;
+    height: auto;
+}
+
+@media (max-width: 1200px) {
+    figure {
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        overflow: hidden;
+        padding: 20px;
+    }
+}
+
+
+figure {
+    text-align: center;
+    color: gray;
+}
+
+
+h3 {
+    border-bottom: 1px solid #ddd !important;
+}
+
+pre {
+    padding: 10px;
+}
+
+.tex-equations {
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.exec_out {
+    color: white;
+}
+
+@media (max-width: 1200px) {
+    .exec_plot {
+        width: 100%;
+        overflow-x: auto;
+    }
+}
+
+#toc {
+    border-radius: 4px;
+    padding: 15px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+#toc a {
+    text-decoration: none;
+    color: #777;
+    display: block;
+    margin: 5px 0;
+    transition: color 0.2s;
+}
+
+#toc a:hover {
+    color: #007bff;
+}
+
+#toc .active {
+    font-weight: bold;
+    color: #007bff;
+    font-size: 1.1em;
+}
+
+#toc {
+    list-style: none;
+    padding: 0;
+    border-left: 2px dotted #a3c5db;
+    border-radius: 0%;
+}
+
+#toc li {
+    padding-left: 20px;
+    margin-top: 10px;
+    position: relative;
+}
+
+/* #toc li::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #c4e4f9;
+    border-radius: 50%;
+    border: 1px solid #a3c5db;
+    position: absolute;
+    left: -7px;
+    top: 0;
+    transform: translateY(50%);
+} */
+
+.toc_H1 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+
+.toc_H2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* .toc_H2::before {
+    background: #f8f8f8 !important;
+    border: 1px solid #3498db !important;
+} */
+
+.toc_H3 {
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: #007bff;
+    padding-left: 10px;
+}
+
+.toc_H3::before {
+    display: none !important;
+}
+
+#toposts,
+#tohome,
+#torss {
+    display: inline-block;
+    text-decoration: none;
+}
+
+
+.links {
+    border-top: solid 1px #ddd;
+    padding-top: 20px;
+    color: hwb(211 18% 52%);
+}
+
+.links a {
+    text-decoration: none;
+    color: #3c3c3c;
+}
+
+.links {
+    /* 等幅フォント */
+    font-family: "Noto Sans Mono", monospace;
+}
+
+#toposts {
+    color: #979797 !important;
+
+}
+
+#tohome {
+    color: #b8792c !important;
+}
+
+#torss {
+    color: #d88914 !important;
+}
+
+#twitter {
+    color: #1da1f2 !important;
+}
+
+#github {
+    color: #000000 !important;
+}
+
+#mail {
+    color: #bbbbbb !important;
+}
+
+
+.content_list_h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: solid 1px #007bff;
+    color: #007bff;
+}
+
+.content_list_h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.content_list_problem {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.badge {
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #777;
+    border: 1px solid #444;
+    margin: 0 8px;
+    float: left;
+}
+
+.runbutton,
+.submitbutton {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.runbutton {
+    background-color: #007bff;
+}
+
+.runbutton:hover {
+    background-color: #005580;
+}
+
+.submitbutton {
+    background-color: #008000;
+}
+
+.submitbutton:hover {
+    background-color: #006400;
+}
+
+.problem_title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.editor {
+    width: 100%;
+    height: 300px;
+    font-size: 16px;
+    font-family: monospace;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px;
+    border: solid 1px #ddd;
+}
+
+.output,
+.expect_out,
+.sample_in,
+.sample_out {
+    width: 100%;
+    padding: 5px 5px;
+    overflow-x: auto;
+    font-size: 16px;
+    font-family: monospace;
+    background-color: #f0f0f0;
+    color: #333;
+    border: solid 1px #ddd;
+}
+
+.box-title,
+.problem_list {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #777;
+}
+
+pre {
+    background-color: #282c34;
+    border-radius: 5px;
+}
+
+pre code {
+    color: #e8ebf0;
+    line-height: 1.2;
+    font-family: monospace;
+}
+
+.inline-code {
+    font-family: monospace;
+    line-height: 1.2;
+    color: #e43e3ee0;
+}
+
+.success,
+.info,
+.warning,
+.danger {
+    padding: 12px;
+    border: 1px solid;
+    border-radius: 4px;
+}
+
+.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.definition {
+    counter-increment: definition;
+    border: #31708f 3px dotted;
+    border-left: #31708fa1 5px solid;
+}
+
+.definition::before {
+    content: "Definition " counter(definition) ".";
+}
+
+.theorem {
+    counter-increment: theorem;
+    border: #318f5a 3px dotted;
+    border-left: #318f4fa1 5px solid;
+}
+
+.theorem::before {
+    content: "Theorem " counter(theorem) ".";
+}
+
+.lemma {
+    counter-increment: lemma;
+    border: #ab5b64 3px dotted;
+    border-left: #d071a4a1 5px solid;
+}
+
+.lemma::before {
+    content: "Lemma " counter(lemma) ".";
+}
+
+.proof {
+    counter-increment: proof;
+    border: #5b64ab 3px dotted;
+    border-left: #8cc1e7a1 5px solid;
+}
+
+.proof::before {
+    content: "Proof " counter(proof) ".";
+}
+
+.definition::before,
+.theorem::before,
+.proof::before,
+.lemma::before {
+    font-family: serif;
+    font-size: large;
+    font-weight: 600;
+    font-style: italic;
+    display: block;
+}
+
+
+.definition,
+.theorem,
+.proof,
+.lemma {
+    padding: 12px;
+    margin: 12px;
+}
+
+.proof::after {
+    content: "∎";
+    margin-left: auto;
+    display: block;
+}
+
+iframe {
+    width: 100%;
+}
+
+
+a {
+    color: #006699;
+    word-break: break-all;
+}
+    </style>
+
+    <script>
+        var page_contents = [];
+    </script>
+
+    
+
+</head>
+
+<body>
+
+    <div class="article-header">
+
+        <div class="title">
+            Google Colaboratory の使い方
+        </div>
+
+        <script>
+            var title = document.querySelector(".title").innerHTML;
+        </script>
+
+        <br>
+        <div class="date">
+            2023/09/25
+        </div>
+        <br>
+        <div class="tag-placeholder">
+            <!-- loop tags -->
+            
+            <div class="tag">
+                # Google Colaboratory
+            </div>
+            
+            <div class="tag">
+                # Python
+            </div>
+            
+            <div class="tag">
+                # 環境構築
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="article-body">
+        <div class="content">
+            <script>page_contents.push({
+    "type":"H2",
+    "id":"1",
+    "title":"環境構築について"
+});
+</script>
+<h2 id="1">環境構築について</h2>この講習会では、基本的に Python を使うことを想定しています。<br>また多くの場合、対話的な Python の実行環境である Jupyter Notebook を使うと便利な場面が多いです。<br>ここでは、環境構築にあまり慣れていない人むけに Google Colaboratory というサービスを使ってこれらを利用する方法を紹介します。<br><script>page_contents.push({
+    "type":"H3",
+    "id":"9",
+    "title":"Google Colaboratory の使い方"
+});
+</script>
+<h3 id="9">Google Colaboratory の使い方</h3><br>まずは、 <url> <a href="https://colab.research.google.com/?hl=ja">https://colab.research.google.com/?hl=ja</a> </url> にアクセスしてみてください。<br><figure><img src="img/colab.png" ><figcaption></figcaption></figure><br><br>このような画面が出てきたかと思います。 まずは、右上の青い「ログイン」を押してください。<br><br><figure><img src="img/notebookcreate.png" ><figcaption></figcaption></figure><br>するとこのような画面になると思うので、 次に真ん中のポップアップの下にある青い文字の「ノートブックを新規作成」をクリックしてください。<br><br><figure><img src="img/notebook.png" ><figcaption></figcaption></figure><br>このような画面になっていれば成功です！<br>それでは次にこの画面の意味や JupyterNotebook そのものについて見ていきます。 この画面は開いたままにして、次へ進んでください！<br><script>page_contents.push({
+    "type":"H3",
+    "id":"33",
+    "title":"Jupyter Notebook とは"
+});
+</script>
+<h3 id="33">Jupyter Notebook とは</h3><br>いきなり馴染みのない画面に飛ばされて困惑している人もいるかもしれないですが、ひとまずこれが何者なのか確かめようと思います。<br>まず、先ほどの画面の「1」と書いてあるところの右をクリックしてみてください。 入力可能になっているかと思います。<br><figure><img src="img/input.png" ><figcaption></figcaption></figure><br><br>そこに　<span class="inline-code"> <code>print(&#39;Hello Jupyter!&#39;)</code> </span> と書き、左の再生ボタンをクリックしてみましょう。 (初めてこれをクリックした場合は、接続が入って少し待たされますが正常なのでじっと待ってください)<br><br><figure><img src="img/image-1.png" ><figcaption></figcaption></figure><br><br><br><span class="inline-code"> <code>Hello Jupyter</code> </span> と表示されました！ いうまでもなく、これは Python のコードを実行した結果です。<br>このように、 JupyterNotebook では、 この入力可能な欄に Python のプログラムの書き込み、実行ができます。<br>もう少し進めてみましょう。 まずは、次の入力欄に次のようなコードを書きます。<br><span class="inline-code"> <code>weather = &#39;晴れ&#39;</code> </span><br>これを実行して、そのまた次の入力欄に<br><span class="inline-code"> <code>print(&#39;今日の天気は&#39; + weather)</code> </span> と書き、実行してみます。<br><figure><img src="img/image-2.png" ><figcaption></figcaption></figure><br>すると、<span class="inline-code"> <code>今日の天気は晴れ</code> </span> と表示されました。<br>このように、 Jupyter Notebook の各欄では変数などが共有されていて、全体として一つのプログラムのように振舞います。<br>それぞれの入力欄のことを「セル」と呼びます。つまり、今回は三つのセルに分けてコードを書いたわけです。<br>今後 JupyterNotebook を使い倒すことになると思うので、 色々なプログラムの実装を試してみて慣れておくとスムーズにいきそうです。<br><br><script>page_contents.push({
+    "type":"H3",
+    "id":"79",
+    "title":"なぜ Jupyter Notebook を使うのか？"
+});
+</script>
+<h3 id="79">なぜ Jupyter Notebook を使うのか？</h3>他の言語の実行方法や、競技プログラミングに取り組んでいる人などからすると、"通常の" 実行方式、つまり 「ファイル作成 → <span class="inline-code"> <code>python {ファイル名}.py</code> </span> 」 という方法を使えばいいじゃないか、と思うかもしれません。<br>しかし、 Jupyter Notebook はデータ分析・機械学習をに関わる多くのエンジニア・研究者にとって<span class="strong"> <strong>必須</strong> </span>のツールになっています。<br>利点はさまざまありますが、簡単には次のようなところが支持されていると思います。<br><script>page_contents.push({
+    "type":"H4",
+    "id":"92",
+    "title":"1. 処理を簡単に切り分けられる"
+});
+</script>
+<h4 id="92">1. 処理を簡単に切り分けられる</h4>データ分析、機械学習は試行錯誤が多い作業です。<br>Jupyter Notebook を使うと、セルごとに処理を切り分けることで極めて簡単に試行錯誤をする 部分を小さくしていくことができます。<br><script>page_contents.push({
+    "type":"H4",
+    "id":"98",
+    "title":"2. データの可視化が簡単"
+});
+</script>
+<h4 id="98">2. データの可視化が簡単</h4>これはその目で確かめるのがいいと思います。<br>次のコードを貼り付けて実行してみてください。<br><div class="code-block"> <pre><code class="language-python">import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.set(style=&quot;whitegrid&quot;, context=&quot;talk&quot;, palette=&quot;viridis&quot;)
+titanic = sns.load_dataset(&#39;titanic&#39;)
+plt.figure(figsize=(14, 8))
+
+histplot = sns.histplot(data=titanic, x=&#39;age&#39;, hue=&#39;survived&#39;, multiple=&#39;stack&#39;, palette=&#39;viridis&#39;, kde=True)
+
+plt.title(&#39;Age Distribution of Titanic Passengers&#39;, fontsize=20, fontweight=&#39;bold&#39;)
+plt.xlabel(&#39;Age&#39;, fontsize=16)
+plt.ylabel(&#39;Count&#39;, fontsize=16)
+plt.legend(title=&#39;Survived&#39;, labels=[&#39;Not Survived&#39;, &#39;Survived&#39;], fontsize=14, title_fontsize=16)
+plt.grid(True, linestyle=&#39;--&#39;, linewidth=0.7, alpha=0.7)
+plt.gca().set_facecolor(&#39;#f0f0f0&#39;)
+
+plt.show()
+</code></pre> </div><br>真下に、なかなか綺麗なグラフが表示されると思います。<br>Jupyter Notebook は各セルの出力としてテキストだけでなく画像なども表示でき、対話的にデータを確認するのに非常に便利です。 (ちなみに、このグラフは有名なタイタニック号沈没事故の乗客の年齢分布を生存者と非生存者で比較したものです)<br><br>Jupyter Notebook をうまく活用して、データ分析や機械学習の作業を効率的に進めていきましょう。
+
+            <hr>
+
+            <script src="https://utteranc.es/client.js" repo="abap34/abap34com-comment" issue-term="og:title"
+                label="comment" theme="github-light" crossorigin="anonymous" async></script>
+
+        </div>
+
+        <div class="side">
+            <div class="side-sticky">
+                <div class="sidebar">
+                    <ul id="toc"></ul>
+                </div>
+
+                <button id="question-button"> この資料についてtraQ で質問する!</button>
+
+                <script>
+                    const text = `@abap34 \n ### 質問したい資料: ${title} \n### 質問内容: `;
+
+                    const url = `https://q.trap.jp/share-target?title=質問&text=${encodeURIComponent(text)}`;
+
+                    const questionButton = document.getElementById("question-button");
+                    questionButton.onclick = () => {
+                        window.open(url, "_blank");
+                    };
+                </script>
+
+                <div class="links">
+                    <div class="to-links">
+                        <a href="https://abap34.github.io/ml-lecture/#articles"> <i class="fas fa-book-open"
+                                id="toposts"></i> 資料一覧へ </a>
+                        <br>
+                        <a href="https://abap34.github.io/ml-lecture/"> <i class="fas fa-home" id="tohome"></i> ホーム </a>
+                    </div>
+                    <br><br>
+                    <p><i class="icon fab fa-twitter" id="twitter"></i><a href="https://twitter.com/abap34"
+                            class="tolink"> @abap34</a></p>
+                    <p><i class="icon fab fa-github" id="github"></i><a href="https://github.com/abap34"
+                            class="tolink"> @abap34</a></p>
+                    <p><i class="icon fas fa-envelope" id="mail"></i><a href="mailto:abap0002@gmail.com" class="tolink">
+                            abap0002@gmail.com</a></p>
+
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                        data-show-count="false" data-via="abap34">Tweet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+                    <footer>
+                        <p>&copy; abap34</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const tocContainer = document.querySelector("#toc");
+        const tocTitle = document.createElement("div");
+        tocTitle.innerHTML = title;
+        tocTitle.classList.add("toc_title");
+        tocContainer.appendChild(tocTitle);
+
+        page_contents.forEach(item => {
+            if (item.type == "H1" || item.type === "H2" || item.type === "H3") {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<a href="#${item.id}">${item.title}</a>`;
+                listItem.classList.add("toc_" + item.type);
+                tocContainer.appendChild(listItem);
+            }
+        });
+
+        const options = {
+            root: null,
+            rootMargin: "-50% 0px",
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver(onIntersection, options);
+
+        page_contents.forEach(item => {
+            const element = document.getElementById(item.id);
+            if (element) {
+                observer.observe(element);
+            }
+        });
+
+        // page_contents の先頭を active にしておく
+        const first_item = document.querySelector(`#toc a[href="#${page_contents[0].id}"]`);
+        first_item.classList.add("active");
+
+        let prev_item = first_item;
+
+        function onIntersection(entries) {
+            entries.forEach(entry => {
+                const id = entry.target.id;
+                const tocItem = document.querySelector(`#toc a[href="#${id}"]`);
+                if (tocItem) {
+                    if (entry.isIntersecting) {
+                        tocItem.classList.add("active");
+                        prev_item.classList.remove("active");
+                        prev_item = tocItem;
+                    }
+                }
+            });
+        }
+
+
+    </script>
+
+</body>
+
+</html>

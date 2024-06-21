@@ -1,8 +1,8 @@
 ---
-title: Google Colaboratory を使った環境構築
+title: Google Colaboratory の使い方
 author: abap34
 date: 2023/09/25
-tags: [機械学習講習会, Python]
+tags: [Google Colaboratory, Python, 環境構築]
 twitter_id: abap34
 github_id: abap34
 mail: abap0002@gmail.com
@@ -12,6 +12,7 @@ url: https://abap34.com
 site_name: abap34.com
 twitter_site: abap34
 ---
+
 
 
 ## 環境構築について
