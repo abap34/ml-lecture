@@ -49,9 +49,7 @@
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
     <style>
-
-    {{ style|safe }}
-    
+        {{ style|safe }}
     </style>
 
     <script>
@@ -83,11 +81,10 @@
             <!-- loop tags -->
             {% for tag in tags %}
             <div class="tag">
-                <a href="https://abap34.com/posts.html?tags={{ tag }}"> # {{ tag }}</a>
+                # {{ tag }}
             </div>
             {% endfor %}
         </div>
-
     </div>
 
     <div class="article-body">
@@ -107,13 +104,25 @@
                     <ul id="toc"></ul>
                 </div>
 
+                <button id="question-button"> この資料についてtraQ で質問する!</button>
+
+                <script>
+                    const text = `@abap34 \n ### 質問したい資料: ${title} \n### 質問内容: `;
+
+                    const url = `https://q.trap.jp/share-target?title=質問&text=${encodeURIComponent(text)}`;
+
+                    const questionButton = document.getElementById("question-button");
+                    questionButton.onclick = () => {
+                        window.open(url, "_blank");
+                    };
+                </script>
+
                 <div class="links">
                     <div class="to-links">
-                        <a href="https://abap34.com/posts.html"> <i class="fas fa-book-open" id="toposts"></i> 記事一覧 </a>
+                        <a href="https://abap34.github.io/ml-lecture/#articles"> <i class="fas fa-book-open"
+                                id="toposts"></i> 資料一覧へ </a>
                         <br>
-                        <a href="https://abap34.com"> <i class="fas fa-home" id="tohome"></i> ホーム </a>
-                        <br><br><br>
-                        <a href="https://www.abap34.com/rss.xml"> <i class="fas fa-rss" id="torss"></i> RSS </a>
+                        <a href="https://abap34.github.io/ml-lecture/"> <i class="fas fa-home" id="tohome"></i> ホーム </a>
                     </div>
                     <br><br>
                     <p><i class="icon fab fa-twitter" id="twitter"></i><a href="https://twitter.com/{{ twitter_id }}"
@@ -187,7 +196,7 @@
             });
         }
 
-        
+
     </script>
 
 </body>
