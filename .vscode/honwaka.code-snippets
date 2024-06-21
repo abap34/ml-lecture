@@ -1,0 +1,86 @@
+{
+	"lead": {
+		"prefix": "leadpage",
+		"body": [
+			"---",
+			"<!-- _class: lead -->"
+		],
+		"description": "lead page"
+	},
+	"newpage": {
+		"prefix": "newpage",
+		"body": [
+			"---",
+			"<!-- _header: $1 -->",
+		],
+		"description": "new page"
+	},
+	"columns": {
+		"prefix": "columns",
+		"body": [
+			"<div class=\"columns\">",
+			"",
+			"$1",
+			"",
+			"</div>"
+		],
+		"description": "columns"
+	},
+	"emptydiv": {
+		"prefix": "emptydiv",
+		"body": [
+			"<div>",
+			"",
+			"$2",
+			"",
+			"</div>"
+		],
+		"description": "empty div for columns layout"
+	},
+	"div": {
+		"prefix": "div",
+		"body": [
+			"<div class=\"$1\">",
+			"",
+			"$2",
+			"",
+			"</div>"
+		]
+	},
+	"template": {
+		"prefix": "honwaka-template",
+		"body": [
+			"---",
+			"marp: true",
+			"paginate: true",
+			"math: mathjax",
+			"theme: honwaka",
+			"---",
+			"$$",
+			"\\newcommand{\\argmin}{\\mathop{\\rm arg~min}\\limits}",
+			"$$",
+		]
+	},
+	"header": {
+		"prefix": "header",
+		"body": [
+			"<!-- _header: $1 -->"
+		]
+	},
+	"dot-text": {
+		"prefix": "span",
+		"body": [
+			"<span class=\"$1\">$2</span>"
+		]
+	},
+	"center": {
+		"prefix": "center",
+		"body": [
+			"<div style=\"text-align: center;\">",
+			"",
+			"$1",
+			"",
+			"</div>"
+		]
+	},
+}
