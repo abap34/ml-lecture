@@ -15,10 +15,10 @@
     <script type="text/javascript" src="//code.typesquare.com/static/ZDbTe4IzCko%253D/ts106f.js"
         charset="utf-8"></script>
 
-    <title>機械学習講習会 第0回 資料</title>
+    <title>機械学習講習会 まえがき</title>
 
-    <meta property="og:title" content="機械学習講習会 第0回 資料">
-    <meta property="og:image" content="https://abap34.com/trap_ml_lecture/ch00/image/thumbnail.png">
+    <meta property="og:title" content="機械学習講習会 まえがき">
+    <meta property="og:image" content="https://abap34.github.io/ml-lecture/supplement/img/thumbnail.png">
     <meta property="og:description" content="機械学習講習会 第0回の講義資料です。">
     <meta property="og:url" content="https://abap34.com">
     <meta property="og:type" content="article">
@@ -49,8 +49,7 @@
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
     <style>
-
-    body {
+        body {
     max-width: 1200px;
     margin-right: auto;
     margin-left: auto;
@@ -148,12 +147,21 @@ h1 {
     font-size: 0.8rem;
     border-radius: 5px;
     border: 1px solid gray;
-}
-
-.tag a {
     color: #666;
     text-decoration-line: none;
 }
+
+/* ボタンも同じような見た目に */
+button {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+}
+
 
 
 .toc_title {
@@ -601,7 +609,6 @@ a {
     color: #006699;
     word-break: break-all;
 }
-    
     </style>
 
     <script>
@@ -617,7 +624,7 @@ a {
     <div class="article-header">
 
         <div class="title">
-            機械学習講習会 第0回 資料
+            機械学習講習会 まえがき
         </div>
 
         <script>
@@ -633,15 +640,10 @@ a {
             <!-- loop tags -->
             
             <div class="tag">
-                <a href="https://abap34.com/posts.html?tags=機械学習講習会"> # 機械学習講習会</a>
-            </div>
-            
-            <div class="tag">
-                <a href="https://abap34.com/posts.html?tags=Python"> # Python</a>
+                # 機械学習講習会
             </div>
             
         </div>
-
     </div>
 
     <div class="article-body">
@@ -697,13 +699,25 @@ a {
                     <ul id="toc"></ul>
                 </div>
 
+                <button id="question-button"> この資料についてtraQ で質問する!</button>
+
+                <script>
+                    const text = `@abap34 \n ### 質問したい資料: ${title} \n### 質問内容: `;
+
+                    const url = `https://q.trap.jp/share-target?title=質問&text=${encodeURIComponent(text)}`;
+
+                    const questionButton = document.getElementById("question-button");
+                    questionButton.onclick = () => {
+                        window.open(url, "_blank");
+                    };
+                </script>
+
                 <div class="links">
                     <div class="to-links">
-                        <a href="https://abap34.com/posts.html"> <i class="fas fa-book-open" id="toposts"></i> 記事一覧 </a>
+                        <a href="https://abap34.github.io/ml-lecture/#articles"> <i class="fas fa-book-open"
+                                id="toposts"></i> 資料一覧へ </a>
                         <br>
-                        <a href="https://abap34.com"> <i class="fas fa-home" id="tohome"></i> ホーム </a>
-                        <br><br><br>
-                        <a href="https://www.abap34.com/rss.xml"> <i class="fas fa-rss" id="torss"></i> RSS </a>
+                        <a href="https://abap34.github.io/ml-lecture/"> <i class="fas fa-home" id="tohome"></i> ホーム </a>
                     </div>
                     <br><br>
                     <p><i class="icon fab fa-twitter" id="twitter"></i><a href="https://twitter.com/abap34"
@@ -777,7 +791,7 @@ a {
             });
         }
 
-        
+
     </script>
 
 </body>
