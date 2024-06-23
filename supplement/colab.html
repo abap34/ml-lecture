@@ -679,37 +679,37 @@ a {
     "title":"環境構築について"
 });
 </script>
-<h2 id="1">環境構築について</h2>この講習会では、基本的に Python を使うことを想定しています。<br>また多くの場合、対話的な Python の実行環境である Jupyter Notebook を使うと便利な場面が多いです。<br>ここでは、環境構築にあまり慣れていない人むけに Google Colaboratory というサービスを使ってこれらを利用する方法を紹介します。<br><script>page_contents.push({
+<h2 id="1">環境構築について</h2>この講習会では、基本的に Python を使うことを想定しています。<br>また、対話的な Python の実行環境である Jupyter Notebook を使うと便利な場面が多いです。<br>ここでは、環境構築にあまり慣れていない人むけに Google Colaboratory というサービスを使ってこれらを利用する方法を紹介します。<br><script>page_contents.push({
     "type":"H3",
     "id":"9",
     "title":"Google Colaboratory の使い方"
 });
 </script>
-<h3 id="9">Google Colaboratory の使い方</h3><br>まずは、 <url> <a href="https://colab.research.google.com/?hl=ja">https://colab.research.google.com/?hl=ja</a> </url> にアクセスしてみてください。<br><figure><img src="img/colab.png" ><figcaption></figcaption></figure><br><br>このような画面が出てきたかと思います。 まずは、右上の青い「ログイン」を押してください。<br><br><figure><img src="img/notebookcreate.png" ><figcaption></figcaption></figure><br>するとこのような画面になると思うので、 次に真ん中のポップアップの下にある青い文字の「ノートブックを新規作成」をクリックしてください。<br><br><figure><img src="img/notebook.png" ><figcaption></figcaption></figure><br>このような画面になっていれば成功です！<br>それでは次にこの画面の意味や JupyterNotebook そのものについて見ていきます。 この画面は開いたままにして、次へ進んでください！<br><script>page_contents.push({
+<h3 id="9">Google Colaboratory の使い方</h3><br>まずは、 <url> <a href="https://colab.research.google.com/?hl=ja">https://colab.research.google.com/?hl=ja</a> </url> にアクセスしてみてください。<br><figure><img src="img/colab.png" ><figcaption></figcaption></figure><br><br>このような画面が出てきたかと思います。 まずは、右上の青い「ログイン」ボタンを押してください。<br><br><figure><img src="img/notebookcreate.png" ><figcaption></figcaption></figure><br>するとこのような画面になると思うので、 次に真ん中のポップアップの下にある青い文字の「ノートブックを新規作成」をクリックしてください。<br><br><figure><img src="img/notebook.png" ><figcaption></figcaption></figure><br>このような画面になっていれば成功です！<br>それでは次にこの画面の意味や JupyterNotebook そのものについて見ていきます。 この画面は開いたままにして、次へ進んでください。<br><script>page_contents.push({
     "type":"H3",
     "id":"33",
     "title":"Jupyter Notebook とは"
 });
 </script>
-<h3 id="33">Jupyter Notebook とは</h3><br>いきなり馴染みのない画面に飛ばされて困惑している人もいるかもしれないですが、ひとまずこれが何者なのか確かめようと思います。<br>まず、先ほどの画面の「1」と書いてあるところの右をクリックしてみてください。 入力可能になっているかと思います。<br><figure><img src="img/input.png" ><figcaption></figcaption></figure><br><br>そこに　<span class="inline-code"> <code>print(&#39;Hello Jupyter!&#39;)</code> </span> と書き、左の再生ボタンをクリックしてみましょう。 (初めてこれをクリックした場合は、接続が入って少し待たされますが正常なのでじっと待ってください)<br><br><figure><img src="img/image-1.png" ><figcaption></figcaption></figure><br><br><br><span class="inline-code"> <code>Hello Jupyter</code> </span> と表示されました！ いうまでもなく、これは Python のコードを実行した結果です。<br>このように、 JupyterNotebook では、 この入力可能な欄に Python のプログラムの書き込み、実行ができます。<br>もう少し進めてみましょう。 まずは、次の入力欄に次のようなコードを書きます。<br><span class="inline-code"> <code>weather = &#39;晴れ&#39;</code> </span><br>これを実行して、そのまた次の入力欄に<br><span class="inline-code"> <code>print(&#39;今日の天気は&#39; + weather)</code> </span> と書き、実行してみます。<br><figure><img src="img/image-2.png" ><figcaption></figcaption></figure><br>すると、<span class="inline-code"> <code>今日の天気は晴れ</code> </span> と表示されました。<br>このように、 Jupyter Notebook の各欄では変数などが共有されていて、全体として一つのプログラムのように振舞います。<br>それぞれの入力欄のことを「セル」と呼びます。つまり、今回は三つのセルに分けてコードを書いたわけです。<br>今後 JupyterNotebook を使い倒すことになると思うので、 色々なプログラムの実装を試してみて慣れておくとスムーズにいきそうです。<br><br><script>page_contents.push({
+<h3 id="33">Jupyter Notebook とは</h3><br>いきなり馴染みのない画面に飛ばされて困惑している人もいるかもしれないですが、ひとまずこれが何者なのか確かめようと思います。<br>まず、先ほどの画面の「1」と書いてあるところの右をクリックしてみてください。 入力可能になっているかと思います。<br><figure><img src="img/input.png" ><figcaption></figcaption></figure><br><br>そこに　<span class="inline-code"> <code>print(&#39;Hello Jupyter!&#39;)</code> </span> と書き、左の再生ボタンをクリックしてみましょう。 (初めてこれをクリックした場合は、接続が入って少し待たされますが正常なのでじっと待ってください)<br><br><figure><img src="img/image-1.png" ><figcaption></figcaption></figure><br><br><br><span class="inline-code"> <code>Hello Jupyter</code> </span> と表示されました！ いうまでもなく、これは Python のコードを実行した結果です。<br>このように、 JupyterNotebook では、 この入力可能な欄に Python のプログラムの書き込み、実行ができます。<br>もう少し進めてみましょう。 まずは、次の入力欄に次のようなコードを書きます。<br><span class="inline-code"> <code>weather = &#39;晴れ&#39;</code> </span><br>これを実行して、そのまた次の入力欄に<br><span class="inline-code"> <code>print(&#39;今日の天気は&#39; + weather)</code> </span> と書き、実行してみます。<br><figure><img src="img/image-2.png" ><figcaption></figcaption></figure><br>すると、<span class="inline-code"> <code>今日の天気は晴れ</code> </span> と表示されました。<br>このように、 Jupyter Notebook の各欄では変数などが共有されていて、全体として一つのプログラムのように振舞います。<br>それぞれの入力欄のことを「セル」と呼びます。つまり、今回は三つのセルに分けてコードを書いたわけです。<br>今後 JupyterNotebook を使い倒すことになると思うので、<br>色々なプログラムの実装を試してみて慣れておくとスムーズにいきそうです。<br><br><script>page_contents.push({
     "type":"H3",
-    "id":"79",
+    "id":"81",
     "title":"なぜ Jupyter Notebook を使うのか？"
 });
 </script>
-<h3 id="79">なぜ Jupyter Notebook を使うのか？</h3>他の言語の実行方法や、競技プログラミングに取り組んでいる人などからすると、"通常の" 実行方式、つまり 「ファイル作成 → <span class="inline-code"> <code>python {ファイル名}.py</code> </span> 」 という方法を使えばいいじゃないか、と思うかもしれません。<br>しかし、 Jupyter Notebook はデータ分析・機械学習をに関わる多くのエンジニア・研究者にとって<span class="strong"> <strong>必須</strong> </span>のツールになっています。<br>利点はさまざまありますが、簡単には次のようなところが支持されていると思います。<br><script>page_contents.push({
+<h3 id="81">なぜ Jupyter Notebook を使うのか？</h3>他の言語の実行方法や、競技プログラミングに取り組んでいる人などからすると、"通常の" 実行方式、つまり 「ファイル作成 → <span class="inline-code"> <code>python {ファイル名}.py</code> </span> 」 という方法を使えばいいじゃないか、と思うかもしれません。<br>しかし、 Jupyter Notebook はデータ分析・機械学習をに関わる多くのエンジニア・研究者にとって<span class="strong"> <strong>必須</strong> </span>のツールになっています。<br>利点はさまざまありますが、簡単には次のようなところが支持されていると思います。<br><script>page_contents.push({
     "type":"H4",
-    "id":"92",
+    "id":"94",
     "title":"1. 処理を簡単に切り分けられる"
 });
 </script>
-<h4 id="92">1. 処理を簡単に切り分けられる</h4>データ分析、機械学習は試行錯誤が多い作業です。<br>Jupyter Notebook を使うと、セルごとに処理を切り分けることで極めて簡単に試行錯誤をする 部分を小さくしていくことができます。<br><script>page_contents.push({
+<h4 id="94">1. 処理を簡単に切り分けられる</h4>データ分析、機械学習は試行錯誤が多い作業です。<br>Jupyter Notebook を使うと、セルごとに処理を切り分けることで極めて簡単に試行錯誤をする 部分を小さくしていくことができます。<br><script>page_contents.push({
     "type":"H4",
-    "id":"98",
+    "id":"100",
     "title":"2. データの可視化が簡単"
 });
 </script>
-<h4 id="98">2. データの可視化が簡単</h4>これはその目で確かめるのがいいと思います。<br>次のコードを貼り付けて実行してみてください。<br><div class="code-block"> <pre><code class="language-python">import seaborn as sns
+<h4 id="100">2. データの可視化が簡単</h4>これはその目で確かめるのがいいと思います。<br>次のコードを貼り付けて実行してみてください。<br><div class="code-block"> <pre><code class="language-python">import seaborn as sns
 import matplotlib.pyplot as plt
 
 sns.set(style=&quot;whitegrid&quot;, context=&quot;talk&quot;, palette=&quot;viridis&quot;)
