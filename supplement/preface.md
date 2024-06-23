@@ -8,8 +8,8 @@ github_id: abap34
 mail: abap0002@gmail.com
 ogp_url:  https://abap34.github.io/ml-lecture/supplement/img/thumbnail.png
 description: 機械学習講習会 第0回の講義資料です。
-url: https://abap34.com
-site_name: abap34.com
+url: https://abap34.github.io/ml-lecture/supplement/preface.html
+site_name: abap34.github.io
 twitter_site: abap34
 ---
 
