@@ -4,7 +4,7 @@ import glob
 files = glob.glob('**/*.md', recursive=True)
 
 def isexcluded(file):
-    return file.startswith('2023/') or file.endswith('slide.md')
+    return file.startswith('2023/') or file.endswith('lecture.md')
 
 files = [file for file in files if not isexcluded(file)]
 
