@@ -837,10 +837,10 @@ else:
 1. $y = f(x_1, x_2, x_3) = x_1^2 + x_2^2 + x_3^2$ の $x_1 = 1.0, x_2 = 2.0, x_3 = 3.0$ における勾配を求めよ。
 (https://oj.abap34.com/problems/autograd-practice-2)
 
-1. $f(\bm{x_1}, \bm{x_2}, W) = \bm{x_1}^T W \bm{x_2}$ の $W = \begin{pmatrix}
-1 & 3 & 5 \\
-2 & 4 & 6 
-\end{pmatrix}$, $\boldsymbol{x}_1 = (1.0, 2.0)^T, \boldsymbol{x}_2 = (1.0,2.0,3.0)^T$ における勾配をそれぞれ求めよ。
+1. $f(\bm{x_1}) = \bm{x_1}^T \begin{pmatrix}
+1 & 2 \\
+2 & 1 \\
+\end{pmatrix} \bm{x_1}$ の  $\boldsymbol{x}_1 = (1.0, 2.0)^T$ における勾配を求めよ。
 (https://oj.abap34.com/problems/autograd-practice-3)
 
 
@@ -854,31 +854,58 @@ else:
 ```python
 x = torch.tensor(3.0, requires_grad=True)
 y = x ** 2 + 2 * x + 1
+
 y.backward()
-print(x.grad) # -> tensor(8.)
+gx = x.grad
+
+print(gx.item()) # -> 8.0
 ```
 
-2.
-```python
-x = torch.tensor([1.0, 2.0, 3.0], requires_grad=True)
-y = x[0] ** 2 + x[1] ** 2 + x[2] ** 2
-y.backward()
-print(x.grad) # -> tensor([2., 4., 6.])
-```
+
+<div class="cite">
+
+スペースの都合上  `import torch`　を省略しています
+
+</div>
+
 
 ---
 <!--　_header: 演習3: 解答 -->
 
+2.
+```python
+import torch
+
+x1 = torch.tensor(1.0, requires_grad=True)
+x2 = torch.tensor(2.0, requires_grad=True)
+x3 = torch.tensor(3.0, requires_grad=True)
+
+y = x1**2 + x2**2 + x3**2
+
+y.backward()
+
+print(x1.grad.item()) # -> 2.0
+print(x2.grad.item()) # -> 4.0
+print(x3.grad.item()) # -> 6.0
+```
+
+
+---
+
+
+<!--　_header: 演習3: 解答 -->
+
 3.
 ```python
-W = torch.tensor([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]], requires_grad=True)
+W = torch.tensor([[1.0, 2.0], [2.0, 1.0]])
 x1 = torch.tensor([[1.0, 2.0]], requires_grad=True)
-x2 = torch.tensor([1.0, 2.0, 3.0], requires_grad=True)
-y = torch.matmul(torch.matmul(x1, W), x2)
+
+y = torch.matmul(torch.matmul(x1, W), x1)
 y.backward()
-print(W.grad)   
-print(x1.grad)
-print(x2.grad)
+
+gx = x1.grad
+
+print(*gx.numpy())
 ```
 
 
