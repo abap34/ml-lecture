@@ -2,7 +2,7 @@
 marp: true
 theme: honwaka
 paginate: true
-math: katex
+math: mathjax
 ---
 
 <!-- _class: lead-->
@@ -96,7 +96,7 @@ $$
 $$
 
 $$
-\mathcal{L} (\bm{\theta}) = \dfrac{\sum_{p \in S} |f(p; \bm{\theta}) - \mathcal{F}(p)|^2 \cdot \omega_p}{\sum_{p \in S} \omega_p}
+\mathcal{L} (\boldsymbol{\theta}) = \dfrac{\sum_{p \in S} |f(p; \boldsymbol{\theta}) - \mathcal{F}(p)|^2 \cdot \omega_p}{\sum_{p \in S} \omega_p}
 $$
 
 $$
@@ -275,7 +275,7 @@ tensor(8.)
 
 ---
 
-<!-- _header: Tensor型 -->
+<!-- _header: `Tensor` 型 -->
 
 数学の 「数」 に対応するオブジェクトとして、PyTorchでは
 
@@ -291,7 +291,7 @@ tensor(8.)
 
 ---
 
-<!-- _header: Tensor型のつくりかた -->
+<!-- _header: `Tensor` 型のつくりかた -->
 
 
 <div class="box" style="border-width: 3px;">
@@ -312,7 +312,7 @@ tensor(8.)
 
 ---
 
-<!-- _header: Tensor型 -->
+<!-- _header: `Tensor` 型 -->
 
 ```python
 >>> x = torch.tensor(2.0, requires_grad=True)
@@ -334,12 +334,12 @@ $(1.0, 2.0, 3.0)$ というベクトルを保持する `Tensor` 型のオブジ�
 ---
 
 
-<!-- _header: Tensor型 -->
+<!-- _header: `Tensor` 型 -->
 
 ```python
 >>> x = torch.tensor([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]], requires_grad=True)
 ```
-$\begin{pmatrix} 1.0 & 2.0 & 3.0 \\ 4.0 & 5.0 & 6.0 \end{pmatrix}$ という行列を保持するTensor型のオブジェクトを作成
+$\begin{pmatrix} 1.0 & 2.0 & 3.0 \\ 4.0 & 5.0 & 6.0 \end{pmatrix}$ という行列を保持する`Tensor` 型のオブジェクトを作成
 
 
 (`requires_grad=True`とすれば、勾配計算が可能な `Tensor` 型を作成できる)
@@ -348,7 +348,7 @@ $\begin{pmatrix} 1.0 & 2.0 & 3.0 \\ 4.0 & 5.0 & 6.0 \end{pmatrix}$ という行�
 
 <!-- _header: 演習1 -->
 
-これらを勾配計算が可能なTensor型として表現してください。
+これらを勾配計算が可能な`Tensor` 型として表現してください。
 
 1. $x = 3.0$
 2. $\vec{x} = (3.0, 4.0, 5.0)$
@@ -365,7 +365,7 @@ $\begin{pmatrix} 1.0 & 2.0 & 3.0 \\ 4.0 & 5.0 & 6.0 \end{pmatrix}$ という行�
 
 (実際にやってください)
 
-4. **整数** $x = 3$ を勾配計算が可能なTensor型として表現することを試みてください。また、その結果を確認して説明できるようにしてください。
+4. **整数** $x = 3$ を勾配計算が可能な`Tensor` 型として表現することを試みてください。また、その結果を確認して説明できるようにしてください。
 
 <div style="text-align: center;">
 
@@ -376,7 +376,7 @@ $\begin{pmatrix} 1.0 & 2.0 & 3.0 \\ 4.0 & 5.0 & 6.0 \end{pmatrix}$ という行�
 
 <!-- _header: 演習1 ヒント -->
 
-**1, 2, 3**: 講義資料を遡って、`torch.tensor`の第一引数と作成されるTensor型の対応を見比べてみましょう。
+**1, 2, 3**: 講義資料を遡って、`torch.tensor`の第一引数と作成される`Tensor` 型の対応を見比べてみましょう。
 
 **4**: Pythonのエラーは、 
 ```
@@ -422,9 +422,9 @@ x = torch.tensor(3, requires_grad=True)
 
 ---
 
-<!-- _header: Tensor型に対する演算 -->
+<!-- _header: `Tensor` 型に対する演算 -->
 
-Tensor型は、「数」なので当然各種演算が可能
+`Tensor` 型は、「数」なので当然各種演算が可能
 
 ```python
 x = torch.tensor(2.0, requires_grad=True)
@@ -443,7 +443,7 @@ x * 2
 
 ---
 
-<!-- _header: Tensor型に対する演算 -->
+<!-- _header: `Tensor`型に対する演算 -->
 
 平方根を取ったり、`sin`や`exp`などの関数も使える
 
@@ -473,7 +473,7 @@ PyTorchは、計算と共に勾配の計算ができる！
 
 <div class="def">
 
-##  `requires_grad=True`であるTensor型に対して計算を行うと、行われた演算が記録されたTensorができる.
+##  `requires_grad=True`である `Tensor` 型に対して計算を行うと、行われた演算が記録された `Tensor` ができる.
 
 </div>
 
@@ -554,12 +554,6 @@ print(y) # -> 4.0
 </div>
 
 
-<div class="proof" style="border-radius: 100px;">
-
-<!-- gray -->
-#### <span style="color: gray;"> 2. 記録された演算を辿って、勾配を計算する </span>
-
-</div>
 
 
 ![bg right h:200](img/image.png)
@@ -658,7 +652,7 @@ print(x.grad) # -> tensor(1.)
 3. backward()
    
 ```python
-# 1. 変数(Tensor型)の定義
+# 1. 変数(`Tensor` 型)の定義
 x = torch.tensor(2.0, requires_grad=True)
 # 2. 計算
 y = x + 2
@@ -799,6 +793,7 @@ $$
 
 ```python
 x = torch.tensor(2.0, requires_grad=True)
+
 def f(x):
     return x + 3
 def g(x):
@@ -837,10 +832,10 @@ else:
 1. $y = f(x_1, x_2, x_3) = x_1^2 + x_2^2 + x_3^2$ の $x_1 = 1.0, x_2 = 2.0, x_3 = 3.0$ における勾配を求めよ。
 (https://oj.abap34.com/problems/autograd-practice-2)
 
-1. $f(\bm{x_1}) = \bm{x_1}^T \begin{pmatrix}
+1. $f(\boldsymbol{x_1}) = \boldsymbol{x_1}^T \begin{pmatrix}
 1 & 2 \\
 2 & 1 \\
-\end{pmatrix} \bm{x_1}$ の  $\boldsymbol{x}_1 = (1.0, 2.0)^T$ における勾配を求めよ。
+\end{pmatrix} \boldsymbol{x_1}$ の  $\boldsymbol{x}_1 = (1.0, 2.0)^T$ における勾配を求めよ。
 (https://oj.abap34.com/problems/autograd-practice-3)
 
 
@@ -986,4 +981,300 @@ https://oj.abap34.com/problems/minimize-difficult-function
 </div>
 
 
+---
 
+<!-- _header: おまけ: 自動微分のアルゴリズム -->
+
+## どうやって PyTorch は微分を計算しているのか？🧐
+
+---
+
+<!-- _header: おまけ: 自動微分のアルゴリズム -->
+
+<div class="columns">
+
+<div>
+
+いちばん素直な方法
+
+$\displaystyle f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$
+
+⇨ 小さい値で近似する
+
+</div>
+
+
+<div>
+
+<br>
+
+```python
+def diff(f, x):
+    h = 1e-6
+    return (f(x + h) - f(x)) / h
+```
+
+
+
+</div>  
+
+
+---
+
+<!-- _header: 勾配の計算法を考える ~近似編 -->
+
+これでもそれなりに近い値を得られる.
+
+例) $f(x) = x^2$ の $x=2$ における微分係数 $4$ を求める.
+
+```python
+>>> def diff(f, x):
+...     h = 1e-6
+...     return (f(x + h) - f(x)) / h
+...
+>>> diff(lambda x : x**2, 2)
+4.0000010006480125  # おしい
+```
+
+---
+
+<!-- _header: 数値微分 -->
+
+
+#### 実際に小さい $h$ をとって計算
+## **「数値微分」**
+
+
+お手軽だけ..
+
+- 誤差が出る
+- 勾配ベクトルの計算が非効率
+
+![bg right h:450](img/numerical_example.png)
+
+---
+
+
+<!-- _header: 数値微分 -->
+
+<div class="section"> 1.3 勾配降下法と機械学習 </div>
+
+
+<div class="columns">
+
+
+
+<div>
+
+#### 問題点①. 誤差が出る 
+1. 本来極限をとるのに、小さい $h$ を
+とって計算しているので誤差が出る
+
+2. 分子が極めて近い値同士の引き算に
+なっていて、$\left( \frac{\color{red}{f(x+h) - f(x)}}{h} \right)$
+桁落ちによって精度が大幅に悪化.
+
+
+</div>
+
+<div>
+
+#### 問題点②. 勾配ベクトルの計算が非効率
+
+1. $n$ 変数関数の勾配ベクトル $\nabla f(\boldsymbol{x}) \in \mathbb{R}^n$ を計算するには、
+各 $x_i$ について「少し動かす→計算」を繰り返すので $n$ 回 $f$ を評価する. 
+   
+2. 応用では $n$ がとても大きくなり、 
+$f$ の評価が重くなりがちで これが **致命的**
+
+
+</div>
+
+</div>
+
+---
+
+<!-- _header: 数式の構造を捉える -->
+
+<div style="text-align: center;">
+
+⇩
+
+いい感じに数式の構造をとって計算したいなぁ
+
+</div>
+
+---
+
+<!-- _header: 計算グラフ -->
+
+### ✅ 演算は、**計算グラフ** とよばれる DAG で表現できる
+
+![bg right h:500](img/cgraph0.png)
+
+<div class="cite">
+
+単に計算過程を表しただけのものを Kantorovich グラフなどと呼び、
+これに偏導関数などの情報を加えたものを計算グラフと呼ぶような定義もあります.
+(伊里, 久保田 (1998) に詳しく形式的な定義があります)
+ただ、単に計算グラフというだけで計算過程を表現するグラフを指すという用法はかなり普及していて一般的と思われます。そのためここでもそれに従って計算過程を表現するグラフを計算グラフと呼びます.
+
+</div>
+
+---
+
+<!-- _header: 計算グラフ -->
+
+
+### ✅ PyTorch も、**計算と同時** に <br> 計算グラフを構築
+
+
+( `torchviz` というライブラリを使うと可視化できる！ )
+
+```python
+import torchviz
+x = torch.tensor([1., 2., 3.], requires_grad=True)
+y = torch.sin(torch.sum(x) + 2)
+torchviz.make_dot(y)
+```
+
+![bg right h:550](img/image-2.png)
+
+
+
+
+---
+
+
+
+
+<!-- _header: 計算グラフによる表現 -->
+
+<div class="section"> 2.3 自動微分 ─式からアルゴリズムへ  </div>
+
+(一旦計算グラフを得たものとして、)　
+この構造から導関数を得ることを考えてみる.
+
+---
+
+<!-- _header: 連鎖律 -->
+
+<div class="section"> 2.3 自動微分 ─式からアルゴリズムへ  </div>
+
+<div class="thm">
+
+**[連鎖律]**
+
+$u, v$ の関数 $x, y$ による合成関数 $z \left(x(u, v), y(u, v)\right)$ に対して、
+
+$$
+\frac{\partial z}{\partial u} = \frac{\partial z}{\partial x} \cdot \frac{\partial x}{\partial u} + \frac{\partial z}{\partial y} \cdot \frac{\partial y}{\partial u}
+$$
+
+$$
+\frac{\partial z}{\partial v} = \frac{\partial z}{\partial x} \cdot \frac{\partial x}{\partial v} + \frac{\partial z}{\partial y} \cdot \frac{\partial y}{\partial v}
+$$
+
+
+</div>
+
+
+---
+
+
+<!-- _header: 連鎖律と計算グラフの対応 -->
+
+<div class="proof">
+
+
+**目標**
+
+$
+\displaystyle
+\begin{split}
+x &= u + v \\
+y &= u - v \\
+z &= x \cdot y
+\end{split}
+$
+
+のとき、 $\dfrac{\partial z}{\partial u}$ を求める
+
+
+</div>
+
+
+
+
+
+![bg right h:550](img/cgraph1.png)   
+
+
+---
+
+<!-- _header: 連鎖律と計算グラフの対応 -->
+
+$$
+\frac{\partial z}{\partial u} = \frac{\partial z}{\partial x} \cdot \frac{\partial x}{\partial u} + \frac{\partial z}{\partial y} \cdot \frac{\partial y}{\partial u}
+$$
+
+
+
+との対応は、
+
+![bg right h:550](img/cgraph1.png) 
+
+---
+
+
+<!-- _header: 連鎖律と計算グラフの対応 -->
+
+$$
+\frac{\partial z}{\partial u} = \color{red} \frac{\partial z}{\partial x} \cdot \frac{\partial x}{\partial u} 
+\color{black} + \color{blue} \frac{\partial z}{\partial y} \cdot \frac{\partial y}{\partial u}
+$$
+
+![bg right h:550](img/cgraph1_ano.svg)
+
+
+---
+
+
+<!-- _header: 連鎖律と計算グラフの対応 -->
+
+<div class="thm">
+
+✅ 変数 $z$ に対する $u$ による偏微分の
+計算グラフ上の表現
+
+
+$\leftrightarrow$ **$u$ から $z$ への全ての経路の偏微分の総積の総和**
+
+
+
+$$
+\large
+\frac{\partial z}{\partial u} = \sum_{p \in \hat{P}(u, z)} \  \left( \prod_{(s, t) \in p} \dfrac{\partial t}{\partial s} \right)
+$$
+
+
+<div style="font-size: 15px"> 
+
+$\hat{P}(u, z)$ は $u$ から $z$ への全ての経路の集合. $(s, t)$ は変数 $s$ から変数 $t$ への辺を表す.
+
+</div>
+
+</div>
+
+![bg right:25% h:550](img/cgraph1_ano.svg)
+
+---
+
+<!-- _header: 連鎖律と計算グラフの対応 -->
+
+## ✅ 実は工夫するとノード数の定数倍で計算可能！
+
+詳しくは [Julia Tokyo #11 トーク: 「Juliaで歩く自動微分」](https://speakerdeck.com/abap34/julia-tokyo-number-11-toku-juliadebu-kuzi-dong-wei-fen) をみよう！！
+
+
+PyTorch でもこの方法で勾配を計算している。
