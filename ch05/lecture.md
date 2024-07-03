@@ -406,7 +406,7 @@ $\mathcal{U}(-\sqrt{6/(n+m)}, \sqrt{6/(n+m)})$
 
 <!-- _header: 初期値の決め方 -->
 
-シグモイド関数は性質がよくない性質がある！　
+シグモイド関数はよくない性質がある！　
 ⇨ 次第に $\textrm{ReLU}(x) = \max(0, x)$ が使われるようになる
 
 <div style="text-align: center;">
