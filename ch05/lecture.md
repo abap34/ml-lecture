@@ -384,16 +384,17 @@ $$
 
 <!-- _header: 各層で分散を維持する -->
 
-シグモイド関数は真ん中あたりではほぼ線形
+ <span class="lined">**出力と勾配両方**</span> について、
 
-<div style="text-align: center;">
+- 上下に貼り付く (分散大)
+- ほとんど同じ値 (分散小)
 
-⇩
+にならないように
+$\Leftrightarrow$ 分散を維持するようにすると
 
-</div>
+$\mathcal{U}(-\sqrt{6/(n+m)}, \sqrt{6/(n+m)})$ 
 
-この仮定をいれて、各層の <span class="lined">**出力と勾配両方**</span> について、分散が常に一定になるように初期値を決める
-
+がいい初期値になる
 
 ![bg right h:400](img/sigmoid_highlight.png)
 
