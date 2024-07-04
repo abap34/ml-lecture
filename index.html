@@ -74,8 +74,6 @@
             border-collapse: collapse;
             margin-top: 20px;
         }
-
-
     </style>
 </head>
 
@@ -113,103 +111,108 @@
             </p>
 
             <div class="section" id="articles"></div>
-                <h2>資料</h2>
+            <h2>資料</h2>
 
-                <p>講義で使う資料はこちらに置いておきます。 </p>
-                <p>Web版はスライドを文章に起こしたものです。2024年6月現在、スライドと比較してWeb版は十分に推敲されていないので、頻繁に更新される可能性があります。</p>
-                <p>PCでの閲覧推奨です。</p>
+            <p>講義で使う資料はこちらに置いておきます。 </p>
+            <p>Web版はスライドと講義での話を文章に起こしたものです。2024年6月現在、スライドと比較してWeb版は十分に推敲されていないので、頻繁に更新される可能性があります。</p>
+            <p>PCでの閲覧推奨です。</p>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="slides.pdf"> >> 機械学習講習会 (2024) のスライド << </a>
+            </div>
+
+            <h3>補足資料</h3>
+
+            <ul>
+                <li><a href="supplement/preface.html"> 前がき </a></li>
+                <li><a href="supplement/colab.html"> Google Colabの使い方 </a> </li>
+            </ul>
+
+
+            <h3>各回の資料</h3>
+            <table>
+                <table>
+                    <tr>
+                        <th>内容</th>
+                        <th>web版の資料</th>
+                        <th>講義スライド</th>
+                    </tr>
+                    <tr>
+                        <td>学習</td>
+                        <td> <a href="ch01/page.html"> 第一回資料 </a></td>
+                        <td> <a href="ch01/lecture.pdf"> 第一回スライド </a></td>
+                    </tr>
+                    <tr>
+                        <td>勾配降下法</td>
+                        <td> <a href="ch02/page.html"> 第二回資料 (未) </a></td>
+                        <td> <a href="ch02/lecture.pdf"> 第二回スライド </a></td>
+                    </tr>
+                    <tr>
+                        <td>自動微分とPyTorch</td>
+                        <td> <a href="ch03/page.html"> 第三回資料 (未) </a></td>
+                        <td> <a href="ch03/lecture.pdf"> 第三回スライド </a></td>
+                    </tr>
+                    <tr>
+                        <td>ニューラルネットワークの構造</td>
+                        <td> <a href="ch04/page.html"> 第四回資料 (未) </a></td>
+                        <td> <a href="ch04/lecture.pdf"> 第四回スライド </a></td>
+                    </tr>
+                    <tr>
+                        <td>ニューラルネットワークの学習と評価</td>
+                        <td> <a href="ch05/page.html"> 第五回資料 (未) </a></td>
+                        <td> <a href="ch05/lecture.pdf"> 第五回スライド </a></td>
+                    </tr>
+                    <tr>
+                        <td>ニューラルネットワークの実装</td>
+                        <td> <a href="ch06/page.html"> 第六回資料 (未) </a></td>
+                        <td> <a href="ch06/lecture.pdf"> 第六回スライド (未) </a></td>
+                    </tr>
+                    <tr>
+                        <td>機械学習の応用、データ分析コンペ</td>
+                        <td> <a href="ch07/page.html"> 第七回資料 (未) </a></td>
+                        <td> <a href="ch07/lecture.pdf"> 第七回スライド (未) </a></td>
+                    </tr>
+                </table>
+            </table>
+
+
+
+
+
+
+
+            <div class="section">
+                <h2>参考</h2>
+
+                資料作成する上で全体的に参照した書籍・資料をおいておきます。
+
+                <br>
+
+                (引用したもの・細かく参照すべきものはスライドの各ページ下に記載しています。)
+
+                <br>
+
+                ※ 入門書としておすすめというわけではないです。
+
+                <br>
                 
-                <div style="text-align: center; margin-top: 20px;">
-                    <a href="slides.pdf">  >> 機械学習講習会 (2024) のスライド <<  </a>
-                </div>
-                
-                <h3>補足資料</h3>
+                もうすこしちゃんとした形で書かれた、この資料の議論を見たくなった時に読んでみてください。
 
                 <ul>
-                    <li><a href="supplement/preface.html"> 前がき </a></li>
-                    <li><a href="supplement/colab.html"> Google Colabの使い方 </a> </li>
+                    <li> NNの説明全般... <a href="https://www.oreilly.co.jp/books/9784873117584/"> ゼロから作るDeep Learning
+                            (とくに①,③) </a></li>
+                    <li> 最適化関連 ... <a href="https://www.kspub.co.jp/book/detail/5212707.html">しっかり学ぶ数理最適化 </a></li>
+                    <li> MLPの説明... <a
+                            href="https://www.maruzen-publishing.co.jp/item/b294551.html">
+                            パターン認識と機械学習 </a></li>
+                    <li> 自動微分について... <a href="https://www.coronasha.co.jp/np/isbn/9784339026023/"> アルゴリズムの自動微分と応用 </a></li>
+                    <li> NNの学習技法について... <a href="https://www.kspub.co.jp/book/detail/5133323.html"> 深層学習 </a></li>
+                    <li> NNの表現力について... <a href="https://ibis.t.u-tokyo.ac.jp/suzuki/lecture/2023/TohokuUniv/%E6%9D%B1%E5%8C%97%E5%A4%A7%E5%AD%A62023.pdf"> 深層学習の数理 (pdf) </a></li>
                 </ul>
 
-
-                <h3>各回の資料</h3>
-                <table>
-                    <table>
-                        <tr>
-                            <th>内容</th>
-                            <th>web版の資料</th>
-                            <th>講義スライド</th>
-                        </tr>
-                        <tr>
-                            <td>学習</td>
-                            <td> <a href="ch01/page.html"> 第一回資料 </a></td>
-                            <td> <a href="ch01/lecture.pdf"> 第一回スライド </a></td>
-                        </tr>
-                        <tr>
-                            <td>勾配降下法</td>
-                            <td> <a href="ch02/page.html"> 第二回資料 (未) </a></td>
-                            <td> <a href="ch02/lecture.pdf"> 第二回スライド </a></td>
-                        </tr>
-                        <tr>
-                            <td>自動微分とPyTorch</td>
-                            <td> <a href="ch03/page.html"> 第三回資料 (未) </a></td>
-                            <td> <a href="ch03/lecture.pdf"> 第三回スライド </a></td>
-                        </tr>
-                        <tr>
-                            <td>ニューラルネットワークの構造</td>
-                            <td> <a href="ch04/page.html"> 第四回資料 (未) </a></td>
-                            <td> <a href="ch04/lecture.pdf"> 第四回スライド </a></td>
-                        </tr>
-                        <tr>
-                            <td>ニューラルネットワークの学習と評価</td>
-                            <td> <a href="ch05/page.html"> 第五回資料 (未)  </a></td>
-                            <td> <a href="ch05/lecture.pdf"> 第五回スライド  </a></td>
-                        </tr>
-                        <tr>
-                            <td>ニューラルネットワークの実装</td>
-                            <td> <a href="ch06/page.html"> 第六回資料 (未) </a></td>
-                            <td> <a href="ch06/lecture.pdf"> 第六回スライド (未) </a></td>
-                        </tr>
-                        <tr>
-                            <td>機械学習の応用、データ分析コンペ</td>
-                            <td> <a href="ch07/page.html"> 第七回資料 (未) </a></td>
-                            <td> <a href="ch07/lecture.pdf"> 第七回スライド (未) </a></td>
-                        </tr>
-                    </table>
-                </table>
-
-
-
-
-
-
-
-                <div class="section">
-                    <h2>参考</h2>
-
-                    資料作成する上で参照した書籍・資料をおいておきます。
-                    <br>
-
-                    もしより詳しく知りたい時期が来たら読んでみてください。
-                    <br>
-
-                    (※ 入門書としておすすめというわけではないです 本当に)
-
-                    <ul>
-                        <li> NNの説明全般... <a href="https://www.oreilly.co.jp/books/9784873117584/"> ゼロから作るDeep Learning
-                                (とくに①,
-                                ③) </a>
-                        <li> 最適化関連 ... <a href="https://www.kspub.co.jp/book/detail/5212707.html">しっかり学ぶ数理最適化</a>
-                        <li> MLPの説明... <a
-                                href="https://www.amazon.co.jp/%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E8%AA%8D%E8%AD%98%E3%81%A8%E6%A9%9F%E6%A2%B0%E5%AD%A6%E7%BF%92-%E4%B8%8A-C-M-%E3%83%93%E3%82%B7%E3%83%A7%E3%83%83%E3%83%97/dp/4621061224">
-                                パターン認識と機械学習 下 </a></li>
-                        <li> PyTorchについて... <a
-                                href="https://www.amazon.co.jp/PyTorch%E5%AE%9F%E8%B7%B5%E5%85%A5%E9%96%80-Eli-Stevens/dp/4839974691">PyTorch実践入門</a>
-                    </ul>
-
-                </div>
-
-                昨年度の講義資料は <a href="https://www.abap34.com/trap_ml_lecture_2023.html">⇨ こちら</a>
             </div>
+
+        </div>
 </body>
 
 </html>
