@@ -2,7 +2,7 @@
 marp: true
 theme: honwaka
 paginate: true
-math: katex
+math: mathjax
 ---
 
 <!-- _class: lead -->
@@ -527,7 +527,7 @@ $f$ の構造を決めておけば...
 
 <div class="cite">
 
-関数 $f$ がパラメータ $\bm{\theta}$ を持つことを陽に示すために、$f(x; \bm{\theta})$ と書くことがあります。 今回の場合は $f(x; a, b)$ となります。 
+関数 $f$ がパラメータ $\boldsymbol{\theta}$ を持つことを陽に示すために、$f(x; \boldsymbol{\theta})$ と書くことがあります。 今回の場合は $f(x; a, b)$ となります。 
 
 
 </div>
@@ -673,7 +673,7 @@ $x_i$ : 入力データ　(確定値) ... 過去の気温
 
 <br>
 
-$\bm{x} = (50, 80)^T$, $\bm{y} = (140, 200)^T$, $f(x) = 2x + 50$ のとき、
+$\boldsymbol{x} = (50, 80)^T$, $\boldsymbol{y} = (140, 200)^T$, $f(x) = 2x + 50$ のとき、
 
 $$
 \begin{aligned}

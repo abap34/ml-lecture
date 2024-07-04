@@ -2,7 +2,7 @@
 marp: true
 theme: honwaka
 paginate: true
-math: katex
+math: mathjax
 ---
 
 <!-- _class: lead -->
@@ -257,7 +257,7 @@ $$
 $$
 
 $$
-\mathcal{L} (\bm{\theta}) = \dfrac{\sum_{p \in S} |f(p; \bm{\theta}) - \mathcal{F}(p)|^2 \cdot \omega_p}{\sum_{p \in S} \omega_p}
+\mathcal{L} (\boldsymbol{\theta}) = \dfrac{\sum_{p \in S} |f(p; \boldsymbol{\theta}) - \mathcal{F}(p)|^2 \cdot \omega_p}{\sum_{p \in S} \omega_p}
 $$
 
 $$
@@ -709,7 +709,7 @@ $$
 多変数関数の場合は、微分係数→勾配ベクトル　に置き換えればOK
 
 $$
-\bm{x_{n+1}} = \bm{x_n} - \eta  \nabla f(\bm{x_n})
+\boldsymbol{x_{n+1}} = \boldsymbol{x_n} - \eta  \nabla f(\boldsymbol{x_n})
 $$
 
 
