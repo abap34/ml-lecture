@@ -1849,7 +1849,7 @@ tensor(8.)
 - Keras
     - いろんなフレームワークを使いやすくしたラッパー (おもに TensorFLow)
     - とにかくサッと実装できる
-- jax/flux, Chainer, MXNet, Caffe, Theano, ...
+- JAX/Flax, Chainer, MXNet, Caffe, Theano, ...
 
 ---
 
