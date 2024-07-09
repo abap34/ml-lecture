@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install almo-cli
-        run: pip install almo-cli
+        run: pip3 install almo-cli
       - name: Build
         run: python build.py
 
