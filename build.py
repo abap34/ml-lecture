@@ -4,7 +4,7 @@ import glob
 pages = glob.glob('**/*.md', recursive=True)
 
 def isexcluded(file):
-    return file.startswith('2023/') or file.endswith('lecture.md')
+    return file.startswith('2023/') or file.endswith('lecture.md') or file == 'slides.md'
 
 pages = [page for page in pages if not isexcluded(page)]
 
