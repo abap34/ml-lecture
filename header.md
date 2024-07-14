@@ -181,17 +181,17 @@ ul li::before {
 
 <style scoped>
 {
- font-size: 1.8em;
+ font-size: 1.5em;
 }
 </style>
 
 - この資料を管理しているレポジトリ: https://github.com/abap34/ml-lecture
   - 誤りのご指摘などはこちらの Issue にお願いします。
-- 補足資料なども含めてまとめたものを [abap34.com/trap_ml_lecture](https://abap34.com/trap_ml_lecture.html) から確認できます。
+- 補足資料なども含めてまとめたものを https://abap34.com/trap_ml_lecture.html から確認できます。
 - この資料のリンクには、サークルメンバー以外がアクセスできないものが含まれています。 (oj.abap34.com, dacq.abap34.com など)
   - オンラインジャッジは https://github.com/abap34/ml-lecture-judge
   - コンペプラットフォームは https://github.com/abap34/DacQ-v2 を動かしています。
-  - どちらもかなり未成熟ですが、 基本的なオンラインジャッジの機能と、データ分析コンペプラットフォームの機能を提供しています。
+  - どちらもかなり未成熟ですが、 基本的なオンラインジャッジの機能と、データ分析コンペプラットフォームの機能を提供しています。これらをホストすることで同等の環境を構築することができます。
 - そのほか何かあれば https://twitter.com/abap34 までご連絡ください。
 
 
@@ -209,9 +209,6 @@ ul li::before {
 資料の公開にあたって、東京工業大学情報理工学院情報工学系博士後期課程の
 @YumizSui さん (大上研究室)、 @Silviase さん (岡崎研究室) に、
 資料の内容について多くの助言をいただきました。
-
-また、
-
 
 この場を借りてお礼申し上げます。
 

@@ -5,6 +5,225 @@ paginate: true
 math: mathjax
 ---
 
+
+<!-- _class: lead-->
+
+
+# 機械学習講習会 2024
+## 2024/06/20 - 2024/7/17
+
+**traP Kaggle班**
+@abap34
+
+
+----
+
+<!-- _header: この資料について -->
+
+この資料は、[東京工業大学デジタル創作同好会 traP Kaggle班](https://trap.jp/kaggle/) で 2024年に実施した、「機械学習講習会」の資料です。
+
+機械学習に初めて触れる学部一年生のメンバーが、基本的な機械学習のアイデアを理解して、最終的にニューラルネットを使って実際の問題解決に使えるようになることを目指しています。
+
+
+
+---
+
+<!-- style -->
+
+<style scoped>
+{
+ font-size: 1.0em;
+ line-height: 1.2em;
+}
+
+/* columns は 3つのカラムに分割 */
+.columns {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* リストは　▶︎　で始まる */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li::before {
+  content: "▶︎";
+  margin-right: 0.5em;
+}
+
+.box {
+  padding: 0em;
+  padding-left: 1.8em !important;
+  padding-right: 1.8em !important;
+  padding-bottom: 1em !important;
+  margin-bottom: 1em !important;
+  margin: 0em;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  /* 超薄い水色 */
+    background-color: #f0f8ff
+}
+
+</style>
+
+
+<br>
+
+
+# 目次
+
+<hr>
+
+<div class="columns">
+<div>
+
+<div class="box">
+
+#### [1] 学習
+- この講習会について
+- 学習とは?
+- 損失関数
+- トピック: なぜ"二乗"なのか
+
+</div>
+
+<div class="box">
+
+#### [2] 勾配降下法
+- 関数の最小化
+- 勾配降下法
+
+</div>
+
+
+<div class="box">
+
+#### [3] 自動微分
+- PyTorch の紹介
+- Tensor型と自動微分
+- トピック: 自動微分のアルゴリズムと実装
+
+
+</div>
+
+
+</div>
+
+<div>
+
+<div class="box">
+
+
+#### [4] ニューラルネットワークの構造
+- 複雑さを生むには？
+- 「基になる」関数を獲得する
+- ニューラルネットワークの基本概念
+- トピック: 万能近似性と「深さ」
+
+
+</div>
+
+<div class="box">
+
+#### [5] ニューラルネットワークの学習と評価
+- DNN の学習の歴史
+- 初期化 ?
+- 確率的勾配降下法
+- さまざまなオプティマイザ
+- バリデーションと過学習
+
+</div>
+
+
+</div>
+
+
+<div>
+
+
+<div class="box">
+
+#### [6] ニューラルネットワークの実装
+- データの前処理
+- モデルの構築
+- モデルの学習
+- モデルの評価
+
+</div>
+
+<div class="box">
+
+
+#### [7] 機械学習の応用とデータ分析コンペ
+- データ分析コンペの戦い方
+- EDA
+- CV と shake
+- さまざまな機械学習モデル
+- 扱わなかった領域
+
+</div>
+
+
+
+
+</div>
+</div>
+
+
+
+<hr>
+
+---
+
+<!-- _header: 各種リンク、注意など -->
+
+<style scoped>
+{
+ font-size: 1.5em;
+}
+</style>
+
+- この資料を管理しているレポジトリ: https://github.com/abap34/ml-lecture
+  - 誤りのご指摘などはこちらの Issue にお願いします。
+- 補足資料なども含めてまとめたものを https://abap34.com/trap_ml_lecture.html から確認できます。
+- この資料のリンクには、サークルメンバー以外がアクセスできないものが含まれています。 (oj.abap34.com, dacq.abap34.com など)
+  - オンラインジャッジは https://github.com/abap34/ml-lecture-judge
+  - コンペプラットフォームは https://github.com/abap34/DacQ-v2 を動かしています。
+  - どちらもかなり未成熟ですが、 基本的なオンラインジャッジの機能と、データ分析コンペプラットフォームの機能を提供しています。これらをホストすることで同等の環境を構築することができます。
+- そのほか何かあれば https://twitter.com/abap34 までご連絡ください。
+
+
+---
+
+<!-- _header: 謝辞 -->
+
+
+<style scoped>
+{
+ font-size: 2em;
+}
+</style>
+
+資料の公開にあたって、東京工業大学情報理工学院情報工学系博士後期課程の
+@YumizSui さん (大上研究室)、 @Silviase さん (岡崎研究室) に、
+資料の内容について多くの助言をいただきました。
+
+この場を借りてお礼申し上げます。
+
+---
+
+
+
+<!-- PAGE BREAK -->
+
+
+
+<!-- SLIDE: ch01/lecture.md -->
+
+---
+
 <!-- _class: lead -->
 
 # **機械学習講習会**
@@ -61,29 +280,6 @@ math: mathjax
 - 原理をやるだけで全然使えない
 
 にならないようにどちらもバランス良くやります
-
-
-
-
----
-
-<!-- _header: 全体の流れ　-->
-
-第1回 学習
-第2回 勾配降下法
-第3回 自動微分
-
-<br>
-
-
-第4回 ニューラルネットワークの構造
-第5回 ニューラルネットワークの学習と評価
-第6回 PyTorch による実装
-
-<br>
-
-第7回 機械学習の応用、データ分析コンペ
-
 
 
 
@@ -147,40 +343,6 @@ math: mathjax
 - 基本的な微分積分の知識 (偏微分など)
   
 (1年前期の (線形代数)　+ (微分積分のさわり) くらい)
-
-
-
----
-
-<!-- _header: 著者のページ -->
-
-## ＠abap34
-- 情報理工学院情報工学系 B3
-- Kaggle班班長
-  - アルゴ班にも入ってます
-- 趣味
-  - 機械学習　🤖 
-  - 個人開発　⚙️
-  - 野球 ⚾️
-  - 音楽 🎤
-
-![bg right height:300](img/ch01_image-2.png)
-![bg right height:300 horizontal](img/ch01_icon.png)
-
-
----
-
-<!-- _header: 謝辞 -->
-
-<br>
-
-内容の議論・チェックなど
-- 24D @YumizSui さん (ex-traP)
-- 22M @idaten さん  (ex-traP)
-- 23B @Kobakos くん 
-
-ありがとうございます🙏
-
 
 
 ---
@@ -257,7 +419,7 @@ math: mathjax
 
 <div style="text-align: center;">
 
-⬇︎
+⬇︎ つまり？
 
 
 </div>
@@ -463,12 +625,6 @@ math: mathjax
 
 のかたちであることにしてみる。
 
-
-<div class="cite">
-
-$f$ がパラメータについて線形であるようなモデルを「線形モデル」と呼びます。
-
-</div>
 
 
 ---
@@ -5371,7 +5527,7 @@ $$
 2023/07/10
 
 ---
-i
+
 <!-- _header: 振り返り -->
 
 第一回: 学習
@@ -7454,3 +7610,190 @@ write_pred(pred)
 <!-- _header: 5. 順位表への提出 -->
 
 # めざせ　No.1！
+
+
+
+
+<!-- PAGE BREAK -->
+
+
+
+<!-- SLIDE: ch07/lecture.md -->
+
+---
+
+
+<!-- _class: lead-->
+
+# 機械学習講習会 第七回
+## - 「機械学習の応用、データ分析コンペ」
+
+
+**traP アルゴリズム班 Kaggle部**
+2023/07/20
+
+
+---
+
+
+<!-- _header: 今日の内容 -->    
+
+- **コンペの結果発表　🥳**
+- データ分析コンペという競技について
+- ポエム
+
+
+
+---
+
+
+<!-- _header: まずは -->
+
+
+# <span class="lined"># コンペの結果発表　🥳</span>
+
+<br>
+
+ 
+---
+
+<!-- _header: データ分析コンペという競技について -->
+
+Q. 今回のコンペでどんな取り組み方をしましたか？
+
+---
+
+
+<!-- _header: コンペの戦い方 1.EDA -->
+
+✅ データ分析コンペにおける勝敗を分けるポイントのひとつ
+
+# ⇨ データへの <span class="dot-text">理解度</span>
+
+
+---
+
+
+<!-- _header: コンペの戦い方 1.EDA -->
+
+あたり前に確認すべきこと...
+
+1. データはどのくらいあるのか？
+2. どういう形式なのか？
+
+
+\+ **どのような情報が予測に役立つのか？**
+
+
+---
+
+<!-- _header: EDA: 探索的データ分析 (Exploratory Data Analysis) -->
+
+<div class="box">
+
+## EDA: 探索的データ分析 (Exploratory Data Analysis)
+
+事前に仮説やモデルを仮定せず、データの特徴や構造を理解する分析.
+
+</div>
+
+
+例) データの分布、欠損値の確認、各変数の組の相関係数　などなど...
+
+
+
+---
+
+<!-- _header: EDA: 今回のコンペを例に -->
+
+## ものすごく簡単な例: ([abap34.com/ml-lecture/supplement/EDA.html](https://abap34.github.io/ml-lecture/supplement/EDA.html))
+
+
+![bg right h:600](img/ch07_image.png)
+
+
+---
+
+
+<!-- _header: コンペの戦い方 2.バリデーションについて -->
+
+## <span class="lined">Trust Your CV </span> ... <ruby>CV<rp>(</rp><rt>Cross  Validation</rt><rp>)</rp></ruby> を信じよという有名な信仰。
+
+
+---
+
+<!-- _header: バリデーション -->
+
+Q. Public LeaderBoard に大量の提出を繰り返すとどうなる？
+
+⇨ Public LB でのスコアが上振れる。
+
+Q. するとどうなる？
+
+## ⇨ **shake**  で死ぬ.
+
+---
+
+
+<!-- _header: shake  -->
+
+<div class="def">
+
+# **shake** 
+### Public LB と Private LB の順位が大きく異なる現象
+
+
+</div>
+
+![bg right h:550](img/ch07_image-2.png)
+
+<div class="cite">
+
+写真はつい先日終わった Learning Agency Lab - Automated Essay Scoring 2.0 というコンペの順位表です。 こちらのリンク (https://kaggle.com/competitions/learning-agency-lab-automated-essay-scoring-2/leaderboard) から見れます。恐怖。 
+
+</div>
+
+---
+
+<!-- _header: shake の波を乗り切るにはどうするか？ -->
+
+<br>
+
+### ✅ Public LB に振り回されないために
+
+1. スコアのブレの程度を把握しておく。
+   1. テストと同じくらいのサイズのバリデーションデータをとり、そのスコアのブレを見るなど。
+   2. <span class="lined">**Public Score の上振れを引いても Private Score は上がらないので CV を上げることに専念**</span>
+2. バリデーションデータとテストデータの分布の乖離に気を付ける
+   1. たいていのコンペでは、参加者同士が CV と LB のスコアを比較するディスカッションが立っていがち。**これを必ず確認する！**
+   2. 分布の違いの原因を調べて、よりテストデータに近いバリデーションデータを作る方法を考える (例: adversarial validation)
+
+
+---
+
+<!-- _header: Public LB との向き合い方 -->
+
+
+
+
+ただ、 Public LB も <span class="dot-text">重要な情報</span>
+
+**👀 (ふつうの) 機械学習の枠組みでは絶対見られないテストスコアの一部が見られる**
+
+<div style="text-align: center;">
+
+⇩　以下のケースでは Public LB も **重要なスコアの指針**
+
+</div>
+
+<div class="proof">
+
+
+1. Public LB用のデータが 学習データと同じ分布で、同程度のサイズ 
+2. 時系列で学習データとテストデータが分割されている
+   1. Public / Private 間はランダムに分割 ← とくに重要な指針になる
+   2. Public / Private も時系列で分割
+
+</div>
+
+---
