@@ -1,0 +1,194 @@
+/* @theme honwaka */
+
+@import 'default';
+
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+1p');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@700&display=swap');
+
+@font-face {
+    font-family: JuliaMono;
+    src: url("https://cdn.jsdelivr.net/gh/cormullion/juliamono/webfonts/JuliaMono.woff2");
+}
+
+code {
+    font-family: JuliaMono !important;
+    font-size: 0.8em !important;
+}
+
+
+img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+}
+
+
+:root {
+    --black: #000009;
+    --white: #ffffff;
+    --gray: #808080;
+    --first: SteelBlue;
+    --second: #ff0000;
+}
+
+section {
+    font-family: 'M PLUS 1p';
+    color: var(--black);
+}
+
+h1 {
+    color: black;
+    margin: 0;
+    padding: 0;
+    font-size: 2.5em;
+}
+
+section.lead {
+    color: var(--first);
+}
+
+section.lead h1 {
+    font-size: 2.5em;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    color: var(--first);
+}
+
+section.lead h2 {
+    font-size: 1em;
+    margin-top: 0.05em;
+    font-weight: bold;
+}
+
+section.lead p {
+    text-align: right;
+}
+
+section::after {
+    content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+}
+
+header {
+    font-family: 'M PLUS 1p';
+    font-weight: bold;
+    font-size: 1.5em;
+    color: var(--first);
+    top: 30px;
+    border-bottom: 5px dotted
+}
+
+
+
+.def {
+    padding: 30px 50px 30px 50px;
+    border: 1px solid #ccc;
+    background-color: #e0f2f1;
+    margin-bottom: 20px;
+    border-radius: 30px;
+}
+
+.proof {
+    background-color: #f0f0f0;
+    padding: 30px 50px 30px 50px;
+    border: 1px solid #ccc;
+    background-color: rgba(249, 174, 213, 0.196);
+    margin-bottom: 20px;
+    border-radius: 30px;
+}
+
+.thm {
+    background-color: #f0f0f0;
+    padding: 30px 50px 30px 50px;
+    border: 1px solid #ccc;
+    background-color: rgba(174, 249, 174, 0.243);
+    margin-bottom: 20px;
+    border-radius: 30px;
+}
+
+
+.box {
+    padding: 30px 50px 30px 50px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.243);
+    margin-bottom: 20px;
+    border-radius: 30px;
+
+}
+
+
+.center {
+    text-align: center;
+}
+
+.cite {
+    position: absolute;
+    bottom: 30px;
+    font-size: 50%;
+    border-top: solid 1px #7f7f7f;
+    padding-top: 10px;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+
+.red {
+    color: #ff0000;
+    font-weight: bold;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.green {
+    color: #61bb61;
+    font-weight: bold;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.gray {
+    color: #808080a5;
+    font-weight: bold;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.empty-table {
+    border-collapse: collapse;
+    border: none;
+}
+
+
+.dot-text {
+    -webkit-text-emphasis: filled;
+    text-emphasis: filled;
+    -webkit-text-emphasis-color: #ff9800;
+    text-emphasis-color: #ff9800;
+    -webkit-text-emphasis-style: circle;
+    text-emphasis-style: circle;
+    font-weight: bold;
+}
+
+
+.section {
+    position: absolute;
+    font-family: 'M PLUS 1p';
+    font-size: 0.8em;
+    color: var(--first);
+    top: 30px;
+    right: 30px;
+    border-bottom: 2px solid var(--first);
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+
+/* マーカーで線が引かれる */
+.lined {
+    background: linear-gradient(transparent 70%, rgba(255, 165, 0, 0.6) 0) no-repeat;
+    display: inline;
+}

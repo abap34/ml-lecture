@@ -6,7 +6,7 @@ import requests
 # テーマセットアップ
 css_url = "https://raw.githubusercontent.com/abap34/honwaka-theme/main/style.css"
 r = requests.get(css_url)
-with open("style.css", "w") as f:
+with open("marp-style.css", "w") as f:
     f.write(r.text)
 
 def remove_frontmatter(content):
@@ -21,7 +21,7 @@ def replace_img_path(ch_prefix, content):
 
 def marp_cmd(slide):
     basename = slide.split(".")[0]
-    return f"marp {slide} --pdf --html --allow-local-files --theme-set style.css --output {basename}.pdf"
+    return f"marp {slide} --pdf --html --allow-local-files --theme-set marp-style.css --output {basename}.pdf"
 
 def almo_cmd(page):
     basename = page.split(".")[0]
