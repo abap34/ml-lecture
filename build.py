@@ -1,51 +1,13 @@
 import glob
 import os
-
 import requests
 
-pages = glob.glob("**/*.md", recursive=True)
 
-
-def isexcluded(file):
-    return (
-        file.startswith("2023/") or file.endswith("lecture.md") or file == "slides.md"
-    )
-
-
-pages = [page for page in pages if not isexcluded(page)]
-
-for page in pages:
-    basename = page.split(".")[0]
-    cmd = f"almo-cli build {page} -o {basename}.html --config config.yaml"
-    print(cmd)
-    os.system(cmd)
-
-
-slides = list(glob.glob("ch*/lecture.md", recursive=True))
-
-slides.insert(0, "header.md")
-
-
-slides.sort(key=(lambda x: "" if x == "header.md" else x), reverse=False)
-
-
-print("--- slides ---")
-for slide in slides:
-    print(slide)
-
-print("--- imgs ---")
-
-imgs = glob.glob("ch*/img/*", recursive=True)
-
-# すべての画像にチャンネル名の prefix をつけて img/ にコピー
-os.makedirs("img", exist_ok=True)
-
-for img in imgs:
-    ch_prefix = img.split("/")[0]
-    cmd = f'cp {img} img/{ch_prefix}_{img.split("/")[-1]}'
-    print(cmd)
-    os.system(cmd)
-
+# テーマセットアップ
+css_url = "https://raw.githubusercontent.com/abap34/honwaka-theme/main/style.css"
+r = requests.get(css_url)
+with open("style.css", "w") as f:
+    f.write(r.text)
 
 def remove_frontmatter(content):
     lines = content.split("---")
@@ -57,6 +19,49 @@ def replace_img_path(ch_prefix, content):
     return content.replace("img/", f"img/{ch_prefix}_")
 
 
+def marp_cmd(slide):
+    basename = slide.split(".")[0]
+    return f"marp {slide} --pdf --html --allow-local-files --theme-set style.css --output {basename}.pdf"
+
+def almo_cmd(page):
+    basename = page.split(".")[0]
+    return f"almo-cli build {page} -o {basename}.html --config config.yaml"
+
+pages = [
+    "supplement/colab.md",
+    "supplement/preface.html"
+]
+
+for page in pages:
+    cmd = almo_cmd(page)
+    print(cmd)
+    os.system(cmd)
+
+
+
+slides = list(glob.glob("ch*/lecture.md", recursive=True))
+slides.insert(0, "header.md")
+slides.sort(key=(lambda x: "" if x == "header.md" else x), reverse=False)
+
+print("--- slides ---")
+for slide in slides:
+    print(slide)
+    cmd = marp_cmd(slide)
+    print(cmd)
+    os.system(cmd)
+print("--- imgs ---")
+imgs = glob.glob("ch*/img/*", recursive=True)
+
+# すべての画像にチャンネル名の prefix をつけて img/ にコピー
+os.makedirs("img", exist_ok=True)
+for img in imgs:
+    ch_prefix = img.split("/")[0]
+    cmd = f'cp {img} img/{ch_prefix}_{img.split("/")[-1]}'
+    print(cmd)
+    os.system(cmd)
+
+
+# 画像置換しつつ slides.md に結合
 with open("slides.md", "w") as f:
     # 先頭の frontyaml だけ残す
     with open(slides[0]) as f1:
@@ -71,15 +76,13 @@ with open("slides.md", "w") as f:
             content = replace_img_path(ch_prefix, content)
             f.write(content)
 
-css_url = "https://raw.githubusercontent.com/abap34/honwaka-theme/main/style.css"
 
-r = requests.get(css_url)
-with open("style.css", "w") as f:
-    f.write(r.text)
+# 全体スライド
+cmd = marp_cmd("slides.md")
+print(cmd)
+os.system(cmd)
 
-
-# allow html
-
-os.system(
-    "marp slides.md --pdf --allow-local-files --theme-set style.css --output slides.pdf --html"
-)
+# コンペについて
+cmd = marp_cmd("supplement/competetion.md")
+print(cmd)
+os.system(cmd)
