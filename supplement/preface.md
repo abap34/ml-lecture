@@ -1,7 +1,7 @@
 ---
 title: 機械学習講習会 まえがき
 author: abap34
-date: 2023/09/25
+date: 2024/09/25
 tags: [機械学習講習会]
 twitter_id: abap34
 github_id: abap34

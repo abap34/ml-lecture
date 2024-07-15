@@ -1,7 +1,7 @@
 ---
 title: Google Colaboratory の使い方
 author: abap34
-date: 2023/09/25
+date: 2024/09/25
 tags: [Google Colaboratory, Python, 環境構築]
 twitter_id: abap34
 github_id: abap34
