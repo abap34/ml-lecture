@@ -25,7 +25,7 @@
 
 ## Contents
 
-![](img/image.png)
+![](assets/contents.png)
 
 
 
