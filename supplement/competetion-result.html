@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024 #00</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.27/Tone.min.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" />
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+            margin: 20px;
+            background-color: #282c34;
+            color: #abb2bf;
+        }
+
+        .table-container {
+            margin-top: 50px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1e1e1e;
+        }
+
+        th,
+        td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #3e3e3e;
+        }
+
+        th {
+            background-color: #3e3e3e;
+        }
+
+        img {
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #61dafb;
+            color: #282c34;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .announcement {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3em;
+            color: #61dafb;
+            display: none;
+        }
+
+        .usage {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="btn" id="start-announcement">発表モードへ移行する</button>
+    <button class="btn" id="show-all">順位表を表示</button>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Team</th>
+                    <th></th>
+                    <th>Score</th>
+                    <th>Submit Count</th>
+                    <th>Last Submit</th>
+                    <th>Shake</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboard"></tbody>
+        </table>
+    </div>
+    <div class="announcement" id="announcement"></div>
+    <script src="leaderboard.js"></script>
+    <a href="scorerace.html" class="btn">⇨ スコアと投稿数の推移を見る</a>
+</body>
+
+</html>
