@@ -54,11 +54,6 @@ const createRowElement = (item) => {
     submitCountCell.style.color = '#e06c75';
     row.appendChild(submitCountCell);
 
-    const lastSubmitCell = document.createElement('td');
-    lastSubmitCell.textContent = item.lastsubmit;
-    lastSubmitCell.style.color = '#d19a66';
-    row.appendChild(lastSubmitCell);
-
     const shakeCell = document.createElement('td');
     shakeCell.textContent = item.shake;
     shakeCell.style.color = item.shake.includes('↑') ? 'green' : item.shake.includes('↓') ? 'red' : '#abb2bf';
