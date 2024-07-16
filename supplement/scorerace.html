@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Score Race</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap" />
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #282c34;
+            color: #abb2bf;
+            margin: 20px;
+        }
+
+        .bar {
+            fill: steelblue;
+        }
+
+        .bar text {
+            fill: white;
+            font: 10px sans-serif;
+            text-anchor: middle;
+        }
+
+        #chart-container, #plot-container {
+            width: 70%;
+            height: 500px;
+            float: left;
+            overflow: auto;
+        }
+
+        #plot-container {
+            width: 30%;
+        }
+
+        svg {
+            display: block;
+        }
+
+        .button-container {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #61dafb;
+            color: #282c34;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #21a1f1;
+        }
+
+        a {
+            color: #61dafb;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="button-container">
+        <button id="public" class="btn">Public</button>
+        <button id="private" class="btn">Private</button>
+    </div>
+    <div id="chart-container">
+        <svg id="chart" width="100%" height="500"></svg>
+    </div>
+    <div id="plot-container">
+        <svg id="plot" width="100%" height="500"></svg>
+    </div>
+
+    <a href="competetion-result.html">⇦ 順位表に戻る</a>
+
+    <script src="race.js"></script>
+</body>
+
+</html>
