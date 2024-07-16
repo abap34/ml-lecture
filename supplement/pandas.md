@@ -1,5 +1,5 @@
 ---
-title: 動かしてわかる！ pandas基本操作
+title: pandas基本操作チートシート
 author: abap34
 date: 2024/09/25
 tags: [pandas, Python]
@@ -7,7 +7,7 @@ twitter_id: abap34
 github_id: abap34
 mail: abap0002@gmail.com
 ogp_url: https://abap34.github.io/ml-lecture/supplement/img/pandas.png
-description: 機械学習講習会のための補足資料です。 pandas 基本操作を実際に動かしながら学びます。
+description: 機械学習講習会のための補足資料です。 pandas 基本操作を動く例で紹介しています。
 url: https://abap34.github.io/ml-lecture/supplement/pandas.html
 site_name: abap34.github.io
 twitter_site: abap34
