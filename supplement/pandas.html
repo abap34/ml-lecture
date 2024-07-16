@@ -1275,18 +1275,106 @@ print(df)
 <br><script>page_contents.push({
     "type":"H2",
     "id":"181",
+    "title":"データ操作"
+});
+</script>
+<h2 id="181">データ操作</h2><br><script>page_contents.push({
+    "type":"H3",
+    "id":"184",
+    "title":"データの結合"
+});
+</script>
+<h3 id="184">データの結合</h3><br><br><script>page_contents.push({
+    "type":"H4",
+    "id":"188",
+    "title":"データの結合（共通の列を基準）"
+});
+</script>
+<h4 id="188">データの結合（共通の列を基準）</h4><br><br> 
+ <div class="editor" id="191" rows="3" cols="80"></div> 
+<script>editor = ace.edit("191"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 6,     maxLines: 6,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df1 = pd.DataFrame({'key': ['A', 'B', 'C'], 'value': [1, 2, 3]})
+df2 = pd.DataFrame({'key': ['B', 'C', 'D'], 'value': [4, 5, 6]})
+
+df_merged = pd.merge(df1, df2, on='key')
+print(df_merged)
+`, -1);</script>
+<pre class="exec_out" id="191_out"></pre>
+<div class="exec_plot" id="191_plot"></div>
+<button class="runbutton" onclick="runBlock('191')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"193",
+    "title":"データの結合（全行を含む）"
+});
+</script>
+<h4 id="193">データの結合（全行を含む）</h4><br> 
+ <div class="editor" id="195" rows="3" cols="80"></div> 
+<script>editor = ace.edit("195"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df_outer_merged = pd.merge(df1, df2, on='key', how='outer')
+print(df_outer_merged)
+`, -1);</script>
+<pre class="exec_out" id="195_out"></pre>
+<div class="exec_plot" id="195_plot"></div>
+<button class="runbutton" onclick="runBlock('195')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"197",
+    "title":"データの結合（左側のデータフレームを基準）"
+});
+</script>
+<h4 id="197">データの結合（左側のデータフレームを基準）</h4><br> 
+ <div class="editor" id="199" rows="3" cols="80"></div> 
+<script>editor = ace.edit("199"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df_left_merged = pd.merge(df1, df2, on='key', how='left')
+print(df_left_merged)
+`, -1);</script>
+<pre class="exec_out" id="199_out"></pre>
+<div class="exec_plot" id="199_plot"></div>
+<button class="runbutton" onclick="runBlock('199')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"201",
+    "title":"データの結合（右側のデータフレームを基準）"
+});
+</script>
+<h4 id="201">データの結合（右側のデータフレームを基準）</h4><br> 
+ <div class="editor" id="203" rows="3" cols="80"></div> 
+<script>editor = ace.edit("203"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df_right_merged = pd.merge(df1, df2, on='key', how='right')
+print(df_right_merged)
+`, -1);</script>
+<pre class="exec_out" id="203_out"></pre>
+<div class="exec_plot" id="203_plot"></div>
+<button class="runbutton" onclick="runBlock('203')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"205",
+    "title":"データの結合（インデックスを基準）"
+});
+</script>
+<h4 id="205">データの結合（インデックスを基準）</h4><br> 
+ <div class="editor" id="207" rows="3" cols="80"></div> 
+<script>editor = ace.edit("207"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 6,     maxLines: 6,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df1 = pd.DataFrame({'value': [1, 2, 3]}, index=['A', 'B', 'C'])
+df2 = pd.DataFrame({'value': [4, 5, 6]}, index=['B', 'C', 'D'])
+
+df_index_merged = pd.merge(df1, df2, left_index=True, right_index=True, how='outer')
+print(df_index_merged)
+`, -1);</script>
+<pre class="exec_out" id="207_out"></pre>
+<div class="exec_plot" id="207_plot"></div>
+<button class="runbutton" onclick="runBlock('207')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H2",
+    "id":"209",
     "title":"欠損値の扱い"
 });
 </script>
-<h2 id="181">欠損値の扱い</h2><br><script>page_contents.push({
+<h2 id="209">欠損値の扱い</h2><br><script>page_contents.push({
     "type":"H3",
-    "id":"184",
+    "id":"212",
     "title":"欠損値の確認"
 });
 </script>
-<h3 id="184">欠損値の確認</h3><br> 
- <div class="editor" id="186" rows="3" cols="80"></div> 
-<script>editor = ace.edit("186"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 8,     maxLines: 8,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# データフレームに欠損値を含めたサンプルデータを作成
+<h3 id="212">欠損値の確認</h3><br> 
+ <div class="editor" id="214" rows="3" cols="80"></div> 
+<script>editor = ace.edit("214"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 8,     maxLines: 8,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# データフレームに欠損値を含めたサンプルデータを作成
 df_missing = pd.DataFrame({
     'A': [1, 2, None, 4],
     'B': ['apple', None, 'cherry', 'date'],
@@ -1294,41 +1382,141 @@ df_missing = pd.DataFrame({
 })
 print(df_missing.isna().sum())
 `, -1);</script>
-<pre class="exec_out" id="186_out"></pre>
-<div class="exec_plot" id="186_plot"></div>
-<button class="runbutton" onclick="runBlock('186')"> Run </button>
+<pre class="exec_out" id="214_out"></pre>
+<div class="exec_plot" id="214_plot"></div>
+<button class="runbutton" onclick="runBlock('214')"> Run </button>
 <br><script>page_contents.push({
     "type":"H3",
-    "id":"188",
+    "id":"216",
     "title":"欠損値埋め"
 });
 </script>
-<h3 id="188">欠損値埋め</h3><br> 
- <div class="editor" id="190" rows="3" cols="80"></div> 
-<script>editor = ace.edit("190"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 6,     maxLines: 6,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# 欠損値を特定の値で埋める
+<h3 id="216">欠損値埋め</h3><br> 
+ <div class="editor" id="218" rows="3" cols="80"></div> 
+<script>editor = ace.edit("218"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 6,     maxLines: 6,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# 欠損値を特定の値で埋める
 df_missing['A'] = df_missing['A'].fillna(0)
 df_missing['B'] = df_missing['B'].fillna('unknown')
 df_missing['C'] = df_missing['C'].fillna(df_missing['C'].mean())
 print(df_missing)
 `, -1);</script>
-<pre class="exec_out" id="190_out"></pre>
-<div class="exec_plot" id="190_plot"></div>
-<button class="runbutton" onclick="runBlock('190')"> Run </button>
+<pre class="exec_out" id="218_out"></pre>
+<div class="exec_plot" id="218_plot"></div>
+<button class="runbutton" onclick="runBlock('218')"> Run </button>
 <br><script>page_contents.push({
     "type":"H2",
-    "id":"192",
+    "id":"220",
+    "title":"ピボットテーブル"
+});
+</script>
+<h2 id="220">ピボットテーブル</h2><br><script>page_contents.push({
+    "type":"H3",
+    "id":"223",
+    "title":"ピボットテーブルの作成"
+});
+</script>
+<h3 id="223">ピボットテーブルの作成</h3><br> 
+ <div class="editor" id="225" rows="3" cols="80"></div> 
+<script>editor = ace.edit("225"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 10,     maxLines: 10,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df_pivot = pd.DataFrame({
+    'A': ['foo', 'foo', 'foo', 'bar', 'bar', 'bar'],
+    'B': ['one', 'one', 'two', 'two', 'one', 'one'],
+    'C': ['small', 'large', 'small', 'small', 'small', 'large'],
+    'D': [1, 2, 2, 3, 3, 4]
+})
+
+pivot_table = pd.pivot_table(df_pivot, values='D', index=['A', 'B'], columns=['C'], aggfunc=np.sum)
+print(pivot_table)
+`, -1);</script>
+<pre class="exec_out" id="225_out"></pre>
+<div class="exec_plot" id="225_plot"></div>
+<button class="runbutton" onclick="runBlock('225')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H2",
+    "id":"227",
+    "title":"タイムシフト操作"
+});
+</script>
+<h2 id="227">タイムシフト操作</h2><br><script>page_contents.push({
+    "type":"H3",
+    "id":"230",
+    "title":"日付と時刻の操作"
+});
+</script>
+<h3 id="230">日付と時刻の操作</h3><br> 
+ <div class="editor" id="232" rows="3" cols="80"></div> 
+<script>editor = ace.edit("232"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 12,     maxLines: 12,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`import pandas as pd
+
+# サンプルデータの作成
+df_time = pd.DataFrame({
+    'date': pd.date_range(start='1/1/2020', periods=5, freq='D'),
+    'value': [1, 2, 3, 4, 5]
+})
+
+# 日付列をインデックスに設定
+df_time.set_index('date', inplace=True)
+print(df_time)
+`, -1);</script>
+<pre class="exec_out" id="232_out"></pre>
+<div class="exec_plot" id="232_plot"></div>
+<button class="runbutton" onclick="runBlock('232')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H3",
+    "id":"234",
+    "title":"日付範囲の生成"
+});
+</script>
+<h3 id="234">日付範囲の生成</h3><br> 
+ <div class="editor" id="236" rows="3" cols="80"></div> 
+<script>editor = ace.edit("236"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`date_range = pd.date_range(start='1/1/2020', end='1/10/2020')
+print(date_range)
+`, -1);</script>
+<pre class="exec_out" id="236_out"></pre>
+<div class="exec_plot" id="236_plot"></div>
+<button class="runbutton" onclick="runBlock('236')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H3",
+    "id":"238",
+    "title":"タイムシフト"
+});
+</script>
+<h3 id="238">タイムシフト</h3><br> 
+ <div class="editor" id="240" rows="3" cols="80"></div> 
+<script>editor = ace.edit("240"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 4,     maxLines: 4,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# 一日後にシフト
+shifted_df = df_time.shift(1)
+print(shifted_df)
+`, -1);</script>
+<pre class="exec_out" id="240_out"></pre>
+<div class="exec_plot" id="240_plot"></div>
+<button class="runbutton" onclick="runBlock('240')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H3",
+    "id":"242",
+    "title":"移動平均の計算"
+});
+</script>
+<h3 id="242">移動平均の計算</h3><br> 
+ <div class="editor" id="244" rows="3" cols="80"></div> 
+<script>editor = ace.edit("244"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 4,     maxLines: 4,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# 3日間の移動平均を計算
+rolling_mean = df_time.rolling(window=3).mean()
+print(rolling_mean)
+`, -1);</script>
+<pre class="exec_out" id="244_out"></pre>
+<div class="exec_plot" id="244_plot"></div>
+<button class="runbutton" onclick="runBlock('244')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H2",
+    "id":"246",
     "title":"プロット関連"
 });
 </script>
-<h2 id="192">プロット関連</h2><br><script>page_contents.push({
+<h2 id="246">プロット関連</h2><br><script>page_contents.push({
     "type":"H3",
-    "id":"195",
+    "id":"249",
     "title":"ライブラリのインポート"
 });
 </script>
-<h3 id="195">ライブラリのインポート</h3><br> 
- <div class="editor" id="197" rows="3" cols="80"></div> 
-<script>editor = ace.edit("197"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 8,     maxLines: 8,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`import matplotlib.pyplot as plt
+<h3 id="249">ライブラリのインポート</h3><br> 
+ <div class="editor" id="251" rows="3" cols="80"></div> 
+<script>editor = ace.edit("251"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 8,     maxLines: 8,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`import matplotlib.pyplot as plt
 
 # データフレームの構築
 df_plot = pd.DataFrame({
@@ -1336,36 +1524,36 @@ df_plot = pd.DataFrame({
     'Values': [4, 3, 2, 1]
 })
 `, -1);</script>
-<pre class="exec_out" id="197_out"></pre>
-<div class="exec_plot" id="197_plot"></div>
-<button class="runbutton" onclick="runBlock('197')"> Run </button>
+<pre class="exec_out" id="251_out"></pre>
+<div class="exec_plot" id="251_plot"></div>
+<button class="runbutton" onclick="runBlock('251')"> Run </button>
 <br><script>page_contents.push({
     "type":"H3",
-    "id":"199",
+    "id":"253",
     "title":"棒グラフの作成"
 });
 </script>
-<h3 id="199">棒グラフの作成</h3><br> 
- <div class="editor" id="201" rows="3" cols="80"></div> 
-<script>editor = ace.edit("201"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 7,     maxLines: 7,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`plt.figure(figsize=(8, 5))
+<h3 id="253">棒グラフの作成</h3><br> 
+ <div class="editor" id="255" rows="3" cols="80"></div> 
+<script>editor = ace.edit("255"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 7,     maxLines: 7,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`plt.figure(figsize=(8, 5))
 plt.bar(df_plot['Category'], df_plot['Values'])
 plt.title('Bar Plot Example')
 plt.xlabel('Category')
 plt.ylabel('Values')
 plt.show()
 `, -1);</script>
-<pre class="exec_out" id="201_out"></pre>
-<div class="exec_plot" id="201_plot"></div>
-<button class="runbutton" onclick="runBlock('201')"> Run </button>
+<pre class="exec_out" id="255_out"></pre>
+<div class="exec_plot" id="255_plot"></div>
+<button class="runbutton" onclick="runBlock('255')"> Run </button>
 <br><script>page_contents.push({
     "type":"H3",
-    "id":"203",
+    "id":"257",
     "title":"散布図の作成"
 });
 </script>
-<h3 id="203">散布図の作成</h3><br> 
- <div class="editor" id="205" rows="3" cols="80"></div> 
-<script>editor = ace.edit("205"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 13,     maxLines: 13,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# サンプルデータの作成
+<h3 id="257">散布図の作成</h3><br> 
+ <div class="editor" id="259" rows="3" cols="80"></div> 
+<script>editor = ace.edit("259"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 13,     maxLines: 13,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# サンプルデータの作成
 df_scatter = pd.DataFrame({
     'X': [1, 2, 3, 4, 5],
     'Y': [5, 4, 3, 2, 1]
@@ -1378,18 +1566,18 @@ plt.xlabel('X')
 plt.ylabel('Y')
 plt.show()
 `, -1);</script>
-<pre class="exec_out" id="205_out"></pre>
-<div class="exec_plot" id="205_plot"></div>
-<button class="runbutton" onclick="runBlock('205')"> Run </button>
+<pre class="exec_out" id="259_out"></pre>
+<div class="exec_plot" id="259_plot"></div>
+<button class="runbutton" onclick="runBlock('259')"> Run </button>
 <br><script>page_contents.push({
     "type":"H3",
-    "id":"207",
+    "id":"261",
     "title":"ヒストグラムの作成"
 });
 </script>
-<h3 id="207">ヒストグラムの作成</h3><br> 
- <div class="editor" id="209" rows="3" cols="80"></div> 
-<script>editor = ace.edit("209"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 12,     maxLines: 12,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# サンプルデータの作成
+<h3 id="261">ヒストグラムの作成</h3><br> 
+ <div class="editor" id="263" rows="3" cols="80"></div> 
+<script>editor = ace.edit("263"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 12,     maxLines: 12,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# サンプルデータの作成
 df_hist = pd.DataFrame({
     'Values': [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
 })
@@ -1401,18 +1589,18 @@ plt.xlabel('Values')
 plt.ylabel('Frequency')
 plt.show()
 `, -1);</script>
-<pre class="exec_out" id="209_out"></pre>
-<div class="exec_plot" id="209_plot"></div>
-<button class="runbutton" onclick="runBlock('209')"> Run </button>
+<pre class="exec_out" id="263_out"></pre>
+<div class="exec_plot" id="263_plot"></div>
+<button class="runbutton" onclick="runBlock('263')"> Run </button>
 <br><script>page_contents.push({
     "type":"H3",
-    "id":"211",
+    "id":"265",
     "title":"ボックスプロットの作成"
 });
 </script>
-<h3 id="211">ボックスプロットの作成</h3><br> 
- <div class="editor" id="213" rows="3" cols="80"></div> 
-<script>editor = ace.edit("213"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 14,     maxLines: 14,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# サンプルデータの作成
+<h3 id="265">ボックスプロットの作成</h3><br> 
+ <div class="editor" id="267" rows="3" cols="80"></div> 
+<script>editor = ace.edit("267"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 14,     maxLines: 14,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# サンプルデータの作成
 df_box = pd.DataFrame({
     'Category': ['A', 'A', 'B', 'B', 'C', 'C'],
     'Values': [1, 2, 3, 4, 5, 6]
@@ -1426,9 +1614,9 @@ plt.xlabel('Category')
 plt.ylabel('Values')
 plt.show()
 `, -1);</script>
-<pre class="exec_out" id="213_out"></pre>
-<div class="exec_plot" id="213_plot"></div>
-<button class="runbutton" onclick="runBlock('213')"> Run </button>
+<pre class="exec_out" id="267_out"></pre>
+<div class="exec_plot" id="267_plot"></div>
+<button class="runbutton" onclick="runBlock('267')"> Run </button>
 
 
             <hr>

@@ -253,6 +253,48 @@ print(df.sum(axis=1))
 print(df.sum())
 :::
 
+## データ操作
+
+### データの結合
+
+
+#### データの結合（共通の列を基準）
+
+:::code
+df1 = pd.DataFrame({'key': ['A', 'B', 'C'], 'value': [1, 2, 3]})
+df2 = pd.DataFrame({'key': ['B', 'C', 'D'], 'value': [4, 5, 6]})
+
+df_merged = pd.merge(df1, df2, on='key')
+print(df_merged)
+:::
+
+#### データの結合（全行を含む）
+:::code
+df_outer_merged = pd.merge(df1, df2, on='key', how='outer')
+print(df_outer_merged)
+:::
+
+#### データの結合（左側のデータフレームを基準）
+:::code
+df_left_merged = pd.merge(df1, df2, on='key', how='left')
+print(df_left_merged)
+:::
+
+#### データの結合（右側のデータフレームを基準）
+:::code
+df_right_merged = pd.merge(df1, df2, on='key', how='right')
+print(df_right_merged)
+:::
+
+#### データの結合（インデックスを基準）
+:::code
+df1 = pd.DataFrame({'value': [1, 2, 3]}, index=['A', 'B', 'C'])
+df2 = pd.DataFrame({'value': [4, 5, 6]}, index=['B', 'C', 'D'])
+
+df_index_merged = pd.merge(df1, df2, left_index=True, right_index=True, how='outer')
+print(df_index_merged)
+:::
+
 ## 欠損値の扱い
 
 ### 欠損値の確認
@@ -273,6 +315,58 @@ df_missing['A'] = df_missing['A'].fillna(0)
 df_missing['B'] = df_missing['B'].fillna('unknown')
 df_missing['C'] = df_missing['C'].fillna(df_missing['C'].mean())
 print(df_missing)
+:::
+
+## ピボットテーブル
+
+### ピボットテーブルの作成
+:::code
+df_pivot = pd.DataFrame({
+    'A': ['foo', 'foo', 'foo', 'bar', 'bar', 'bar'],
+    'B': ['one', 'one', 'two', 'two', 'one', 'one'],
+    'C': ['small', 'large', 'small', 'small', 'small', 'large'],
+    'D': [1, 2, 2, 3, 3, 4]
+})
+
+pivot_table = pd.pivot_table(df_pivot, values='D', index=['A', 'B'], columns=['C'], aggfunc=np.sum)
+print(pivot_table)
+:::
+
+## タイムシフト操作
+
+### 日付と時刻の操作
+:::code
+import pandas as pd
+
+# サンプルデータの作成
+df_time = pd.DataFrame({
+    'date': pd.date_range(start='1/1/2020', periods=5, freq='D'),
+    'value': [1, 2, 3, 4, 5]
+})
+
+# 日付列をインデックスに設定
+df_time.set_index('date', inplace=True)
+print(df_time)
+:::
+
+### 日付範囲の生成
+:::code
+date_range = pd.date_range(start='1/1/2020', end='1/10/2020')
+print(date_range)
+:::
+
+### タイムシフト
+:::code
+# 一日後にシフト
+shifted_df = df_time.shift(1)
+print(shifted_df)
+:::
+
+### 移動平均の計算
+:::code
+# 3日間の移動平均を計算
+rolling_mean = df_time.rolling(window=3).mean()
+print(rolling_mean)
 :::
 
 ## プロット関連
