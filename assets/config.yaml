@@ -1,5 +1,5 @@
-style: style.css
+style: assets/style.css
 editor_theme: ace/theme/monokai
-template: template.html
+template: assets/template.html
 output: output.html
 syntax_theme: atom-one-dark

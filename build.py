@@ -13,12 +13,12 @@ class ThemeSetup:
 
 class CommandBuilder:
     @staticmethod
-    def build_marp_command(slide, css_file="marp-style.css"):
+    def build_marp_command(slide, css_file="assets/marp-style.css"):
         basename = slide.split(".")[0]
         return f"marp {slide} --pdf --html --allow-local-files --theme-set {css_file} --output {basename}.pdf"
 
     @staticmethod
-    def build_almo_command(page, config_file="config.yaml"):
+    def build_almo_command(page, config_file="assets/config.yaml"):
         basename = page.split(".")[0]
         return f"almo-cli build {page} -o {basename}.html --config {config_file}"
 
@@ -57,7 +57,7 @@ class MarkdownProcessor:
 
 def main():
     css_url = "https://raw.githubusercontent.com/abap34/honwaka-theme/main/style.css"
-    ThemeSetup.download_css(css_url, "marp-style.css")
+    ThemeSetup.download_css(css_url, "assets/marp-style.css")
 
     data = {
         "pages": [
