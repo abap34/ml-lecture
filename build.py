@@ -62,7 +62,8 @@ def main():
     data = {
         "pages": [
             "supplement/colab.md",
-            "supplement/preface.md"
+            "supplement/preface.md",
+            "supplement/pandas.md",
         ],
         "slides": sorted(list(glob.glob("ch*/lecture.md", recursive=True))),
         "additional_slides": [

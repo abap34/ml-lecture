@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+<meta charset="UTF-8">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-10Y7GMS7GV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-10Y7GMS7GV');
+    </script>
+
+    <script type="text/javascript" src="//code.typesquare.com/static/ZDbTe4IzCko%253D/ts106f.js"
+        charset="utf-8"></script>
+
+    <title>動かしてわかる！ pandas基本操作</title>
+
+    <meta property="og:title" content="動かしてわかる！ pandas基本操作">
+    <meta property="og:image" content="https://abap34.github.io/ml-lecture/supplement/img/pandas.png">
+    <meta property="og:description" content="機械学習講習会のための補足資料です。 pandas 基本操作を実際に動かしながら学びます。">
+    <meta property="og:url" content="https://abap34.github.io/ml-lecture/supplement/colab.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="abap34.github.io">
+    <meta property="og:locale" content="ja_JP">
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="abap34" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/julia.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/julia-repl.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ext-language_tools.js"></script>
+
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <style>
+        body {
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: rgb(240, 244, 246);
+    font-family: "UD新ゴNT M", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    color: #333;
+}
+
+
+.article-body {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+    .side #toc {
+        display: none;
+    }
+
+    .article-body {
+        display: block !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        margin: 10px !important;
+    }
+
+}
+
+h1 {
+    text-align: center !important;
+}
+
+.side {
+    order: 1;
+    border-right: solid 1px #ddd;
+    padding-right: 20px;
+}
+
+.content {
+    order: 2;
+    padding: 20px;
+    width: 95%;
+    max-width: 900px;
+    margin: auto;
+    padding: auto;
+}
+
+
+.side-sticky {
+    position: sticky;
+    top: 20px;
+}
+
+
+.article-header {
+    padding-top: 30px;
+    margin: 10px;
+}
+
+
+
+.article-header .title {
+    color: #001e43;
+    font-size: 1.4rem;
+    font-weight: bold;
+    border-bottom: dotted 3px #001e43;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.date {
+    font-size: 14px;
+    text-align: center;
+    color: gray;
+}
+
+.date::before {
+    content: "\f073";
+    font-family: "Font Awesome 5 Free";
+}
+
+.tag-placeholder {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tag {
+    display: inline-block;
+    margin-right: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid gray;
+    color: #666;
+    text-decoration-line: none;
+}
+
+
+button {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    border: 1px solid rgba(99, 177, 255, 0.403);
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+}
+
+
+
+.toc_title {
+    display: none;
+}
+
+.math-block {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.math-inline {
+    display: inline-grid;
+    overflow-x: hidden;
+    ;
+}
+
+mjx-container {
+    display: inline-block;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+}
+
+h2 {
+    border-left: solid 5px #85c0ff;
+    padding-left: 10px;
+}
+
+
+img {
+    max-width: 100% !important;
+    height: auto;
+}
+
+@media (max-width: 1200px) {
+    figure {
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        overflow: hidden;
+        padding: 20px;
+    }
+}
+
+
+figure {
+    text-align: center;
+    color: gray;
+}
+
+
+h3 {
+    border-bottom: 1px solid #ddd !important;
+}
+
+pre {
+    padding: 10px;
+}
+
+.tex-equations {
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.exec_out {
+    color: white;
+}
+
+@media (max-width: 1200px) {
+    .exec_plot {
+        width: 100%;
+        overflow-x: auto;
+    }
+}
+
+#toc {
+    border-radius: 4px;
+    padding: 15px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+#toc a {
+    text-decoration: none;
+    color: #777;
+    display: block;
+    margin: 5px 0;
+    transition: color 0.2s;
+}
+
+#toc a:hover {
+    color: #007bff;
+}
+
+#toc .active {
+    font-weight: bold;
+    color: #007bff;
+    font-size: 1.1em;
+}
+
+#toc {
+    list-style: none;
+    padding: 0;
+    border-left: 2px dotted #a3c5db;
+    border-radius: 0%;
+}
+
+#toc li {
+    padding-left: 20px;
+    margin-top: 10px;
+    position: relative;
+}
+
+/* #toc li::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #c4e4f9;
+    border-radius: 50%;
+    border: 1px solid #a3c5db;
+    position: absolute;
+    left: -7px;
+    top: 0;
+    transform: translateY(50%);
+} */
+
+.toc_H1 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+
+.toc_H2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* .toc_H2::before {
+    background: #f8f8f8 !important;
+    border: 1px solid #3498db !important;
+} */
+
+.toc_H3 {
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: #007bff;
+    padding-left: 10px;
+}
+
+.toc_H3::before {
+    display: none !important;
+}
+
+#toposts,
+#tohome,
+#torss {
+    display: inline-block;
+    text-decoration: none;
+}
+
+
+.links {
+    border-top: solid 1px #ddd;
+    padding-top: 20px;
+    color: hwb(211 18% 52%);
+}
+
+.links a {
+    text-decoration: none;
+    color: #3c3c3c;
+}
+
+.links {
+    /* 等幅フォント */
+    font-family: "Noto Sans Mono", monospace;
+}
+
+#toposts {
+    color: #979797 !important;
+
+}
+
+#tohome {
+    color: #b8792c !important;
+}
+
+#torss {
+    color: #d88914 !important;
+}
+
+#twitter {
+    color: #1da1f2 !important;
+}
+
+#github {
+    color: #000000 !important;
+}
+
+#mail {
+    color: #bbbbbb !important;
+}
+
+
+.content_list_h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-bottom: solid 1px #007bff;
+    color: #007bff;
+}
+
+.content_list_h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.content_list_problem {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.badge {
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #777;
+    border: 1px solid #444;
+    margin: 0 8px;
+    float: left;
+}
+
+.runbutton,
+.submitbutton {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.runbutton {
+    background-color: #007bff;
+}
+
+.runbutton:hover {
+    background-color: #005580;
+}
+
+.submitbutton {
+    background-color: #008000;
+}
+
+.submitbutton:hover {
+    background-color: #006400;
+}
+
+.problem_title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.editor {
+    width: 100%;
+    height: 300px;
+    font-size: 16px;
+    font-family: monospace;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px;
+    border: solid 1px #ddd;
+}
+
+.output,
+.expect_out,
+.sample_in,
+.sample_out {
+    width: 100%;
+    padding: 5px 5px;
+    overflow-x: auto;
+    font-size: 16px;
+    font-family: monospace;
+    background-color: #f0f0f0;
+    color: #333;
+    border: solid 1px #ddd;
+}
+
+.box-title,
+.problem_list {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #777;
+}
+
+pre {
+    background-color: #282c34;
+    border-radius: 5px;
+}
+
+pre code {
+    color: #e8ebf0;
+    line-height: 1.2;
+    font-family: monospace;
+}
+
+.inline-code {
+    font-family: monospace;
+    line-height: 1.2;
+    color: #e43e3ee0;
+}
+
+.success,
+.info,
+.warning,
+.danger {
+    padding: 12px;
+    border: 1px solid;
+    border-radius: 4px;
+}
+
+.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.definition {
+    counter-increment: definition;
+    border: #31708f 3px dotted;
+    border-left: #31708fa1 5px solid;
+}
+
+.definition::before {
+    content: "Definition " counter(definition) ".";
+}
+
+.theorem {
+    counter-increment: theorem;
+    border: #318f5a 3px dotted;
+    border-left: #318f4fa1 5px solid;
+}
+
+.theorem::before {
+    content: "Theorem " counter(theorem) ".";
+}
+
+.lemma {
+    counter-increment: lemma;
+    border: #ab5b64 3px dotted;
+    border-left: #d071a4a1 5px solid;
+}
+
+.lemma::before {
+    content: "Lemma " counter(lemma) ".";
+}
+
+.proof {
+    counter-increment: proof;
+    border: #5b64ab 3px dotted;
+    border-left: #8cc1e7a1 5px solid;
+}
+
+.proof::before {
+    content: "Proof " counter(proof) ".";
+}
+
+.definition::before,
+.theorem::before,
+.proof::before,
+.lemma::before {
+    font-family: serif;
+    font-size: large;
+    font-weight: 600;
+    font-style: italic;
+    display: block;
+}
+
+
+.definition,
+.theorem,
+.proof,
+.lemma {
+    padding: 12px;
+    margin: 12px;
+}
+
+.proof::after {
+    content: "∎";
+    margin-left: auto;
+    display: block;
+}
+
+iframe {
+    width: 100%;
+}
+
+
+a {
+    color: #006699;
+    word-break: break-all;
+}
+
+
+/* マーカーで線が引かれる */
+.lined {
+    background: linear-gradient(transparent 70%, rgba(255, 165, 0, 0.6) 0) no-repeat;
+    display: inline;
+}
+
+.dot-text {
+    -webkit-text-emphasis: filled;
+    text-emphasis: filled;
+    -webkit-text-emphasis-color: #ff9800;
+    text-emphasis-color: #ff9800;
+    -webkit-text-emphasis-style: circle;
+    text-emphasis-style: circle;
+    font-weight: bold;
+}
+    </style>
+
+    <script>
+        var page_contents = [];
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.0/full/pyodide.js"></script> 
+ <script>
+
+all_sample_input = {}
+all_sample_output = {}
+
+all_input = {}
+all_output = {}
+
+use_libs = []
+
+judge_types = {}
+problem_status = {}
+
+const pyodidePromise = loadPyodide({
+    stdin: stdin_func,
+    stdout: stdout_func,
+});
+
+function stdin_func() {
+    if (submit_run) {
+        return all_input[target_objectid][judge_idx];
+    } else {
+        return all_sample_input[target_objectid];
+    }
+}
+
+function stdout_func(answer) {
+    outputs += answer + "\n";
+}
+
+function error_handle(error) {
+    document.getElementById(target_objectid + "_out").innerText = error;
+    document.getElementById(target_objectid + "_out").style.color = "orange";
+    status = "RE";
+}
+
+const runCode = async (objectid, require_judge) => {
+    target_objectid = objectid;
+    submit_run = require_judge;
+
+    let pyodide = await pyodidePromise;
+
+    let editor = ace.edit(objectid);
+    let code = editor.getValue();
+    let result_bar_id = target_objectid + "_status";
+    let result_bar = document.getElementById(result_bar_id)
+
+    document.getElementById(target_objectid + "_out").innerText = "";
+    document.getElementById(target_objectid + "_out").style.color = "";
+    result_bar.innerText = "Running...";
+
+
+    if (require_judge) {
+        let n_input = all_input[target_objectid].length;
+        for (let i = 0; i < n_input; i++) {
+            judge_idx = i;
+            result_bar.innerText = "Running...   " + judge_idx + "/" + (n_input);
+            try {
+                outputs = "";
+                await pyodide.runPythonAsync(code);
+                let expect_out = all_output[target_objectid][judge_idx];
+                if (outputs.slice(-1) == "\n") {
+                    outputs = outputs.slice(0, -1);
+                }
+                judge(outputs, expect_out);
+            } catch (error) {
+                error_handle(error);
+                result_bar.innerText = "WJ";
+            }
+
+            if (status == "TLE" || status == "MLE" || status == "RE" || status == "WA") {
+                result_bar.style.backgroundColor = "#ffe500";
+                result_bar.innerText = status + "   " + judge_idx + "/" + (n_input);
+                break;
+            }
+        }
+
+        if (status == "AC") {
+            result_bar.style.backgroundColor = "lightgreen";
+            result_bar.innerText = "AC";
+            confetti();
+        } else {
+            result_bar.style.backgroundColor = "#ffe500";
+        }
+    } else {
+        try {
+            outputs = "";
+            await pyodide.runPythonAsync(code);
+            document.getElementById(target_objectid + "_out").innerText = outputs;
+            result_bar.innerText = "WJ";
+        } catch (error) {
+            error_handle(error);
+            result_bar.innerText = "RE";
+        }
+    }
+};
+
+function judge(answer, expect_out) {
+    // trim \n from both
+    if (answer.slice(-1) == "\n") {
+        answer = answer.slice(0, -1);
+    }
+
+    if (expect_out.slice(-1) == "\n") {
+        expect_out = expect_out.slice(0, -1);
+    }
+
+    let judge_type = judge_types[target_objectid];
+    if (judge_type == 'equal') {
+        if (answer === expect_out) {
+            status = "AC";
+        } else {
+            status = "WA";
+        }
+    } else if (judge_type.includes('err')) {
+        status = "AC";
+        let admissible_absolute_error = parseFloat(judge_type.split('_')[1]);
+        let answer_list = answer.split('\n');
+        let expect_out_list = expect_out.split('\n');
+        for (let i = 0; i < answer_list.length; i++) {
+            let answer_line = answer_list[i].split(' ');
+            let expect_out_line = expect_out_list[i].split(' ');
+            for (let j = 0; j < answer_line.length; j++) {
+                let answer_out = parseFloat(answer_line[j]);
+                let expect_out_out = parseFloat(expect_out_line[j]);
+                if (Math.abs(answer_out - expect_out_out) > admissible_absolute_error) {
+                    status = "WA";
+                    return;
+                }
+            }
+        }
+
+    }
+}
+
+// ExecutableCodeblockのコードを実行する
+const runBlock = async (objectid) => {
+    let out_area = document.getElementById(objectid + "_out");
+    out_area.style.color = "";
+
+    let pyodide = await pyodidePromise;
+    let editor = ace.edit(objectid);
+    let code = editor.getValue();
+    document.pyodideMplTarget = document.getElementById(objectid + "_plot");
+    out_area.innerText = "Loading libraries...";
+    for (let i = 0; i < use_libs.length; i++) {
+        out_area.innerText = "Loading " + use_libs[i] + "...";
+        let lib = use_libs[i];
+        await pyodide.loadPackage(lib);
+    }
+    out_area.innerText = "Running...";
+
+    outputs = "";
+    try {
+        await pyodide.runPythonAsync(code);
+        out_area.innerText = outputs;
+    } catch (error) {
+        out_area.innerText = error;
+        out_area.style.color = "orange";
+    }
+}
+
+</script>
+
+</head>
+
+<body>
+
+    <div class="article-header">
+
+        <div class="title">
+            動かしてわかる！ pandas基本操作
+        </div>
+
+        <script>
+            var title = document.querySelector(".title").innerHTML;
+        </script>
+
+        <br>
+        <div class="date">
+            2024/09/25
+        </div>
+        <br>
+        <div class="tag-placeholder">
+            <!-- loop tags -->
+            
+            <div class="tag">
+                # pandas
+            </div>
+            
+            <div class="tag">
+                # Python
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="article-body">
+        <div class="content">
+            <style>     h4 {         margin-top: 1em;         margin-bottom: 0em;         padding-top: 0em;         padding-bottom: 0em;     }     h4::before {         content: "▶︎ " !important;     } </style><br><script>     const setUp = async () => {         let pyodide = await pyodidePromise;         pyodide.FS.writeFile("/example.csv", "A,B,C\n1,apple,0.1\n2,banana,0.2\n3,cherry,0.3\n4,date,0.4\n");     };     setUp(); </script><script> use_libs.push("pandas"); </script><script> use_libs.push("matplotlib"); </script><script> use_libs.push("numpy"); </script><script>page_contents.push({
+    "type":"H2",
+    "id":"5",
+    "title":"このページについて"
+});
+</script>
+<h2 id="5">このページについて</h2><br>このページは、 pandas の基本的な操作を列挙したものです。<br>コードは実際に編集・実行できるので、実行していろいろ把握していってみてください。 (各コードブロックのメモリ空間は共有されています。)<br>動作について詳しく知りたい場合は、 <url> <a href="https://pandas.pydata.org/docs/">pandas のドキュメント</a> </url> か、 <url> <a href="https://note.nkmk.me/pandas/">nkmk note</a> </url> を参考にするのがおすすめです。<br>このページは <url> <a href="https://github.com/abap34/almo">almo</a> </url> によって作られています。<br><script>page_contents.push({
+    "type":"H2",
+    "id":"22",
+    "title":"基本操作"
+});
+</script>
+<h2 id="22">基本操作</h2><br><script>page_contents.push({
+    "type":"H3",
+    "id":"25",
+    "title":"データフレームの構築"
+});
+</script>
+<h3 id="25">データフレームの構築</h3><br> 
+ <div class="editor" id="27" rows="3" cols="80"></div> 
+<script>editor = ace.edit("27"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 10,     maxLines: 10,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`import pandas as pd
+
+df = pd.DataFrame({
+    'A': [1, 2, 3, 4],
+    'B': ['apple', 'banana', 'cherry', 'date'],
+    'C': [0.1, 0.2, 0.3, 0.4]
+})
+
+print(df)
+`, -1);</script>
+<pre class="exec_out" id="27_out"></pre>
+<div class="exec_plot" id="27_plot"></div>
+<button class="runbutton" onclick="runBlock('27')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H3",
+    "id":"29",
+    "title":"超基本操作"
+});
+</script>
+<h3 id="29">超基本操作</h3><br><script>page_contents.push({
+    "type":"H4",
+    "id":"32",
+    "title":"列の取得"
+});
+</script>
+<h4 id="32">列の取得</h4><br> 
+ <div class="editor" id="34" rows="3" cols="80"></div> 
+<script>editor = ace.edit("34"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df['A'])
+`, -1);</script>
+<pre class="exec_out" id="34_out"></pre>
+<div class="exec_plot" id="34_plot"></div>
+<button class="runbutton" onclick="runBlock('34')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"36",
+    "title":"行の取得"
+});
+</script>
+<h4 id="36">行の取得</h4><br> 
+ <div class="editor" id="38" rows="3" cols="80"></div> 
+<script>editor = ace.edit("38"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.loc[0])
+`, -1);</script>
+<pre class="exec_out" id="38_out"></pre>
+<div class="exec_plot" id="38_plot"></div>
+<button class="runbutton" onclick="runBlock('38')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"40",
+    "title":"複数列の取得"
+});
+</script>
+<h4 id="40">複数列の取得</h4><br><br> 
+ <div class="editor" id="43" rows="3" cols="80"></div> 
+<script>editor = ace.edit("43"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df[['A', 'B']])
+`, -1);</script>
+<pre class="exec_out" id="43_out"></pre>
+<div class="exec_plot" id="43_plot"></div>
+<button class="runbutton" onclick="runBlock('43')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"45",
+    "title":"複数行の取得"
+});
+</script>
+<h4 id="45">複数行の取得</h4><br><br> 
+ <div class="editor" id="48" rows="3" cols="80"></div> 
+<script>editor = ace.edit("48"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.loc[0:2])
+`, -1);</script>
+<pre class="exec_out" id="48_out"></pre>
+<div class="exec_plot" id="48_plot"></div>
+<button class="runbutton" onclick="runBlock('48')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"50",
+    "title":"特定の行と列の取得"
+});
+</script>
+<h4 id="50">特定の行と列の取得</h4><br><br> 
+ <div class="editor" id="53" rows="3" cols="80"></div> 
+<script>editor = ace.edit("53"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.loc[0, 'A'])
+`, -1);</script>
+<pre class="exec_out" id="53_out"></pre>
+<div class="exec_plot" id="53_plot"></div>
+<button class="runbutton" onclick="runBlock('53')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"55",
+    "title":"条件によるフィルタリング"
+});
+</script>
+<h4 id="55">条件によるフィルタリング</h4><br><br> 
+ <div class="editor" id="58" rows="3" cols="80"></div> 
+<script>editor = ace.edit("58"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df[df['A'] > 2])
+`, -1);</script>
+<pre class="exec_out" id="58_out"></pre>
+<div class="exec_plot" id="58_plot"></div>
+<button class="runbutton" onclick="runBlock('58')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"60",
+    "title":"列の追加"
+});
+</script>
+<h4 id="60">列の追加</h4><br><br> 
+ <div class="editor" id="63" rows="3" cols="80"></div> 
+<script>editor = ace.edit("63"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df['D'] = df['A'] + df['C']
+print(df)
+`, -1);</script>
+<pre class="exec_out" id="63_out"></pre>
+<div class="exec_plot" id="63_plot"></div>
+<button class="runbutton" onclick="runBlock('63')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"65",
+    "title":"列の削除"
+});
+</script>
+<h4 id="65">列の削除</h4><br><br> 
+ <div class="editor" id="68" rows="3" cols="80"></div> 
+<script>editor = ace.edit("68"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df = df.drop(columns=['D'])
+print(df)
+`, -1);</script>
+<pre class="exec_out" id="68_out"></pre>
+<div class="exec_plot" id="68_plot"></div>
+<button class="runbutton" onclick="runBlock('68')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"70",
+    "title":"行の追加"
+});
+</script>
+<h4 id="70">行の追加</h4><br><br> 
+ <div class="editor" id="73" rows="3" cols="80"></div> 
+<script>editor = ace.edit("73"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df = df.append({'A': 5, 'B': 'elderberry', 'C': 0.5}, ignore_index=True)
+print(df)
+`, -1);</script>
+<pre class="exec_out" id="73_out"></pre>
+<div class="exec_plot" id="73_plot"></div>
+<button class="runbutton" onclick="runBlock('73')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"75",
+    "title":"行の削除"
+});
+</script>
+<h4 id="75">行の削除</h4><br><br> 
+ <div class="editor" id="78" rows="3" cols="80"></div> 
+<script>editor = ace.edit("78"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df = df.drop(0)
+print(df)
+`, -1);</script>
+<pre class="exec_out" id="78_out"></pre>
+<div class="exec_plot" id="78_plot"></div>
+<button class="runbutton" onclick="runBlock('78')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"80",
+    "title":"列の名前を変更"
+});
+</script>
+<h4 id="80">列の名前を変更</h4><br><br> 
+ <div class="editor" id="83" rows="3" cols="80"></div> 
+<script>editor = ace.edit("83"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df = df.rename(columns={'A': 'Alpha', 'B': 'Beta', 'C': 'Gamma'})
+print(df)
+`, -1);</script>
+<pre class="exec_out" id="83_out"></pre>
+<div class="exec_plot" id="83_plot"></div>
+<button class="runbutton" onclick="runBlock('83')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"85",
+    "title":"データ型の確認"
+});
+</script>
+<h4 id="85">データ型の確認</h4><br><br> 
+ <div class="editor" id="88" rows="3" cols="80"></div> 
+<script>editor = ace.edit("88"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.dtypes)
+`, -1);</script>
+<pre class="exec_out" id="88_out"></pre>
+<div class="exec_plot" id="88_plot"></div>
+<button class="runbutton" onclick="runBlock('88')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"90",
+    "title":"データ型の変更"
+});
+</script>
+<h4 id="90">データ型の変更</h4><br><br> 
+ <div class="editor" id="93" rows="3" cols="80"></div> 
+<script>editor = ace.edit("93"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df['Alpha'] = df['Alpha'].astype(float)
+print(df.dtypes)
+`, -1);</script>
+<pre class="exec_out" id="93_out"></pre>
+<div class="exec_plot" id="93_plot"></div>
+<button class="runbutton" onclick="runBlock('93')"> Run </button>
+<br><br><script>page_contents.push({
+    "type":"H4",
+    "id":"96",
+    "title":"データの基本統計量の表示"
+});
+</script>
+<h4 id="96">データの基本統計量の表示</h4><br><br> 
+ <div class="editor" id="99" rows="3" cols="80"></div> 
+<script>editor = ace.edit("99"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.describe())
+`, -1);</script>
+<pre class="exec_out" id="99_out"></pre>
+<div class="exec_plot" id="99_plot"></div>
+<button class="runbutton" onclick="runBlock('99')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"101",
+    "title":"グループ化と集計"
+});
+</script>
+<h4 id="101">グループ化と集計</h4><br><br> 
+ <div class="editor" id="104" rows="3" cols="80"></div> 
+<script>editor = ace.edit("104"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df_grouped = df.groupby('Beta').sum()
+print(df_grouped)
+`, -1);</script>
+<pre class="exec_out" id="104_out"></pre>
+<div class="exec_plot" id="104_plot"></div>
+<button class="runbutton" onclick="runBlock('104')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"106",
+    "title":"CSVファイルからの読み込み"
+});
+</script>
+<h4 id="106">CSVファイルからの読み込み</h4><br><br> 
+ <div class="editor" id="109" rows="3" cols="80"></div> 
+<script>editor = ace.edit("109"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df_csv = pd.read_csv('/example.csv')
+print(df_csv)
+`, -1);</script>
+<pre class="exec_out" id="109_out"></pre>
+<div class="exec_plot" id="109_plot"></div>
+<button class="runbutton" onclick="runBlock('109')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"111",
+    "title":"CSVファイルへの書き出し"
+});
+</script>
+<h4 id="111">CSVファイルへの書き出し</h4><br><br> 
+ <div class="editor" id="114" rows="3" cols="80"></div> 
+<script>editor = ace.edit("114"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df.to_csv('output.csv', index=False)
+`, -1);</script>
+<pre class="exec_out" id="114_out"></pre>
+<div class="exec_plot" id="114_plot"></div>
+<button class="runbutton" onclick="runBlock('114')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"116",
+    "title":"データフレームの形状を取得"
+});
+</script>
+<h4 id="116">データフレームの形状を取得</h4><br><br> 
+ <div class="editor" id="119" rows="3" cols="80"></div> 
+<script>editor = ace.edit("119"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.shape)
+`, -1);</script>
+<pre class="exec_out" id="119_out"></pre>
+<div class="exec_plot" id="119_plot"></div>
+<button class="runbutton" onclick="runBlock('119')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"121",
+    "title":"先頭の数行を取得"
+});
+</script>
+<h4 id="121">先頭の数行を取得</h4><br><br> 
+ <div class="editor" id="124" rows="3" cols="80"></div> 
+<script>editor = ace.edit("124"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.head())
+`, -1);</script>
+<pre class="exec_out" id="124_out"></pre>
+<div class="exec_plot" id="124_plot"></div>
+<button class="runbutton" onclick="runBlock('124')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"126",
+    "title":"先頭の数行を指定して取得"
+});
+</script>
+<h4 id="126">先頭の数行を指定して取得</h4><br><br> 
+ <div class="editor" id="129" rows="3" cols="80"></div> 
+<script>editor = ace.edit("129"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.head(2))
+`, -1);</script>
+<pre class="exec_out" id="129_out"></pre>
+<div class="exec_plot" id="129_plot"></div>
+<button class="runbutton" onclick="runBlock('129')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"131",
+    "title":"末尾の数行を取得"
+});
+</script>
+<h4 id="131">末尾の数行を取得</h4><br><br> 
+ <div class="editor" id="134" rows="3" cols="80"></div> 
+<script>editor = ace.edit("134"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.tail())
+`, -1);</script>
+<pre class="exec_out" id="134_out"></pre>
+<div class="exec_plot" id="134_plot"></div>
+<button class="runbutton" onclick="runBlock('134')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"136",
+    "title":"末尾の数行を指定して取得"
+});
+</script>
+<h4 id="136">末尾の数行を指定して取得</h4><br><br> 
+ <div class="editor" id="139" rows="3" cols="80"></div> 
+<script>editor = ace.edit("139"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.tail(2))
+`, -1);</script>
+<pre class="exec_out" id="139_out"></pre>
+<div class="exec_plot" id="139_plot"></div>
+<button class="runbutton" onclick="runBlock('139')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"141",
+    "title":"データフレームのインデックスをリセット"
+});
+</script>
+<h4 id="141">データフレームのインデックスをリセット</h4><br><br> 
+ <div class="editor" id="144" rows="3" cols="80"></div> 
+<script>editor = ace.edit("144"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df = df.reset_index(drop=True)
+print(df)
+`, -1);</script>
+<pre class="exec_out" id="144_out"></pre>
+<div class="exec_plot" id="144_plot"></div>
+<button class="runbutton" onclick="runBlock('144')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"146",
+    "title":"データフレームのソート（昇順）"
+});
+</script>
+<h4 id="146">データフレームのソート（昇順）</h4><br><br> 
+ <div class="editor" id="149" rows="3" cols="80"></div> 
+<script>editor = ace.edit("149"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df = df.sort_values(by='Alpha')
+print(df)
+`, -1);</script>
+<pre class="exec_out" id="149_out"></pre>
+<div class="exec_plot" id="149_plot"></div>
+<button class="runbutton" onclick="runBlock('149')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"151",
+    "title":"データフレームのソート（降順）"
+});
+</script>
+<h4 id="151">データフレームのソート（降順）</h4><br><br> 
+ <div class="editor" id="154" rows="3" cols="80"></div> 
+<script>editor = ace.edit("154"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 3,     maxLines: 3,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`df = df.sort_values(by='Alpha', ascending=False)
+print(df)
+`, -1);</script>
+<pre class="exec_out" id="154_out"></pre>
+<div class="exec_plot" id="154_plot"></div>
+<button class="runbutton" onclick="runBlock('154')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"156",
+    "title":"列ごとの一意な値の取得"
+});
+</script>
+<h4 id="156">列ごとの一意な値の取得</h4><br><br> 
+ <div class="editor" id="159" rows="3" cols="80"></div> 
+<script>editor = ace.edit("159"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df['Beta'].unique())
+`, -1);</script>
+<pre class="exec_out" id="159_out"></pre>
+<div class="exec_plot" id="159_plot"></div>
+<button class="runbutton" onclick="runBlock('159')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"161",
+    "title":"列ごとの値のカウント"
+});
+</script>
+<h4 id="161">列ごとの値のカウント</h4><br><br> 
+ <div class="editor" id="164" rows="3" cols="80"></div> 
+<script>editor = ace.edit("164"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df['Beta'].value_counts())
+`, -1);</script>
+<pre class="exec_out" id="164_out"></pre>
+<div class="exec_plot" id="164_plot"></div>
+<button class="runbutton" onclick="runBlock('164')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"166",
+    "title":"データフレームの転置"
+});
+</script>
+<h4 id="166">データフレームの転置</h4><br><br> 
+ <div class="editor" id="169" rows="3" cols="80"></div> 
+<script>editor = ace.edit("169"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.T)
+`, -1);</script>
+<pre class="exec_out" id="169_out"></pre>
+<div class="exec_plot" id="169_plot"></div>
+<button class="runbutton" onclick="runBlock('169')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"171",
+    "title":"行ごとの合計"
+});
+</script>
+<h4 id="171">行ごとの合計</h4><br><br> 
+ <div class="editor" id="174" rows="3" cols="80"></div> 
+<script>editor = ace.edit("174"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.sum(axis=1))
+`, -1);</script>
+<pre class="exec_out" id="174_out"></pre>
+<div class="exec_plot" id="174_plot"></div>
+<button class="runbutton" onclick="runBlock('174')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H4",
+    "id":"176",
+    "title":"列ごとの合計"
+});
+</script>
+<h4 id="176">列ごとの合計</h4><br><br> 
+ <div class="editor" id="179" rows="3" cols="80"></div> 
+<script>editor = ace.edit("179"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 2,     maxLines: 2,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`print(df.sum())
+`, -1);</script>
+<pre class="exec_out" id="179_out"></pre>
+<div class="exec_plot" id="179_plot"></div>
+<button class="runbutton" onclick="runBlock('179')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H2",
+    "id":"181",
+    "title":"欠損値の扱い"
+});
+</script>
+<h2 id="181">欠損値の扱い</h2><br><script>page_contents.push({
+    "type":"H3",
+    "id":"184",
+    "title":"欠損値の確認"
+});
+</script>
+<h3 id="184">欠損値の確認</h3><br> 
+ <div class="editor" id="186" rows="3" cols="80"></div> 
+<script>editor = ace.edit("186"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 8,     maxLines: 8,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# データフレームに欠損値を含めたサンプルデータを作成
+df_missing = pd.DataFrame({
+    'A': [1, 2, None, 4],
+    'B': ['apple', None, 'cherry', 'date'],
+    'C': [0.1, 0.2, 0.3, None]
+})
+print(df_missing.isna().sum())
+`, -1);</script>
+<pre class="exec_out" id="186_out"></pre>
+<div class="exec_plot" id="186_plot"></div>
+<button class="runbutton" onclick="runBlock('186')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H3",
+    "id":"188",
+    "title":"欠損値埋め"
+});
+</script>
+<h3 id="188">欠損値埋め</h3><br> 
+ <div class="editor" id="190" rows="3" cols="80"></div> 
+<script>editor = ace.edit("190"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 6,     maxLines: 6,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# 欠損値を特定の値で埋める
+df_missing['A'] = df_missing['A'].fillna(0)
+df_missing['B'] = df_missing['B'].fillna('unknown')
+df_missing['C'] = df_missing['C'].fillna(df_missing['C'].mean())
+print(df_missing)
+`, -1);</script>
+<pre class="exec_out" id="190_out"></pre>
+<div class="exec_plot" id="190_plot"></div>
+<button class="runbutton" onclick="runBlock('190')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H2",
+    "id":"192",
+    "title":"プロット関連"
+});
+</script>
+<h2 id="192">プロット関連</h2><br><script>page_contents.push({
+    "type":"H3",
+    "id":"195",
+    "title":"ライブラリのインポート"
+});
+</script>
+<h3 id="195">ライブラリのインポート</h3><br> 
+ <div class="editor" id="197" rows="3" cols="80"></div> 
+<script>editor = ace.edit("197"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 8,     maxLines: 8,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`import matplotlib.pyplot as plt
+
+# データフレームの構築
+df_plot = pd.DataFrame({
+    'Category': ['A', 'B', 'C', 'D'],
+    'Values': [4, 3, 2, 1]
+})
+`, -1);</script>
+<pre class="exec_out" id="197_out"></pre>
+<div class="exec_plot" id="197_plot"></div>
+<button class="runbutton" onclick="runBlock('197')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H3",
+    "id":"199",
+    "title":"棒グラフの作成"
+});
+</script>
+<h3 id="199">棒グラフの作成</h3><br> 
+ <div class="editor" id="201" rows="3" cols="80"></div> 
+<script>editor = ace.edit("201"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 7,     maxLines: 7,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`plt.figure(figsize=(8, 5))
+plt.bar(df_plot['Category'], df_plot['Values'])
+plt.title('Bar Plot Example')
+plt.xlabel('Category')
+plt.ylabel('Values')
+plt.show()
+`, -1);</script>
+<pre class="exec_out" id="201_out"></pre>
+<div class="exec_plot" id="201_plot"></div>
+<button class="runbutton" onclick="runBlock('201')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H3",
+    "id":"203",
+    "title":"散布図の作成"
+});
+</script>
+<h3 id="203">散布図の作成</h3><br> 
+ <div class="editor" id="205" rows="3" cols="80"></div> 
+<script>editor = ace.edit("205"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 13,     maxLines: 13,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# サンプルデータの作成
+df_scatter = pd.DataFrame({
+    'X': [1, 2, 3, 4, 5],
+    'Y': [5, 4, 3, 2, 1]
+})
+
+plt.figure(figsize=(8, 5))
+plt.scatter(df_scatter['X'], df_scatter['Y'])
+plt.title('Scatter Plot Example')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.show()
+`, -1);</script>
+<pre class="exec_out" id="205_out"></pre>
+<div class="exec_plot" id="205_plot"></div>
+<button class="runbutton" onclick="runBlock('205')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H3",
+    "id":"207",
+    "title":"ヒストグラムの作成"
+});
+</script>
+<h3 id="207">ヒストグラムの作成</h3><br> 
+ <div class="editor" id="209" rows="3" cols="80"></div> 
+<script>editor = ace.edit("209"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 12,     maxLines: 12,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# サンプルデータの作成
+df_hist = pd.DataFrame({
+    'Values': [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+})
+
+plt.figure(figsize=(8, 5))
+plt.hist(df_hist['Values'], bins=4, edgecolor='black')
+plt.title('Histogram Example')
+plt.xlabel('Values')
+plt.ylabel('Frequency')
+plt.show()
+`, -1);</script>
+<pre class="exec_out" id="209_out"></pre>
+<div class="exec_plot" id="209_plot"></div>
+<button class="runbutton" onclick="runBlock('209')"> Run </button>
+<br><script>page_contents.push({
+    "type":"H3",
+    "id":"211",
+    "title":"ボックスプロットの作成"
+});
+</script>
+<h3 id="211">ボックスプロットの作成</h3><br> 
+ <div class="editor" id="213" rows="3" cols="80"></div> 
+<script>editor = ace.edit("213"); editor.setTheme("ace/theme/monokai");editor.session.setMode("ace/mode/python");editor.setShowPrintMargin(false);editor.setHighlightActiveLine(false);editor.setOptions({    enableBasicAutocompletion: true,    enableSnippets: true,    enableLiveAutocompletion: true,    minLines: 14,     maxLines: 14,     fontSize: "14px"});editor.renderer.setScrollMargin(10, 10);editor.setValue(`# サンプルデータの作成
+df_box = pd.DataFrame({
+    'Category': ['A', 'A', 'B', 'B', 'C', 'C'],
+    'Values': [1, 2, 3, 4, 5, 6]
+})
+
+plt.figure(figsize=(8, 5))
+df_box.boxplot(by='Category', column=['Values'])
+plt.title('Box Plot Example')
+plt.suptitle('')  # デフォルトのタイトルを消す
+plt.xlabel('Category')
+plt.ylabel('Values')
+plt.show()
+`, -1);</script>
+<pre class="exec_out" id="213_out"></pre>
+<div class="exec_plot" id="213_plot"></div>
+<button class="runbutton" onclick="runBlock('213')"> Run </button>
+
+
+            <hr>
+
+            <script src="https://utteranc.es/client.js" repo="abap34/abap34com-comment" issue-term="og:title"
+                label="comment" theme="github-light" crossorigin="anonymous" async></script>
+
+        </div>
+
+        <div class="side">
+            <div class="side-sticky">
+                <div class="sidebar">
+                    <ul id="toc"></ul>
+                </div>
+
+                <button id="question-button"> この資料についてtraQ で質問する!</button>
+
+                <script>
+                    const text = `@abap34 \n ### 質問したい資料: ${title} \n### 質問内容: `;
+
+                    const url = `https://q.trap.jp/share-target?title=質問&text=${encodeURIComponent(text)}`;
+
+                    const questionButton = document.getElementById("question-button");
+                    questionButton.onclick = () => {
+                        window.open(url, "_blank");
+                    };
+                </script>
+
+                <div class="links">
+                    <div class="to-links">
+                        <a href="https://abap34.github.io/ml-lecture/#articles"> <i class="fas fa-book-open"
+                                id="toposts"></i> 資料一覧へ </a>
+                        <br>
+                        <a href="https://abap34.github.io/ml-lecture/"> <i class="fas fa-home" id="tohome"></i> ホーム </a>
+                    </div>
+                    <br><br>
+                    
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                        data-show-count="false" data-via="abap34">Tweet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+                    <footer>
+                        <p>&copy; abap34</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const tocContainer = document.querySelector("#toc");
+        const tocTitle = document.createElement("div");
+        tocTitle.innerHTML = title;
+        tocTitle.classList.add("toc_title");
+        tocContainer.appendChild(tocTitle);
+
+        page_contents.forEach(item => {
+            if (item.type == "H1" || item.type === "H2" || item.type === "H3") {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<a href="#${item.id}">${item.title}</a>`;
+                listItem.classList.add("toc_" + item.type);
+                tocContainer.appendChild(listItem);
+            }
+        });
+
+        const options = {
+            root: null,
+            rootMargin: "-50% 0px",
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver(onIntersection, options);
+
+        page_contents.forEach(item => {
+            const element = document.getElementById(item.id);
+            if (element) {
+                observer.observe(element);
+            }
+        });
+
+        // page_contents の先頭を active にしておく
+        const first_item = document.querySelector(`#toc a[href="#${page_contents[0].id}"]`);
+        first_item.classList.add("active");
+
+        let prev_item = first_item;
+
+        function onIntersection(entries) {
+            entries.forEach(entry => {
+                const id = entry.target.id;
+                const tocItem = document.querySelector(`#toc a[href="#${id}"]`);
+                if (tocItem) {
+                    if (entry.isIntersecting) {
+                        tocItem.classList.add("active");
+                        prev_item.classList.remove("active");
+                        prev_item = tocItem;
+                    }
+                }
+            });
+        }
+
+
+    </script>
+
+</body>
+
+</html>
