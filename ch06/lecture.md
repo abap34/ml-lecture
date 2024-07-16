@@ -5,6 +5,8 @@ paginate: true
 math: mathjax
 ---
 
+<div id="ch06"></div>
+
 
 <!-- _class: lead-->
 

@@ -5,6 +5,8 @@ paginate: true
 math: mathjax
 ---
 
+<div id="ch05"></div>
+
 <!-- _class: lead-->
 
 # 機械学習講習会 第五回
