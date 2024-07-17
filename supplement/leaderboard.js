@@ -45,7 +45,7 @@ const createRowElement = (item) => {
     row.appendChild(iconCell);
 
     const scoreCell = document.createElement('td');
-    scoreCell.textContent = item.score;
+    scoreCell.textContent = parseFloat(item.score).toFixed(4);
     scoreCell.style.color = '#98c379';
     row.appendChild(scoreCell);
 
