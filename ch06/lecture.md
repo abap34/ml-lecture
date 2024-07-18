@@ -189,6 +189,13 @@ Jupyter Notebook では,先頭に `!` をつけることで,シェルコマン�
 
 ![center h:350](img/image-23.png)
 
+<div class="cite">
+
+今回のコンペのデータは ISCX NSL-KDD dataset 2009 [1] をもとに大きく加工したものを使用しています。
+[1] M. Tavallaee, E. Bagheri, W. Lu, and A. Ghorbani, “A Detailed Analysis of the KDD CUP 99 Data Set,” Submitted to Second IEEE Symposium on Computational Intelligence for Security and Defense Applications (CISDA), 2009.
+
+</div>
+
 
 ---
 
@@ -220,7 +227,7 @@ test = pd.read_csv("test.csv")
 <div class="cite">
 
 
-パスとは,コンピュータ上のファイルやフォルダへの経路のことです.
+パスはコンピュータ上のファイルやフォルダへの経路のことです.
 今回は train.csv と test.csv がノートブックと同じ階層にあるので, train.csv と test.csv までの経路は,ファイル名をそのまま指定するだけで大丈夫です.
 ほかにも たとえば `../train.csv` と指定すると ノートブックの一つ上の階層にある train.csv というファイルを読み込みます.
 
