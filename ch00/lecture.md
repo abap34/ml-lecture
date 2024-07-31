@@ -201,13 +201,13 @@ ul li::before {
 }
 </style>
 
-- この資料を管理しているレポジトリは https://github.com/abap34/ml-lecture　です。
+- この資料を管理しているレポジトリは https://github.com/abap34/ml-lecture　です
   - 誤りのご指摘などはこちらの Issue または https://twitter.com/abap34 までご連絡ください.
 - 補足資料なども含めてまとめたものを https://abap34.com/trap_ml_lecture.html から確認できます.
 - この資料のリンクにはサークルメンバー以外がアクセスできないものが含まれています. (oj.abap34.com, dacq.abap34.com など)
   - オンラインジャッジは https://github.com/abap34/ml-lecture-judge
   - コンペプラットフォームは https://github.com/abap34/DacQ-v2 を動かしています.
-  - どちらもかなり未成熟ですが, 基本的なオンラインジャッジの機能と, データ分析コンペプラットフォームの機能を提供しています.これらをホストすることで同等の環境を構築することができます.
+  - どちらもかなり未成熟ですが, 基本的なオンラインジャッジの機能とデータ分析コンペプラットフォームの機能を提供しています.これらをホストすることで同等の環境を構築することができます.
 - そのほか何かあれば https://twitter.com/abap34 までご連絡ください.
 
 
