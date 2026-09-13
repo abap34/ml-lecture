@@ -1,7 +1,7 @@
 ## ml-lecture
 [![Build slide and pages and deploy](https://github.com/abap34/ml-lecture/actions/workflows/build.yml/badge.svg)](https://github.com/abap34/ml-lecture/actions/workflows/build.yml)
 
-このレポジトリは、 [東京工業大学デジタル創作同好会 traP Kaggle班](https://trap.jp/kaggle/) が2024年に実施した 
+このレポジトリは、 [東京工業大学デジタル創作同好会 traP Kaggle班](https://trap.jp/kaggle/) が2024年に実施した
 「機械学習講習会」 のレポジトリです。
 
 機械学習に初めて触れる学部一年生のメンバーが

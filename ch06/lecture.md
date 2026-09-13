@@ -25,7 +25,7 @@ math: mathjax
 - PyTorch を使って実際にある情報を予測するニューラルネットワークを実装します
 - データの読み込みからモデルの構築, 学習, 予測までを一通りやってみます
 - **お題として今日から始めるコンペのデータを使います.**
-  - <span class="lined">**1 Sub まで一気に行きます！！**</span> 
+  - <span class="lined">**1 Sub まで一気に行きます！！**</span>
 
 ---
 
@@ -51,7 +51,7 @@ https://abap34.github.io/ml-lecture/supplement/competetion.pdf
 攻撃はやめてくださいと書いてあるのにひっきりなしに攻撃が仕掛けられるからです.
 
 
-部員の個人情報とサーバとモラルが心配になった `@abap34` は, 飛んでくる通信を機械学習を使って攻撃かを判定することで攻撃を未然に防ぐことにしました.
+部員の個人情報とサーバとモラルが心配になった `@abap34` は飛んでくる通信を機械学習を使って攻撃かを判定することで攻撃を未然に防ぐことにしました.
 
 <br>
 
@@ -100,11 +100,11 @@ $\vdots$
 - train.csv
   - 学習に使うデータ
 - train_tiny.csv **(👈 時間と説明の都合上 今日はこれを使います)**
-  - 学習に使うデータの一部を取り出し,一部を削除
+  - 学習に使うデータの一部を取り出し一部を削除
 - test.csv
   - 予測対象のデータ
 - test_tiny.csv **(👈 時間と説明の都合上 今日はこれを使います)**
-  - 予測対象のデータの欠損値を埋めて,一部のカラムを削除
+  - 予測対象のデータの欠損値を埋めて一部のカラムを削除
 - sample_suboldsymbolission.csv
   - 予測の提出方式のサンプル (値はでたらめ)
 
@@ -173,7 +173,7 @@ $\vdots$
 
 <div class="cite">
 
-Jupyter Notebook では,先頭に `!` をつけることで,シェルコマンドを実行できます.
+Jupyter Notebook では先頭に `!` をつけることでシェルコマンドを実行できます.
 
 </div>
 
@@ -207,7 +207,7 @@ Jupyter Notebook では,先頭に `!` をつけることで,シェルコマン�
 
 <div style="text-align: center;">
 
-✅ `pd.read_csv(path)` で,`path` にあるcsvファイルを読み込める
+✅ `pd.read_csv(path)` で `path` にあるcsvファイルを読み込める
 
 </div>
 
@@ -228,7 +228,7 @@ test = pd.read_csv("test.csv")
 
 
 パスはコンピュータ上のファイルやフォルダへの経路のことです.
-今回は train.csv と test.csv がノートブックと同じ階層にあるので, train.csv と test.csv までの経路は,ファイル名をそのまま指定するだけで大丈夫です.
+今回は train.csv と test.csv がノートブックと同じ階層にあるので train.csv と test.csv までの経路はファイル名をそのまま指定するだけで大丈夫です.
 ほかにも たとえば `../train.csv` と指定すると ノートブックの一つ上の階層にある train.csv というファイルを読み込みます.
 
 
@@ -243,7 +243,7 @@ test = pd.read_csv("test.csv")
 
 <div class="cite">
 
-<span class="lined">**セルに単に変数をかくと中身を確認できます！**</span>　(Jupyter Notebook の各セルは最後に評価された値を表示するためです) 
+<span class="lined">**セルに単に変数をかくと中身を確認できます！**</span>　(Jupyter Notebook の各セルは最後に評価された値を表示するためです)
 さっとデバッグするときに便利です. 中身がわからなくなったらとりあえず書いて実行してみましょう.
 
 </div>
@@ -350,7 +350,7 @@ train_y = train['class'].map({
 
 <!-- _header: 1-1. データの読み込み -->
 
-**逆に, モデルに入力するデータは `train` から <span class="">さっきの列 <span style="color: gray;">(と `id`) </span> を除いたもの！**</span>
+**逆にモデルに入力するデータは `train` から <span class="">さっきの列 <span style="color: gray;">(と `id`) </span> を除いたもの！**</span>
 
 ```python
 train.drop(columns=['カラム名'])
@@ -395,7 +395,7 @@ test_x = test.drop(columns=['id'])
 
 ### 今の状況整理
 
-- `train_x` $\cdots$ モデルに入力するデータ(接続時間,ログイン失敗回数,etc...)
+- `train_x` $\cdots$ モデルに入力するデータ(接続時間, ログイン失敗回数, etc...)
 - `train_y` $\cdots$  モデルの出力の目標(攻撃? 通常?)
 - `test_x` $\cdots$ 予測対象のデータ
 
@@ -434,32 +434,32 @@ test_x = test.drop(columns=['id'])
 ### 標準化
 
 $$
-\large x' = \dfrac{x - \mu}{\sigma} 
+\large x' = \dfrac{x - \mu}{\sigma}
 $$
 
 
 
 <div style="text-align: center;">
 
-( $\mu$ は平均, $\sigma$ は標準偏差)
+( $\mu$ は平均 $\sigma$ は標準偏差)
 </div>
 
 
 </div>
 
-1. 平均 $\mu_1$ のデータの全ての要素から $\mu_2$ を引くと,平均は $\mu_1 - \mu_2$
-2. 標準偏差 $\sigma_1$ のデータの全ての要素を $\sigma_2$ で割ると,標準偏差は $\sigma_1/\sigma_2$
-  
+1. 平均 $\mu_1$ のデータの全ての要素から $\mu_2$ を引くと平均は $\mu_1 - \mu_2$
+2. 標準偏差 $\sigma_1$ のデータの全ての要素を $\sigma_2$ で割ると標準偏差は $\sigma_1/\sigma_2$
+
 <div style="text-align: center;">
 
-⇨ 標準化で <span class="lined">**平均を0,標準偏差を1**</span> にできる
+⇨ 標準化で <span class="lined">**平均を0, 標準偏差を1**</span> にできる
 
 </div>
 
 <div class="cite">
 
 初期化の際の議論を思い出すとこのようなスケーリングを行うことは自然な発想だと思います.
-NN の入力の標準化については, LeCun, Yann, et al. "E cient BackProp." Lecture Notes in Computer Science 1524 (1998): 5-50.　にもう少し詳しく議論が載っていたので気になる人は読んでみてください.
+NN の入力の標準化についてはLeCun, Yann, et al. "E cient BackProp." Lecture Notes in Computer Science 1524 (1998): 5-50.　にもう少し詳しく議論が載っていたので気になる人は読んでみてください.
 
 </div>
 
@@ -467,7 +467,7 @@ NN の入力の標準化については, LeCun, Yann, et al. "E cient BackProp."
 
 <!-- _header: 1-2. データの前処理 -->
 
-✅ `scikit-learn` というライブラリの `StandardScaler` クラスを使うと,
+✅ `scikit-learn` というライブラリの `StandardScaler` クラスを使うと
 簡単に標準化できる！
 
 ```python
@@ -486,7 +486,7 @@ test_x = scaler.transform(test_x)
 
 <div class="cite">
 
-`scalar.fit` によって引数で渡されたデータの各列ごとの平均と標準偏差が計算され, `scalar` に保存されます. そして,`scalar.transform` によってデータが実際に標準化されます. 勘がいい人は「`test` に対しても `train_x` で計算した平均と標準偏差を使って標準化しているけど大丈夫なのか？」と思ったかもしれないですね. 結論から言うとそうなのですが意図しています. ここに理由を書いたら信じられないくらいはみ出てしまったので, 省略します. 興味がある人は「Kaggleで勝つデータ分析の技術」p.124 などを参照してみてください.
+`scalar.fit` によって引数で渡されたデータの各列ごとの平均と標準偏差が計算され，`scalar` に保存されます. そして `scalar.transform` によってデータが実際に標準化されます. 勘がいい人は「`test` に対しても `train_x` で計算した平均と標準偏差を使って標準化しているけど大丈夫なのか？」と思ったかもしれないですね. 結論から言うとそうなのですが意図しています. ここに理由を書いたら信じられないくらいはみ出てしまったので省略します. 興味がある人は「Kaggleで勝つデータ分析の技術」p.124 などを参照してみてください.
 
 </div>
 
@@ -503,13 +503,13 @@ train_x
 test_x
 ```
 
-などを実行してみると,確かに何かしらの変換がされている！ ✊
+などを実行してみると確かに何かしらの変換がされている！ ✊
 (ついでに結果がテーブルから単なる二次元配列 (`np.ndarray`) に変換されてる)
 
 
 <div class="cite">
 
-最初のテーブルっぽい情報を持ったまま計算を進めたい場合は,`train_x[:] = scaler.transform(train_x)`のようにすると良いです. 
+最初のテーブルっぽい情報を持ったまま計算を進めたい場合は `train_x[:] = scaler.transform(train_x)`のようにすると良いです.
 
 </div>
 
@@ -530,7 +530,7 @@ train_y = train_y.values.reshape(-1, 1)
 <div class="cite">
 
 `np.ndarray` のメソッド `reshape` はその名の通り配列の形を変えるメソッドです. そして `-1` は「他の次元の要素数から自動的に決定する」という意味です.
-例えば, $3 \times 4$ の配列に対して `.reshape(-1, 2)` とすると $6 \times 2$ にしてくれます. (2次元目が $2$ と確定しているので勝手に $6$ と定まる)
+例えば$3 \times 4$ の配列に対して `.reshape(-1, 2)` とすると $6 \times 2$ にしてくれます. (2次元目が $2$ と確定しているので勝手に $6$ と定まる)
 
 
 </div>
@@ -603,12 +603,12 @@ train_x, val_x, train_y, val_y = train_test_split(train_x, train_y, test_size=0.
 
 ⇩
 
-実行するたびに結果が変わって,
+実行するたびに結果が変わって
 **めちゃくちゃ困る😥**
 
 ⇩
 
-乱数シードを固定すると,
+乱数シードを固定すると
 毎回同じ結果になって
 <span class="dot-text">**再現性確保**</span>
 
@@ -623,7 +623,7 @@ train_x, val_x, train_y, val_y = train_test_split(train_x, train_y, test_size=0.
 
 <div class="cite">
 
-実際はそんな素朴な世の中でもなく, 環境差異であったり, 並列処理をしたとき (とくに GPU が絡んだとき) には単に乱数シードを固定するような見た目のコードを書いても結果が変わりがちで, 困ることが多いです. 対処法もいろいろ考えられているので, 気になる人は jax の乱数生成の仕組みなどを調べてみると面白いかもしれません。
+実際はそんな素朴な世の中でもなく，環境差異であったり, 並列処理をしたとき (とくに GPU が絡んだとき) には単に乱数シードを固定するような見た目のコードを書いても結果が変わりがちで困ることが多いです. 対処法もいろいろ考えられているので気になる人は jax の乱数生成の仕組みなどを調べてみると面白いかもしれません。
 
 </div>
 
@@ -675,7 +675,7 @@ val_x.shape
 >>> x = torch.tensor(2.0, requires_grad=True)
 >>> def f(x):
 ...     return x ** 2 + 4 * x + 3
-... 
+...
 >>> y = f(x)
 >>> y.backward()
 >>> x.grad
@@ -699,10 +699,10 @@ tensor(8.)
 ## `torch.tensor(data, requires_grad=False)`
 
 - `data`: 保持するデータ(配列**っぽい**ものならなんでも)
-  - リスト,タプル, <span style="color: red;">**Numpy配列**</span>, スカラ....
+  - リスト, タプル, <span style="color: red;">**Numpy配列**</span>, スカラ....
 - `requires_grad`: 勾配 (gradient)を保持するかどうかのフラグ
   - デフォルトは `False`
-  - 勾配の計算(自動微分)を行う場合は `True` にする 
+  - 勾配の計算(自動微分)を行う場合は `True` にする
   - このあとこいつを微分の計算に使いますよ〜という表明
 
 
@@ -717,7 +717,7 @@ tensor(8.)
 
 <div style="text-align: center;">
 
-⚠️ 我々が勾配降下法で使うのは,
+⚠️ 我々が勾配降下法で使うのは
 
 ### 各 **パラメータ** の損失に対する勾配
 
@@ -794,7 +794,7 @@ test_x = torch.tensor(test_x, dtype=torch.float32)
 
 <div style="text-align: center;">
 
-###### 今からすること... 
+###### 今からすること...
 
 
 ## $f(\boldsymbol{x}; \boldsymbol{\theta})$ をつくる
@@ -912,7 +912,7 @@ model = nn.Sequential(
 <div>
 
 
-**引数に層を順番に渡すことで,モデルを構築してくれる！**
+**引数に層を順番に渡すことでモデルを構築してくれる！**
 
 👈 「全結合層($W \in \mathbb{R}^{30, 32}$) $\rightarrow$ シグモイド関数 $\rightarrow$ 全結合層 ($W \in \mathbb{R}^{32, 64}$) $\rightarrow$ シグモイド関数 $\rightarrow$ 全結合層($W \in \mathbb{R}^{64, 1}$)」
 という MLP の定義
@@ -953,7 +953,7 @@ dummy_input = torch.rand(1, 30)
 model(dummy_input)
 ```
 
-`torch.rand(shape)` で,形が `shape` のランダムな `Tensor` が作れる
+`torch.rand(shape)` で形が `shape` のランダムな `Tensor` が作れる
 
 
 ⇨ モデルに入力して計算できることを確認しておく！
@@ -1030,7 +1030,7 @@ model(dummy_input)
 
 ## 確率的勾配降下法 (SGD)
 
-データの **一部** をランダムに選んで,
+データの **一部** をランダムに選んで
 そのデータに対する勾配を使ってパラメータを更新する
 
 
@@ -1069,7 +1069,7 @@ model(dummy_input)
 
 ## 現状確認☝️
 
-`train_x`, `train_y`, `val_x`, `val_y`, `test_x` にデータが 
+`train_x`, `train_y`, `val_x`, `val_y`, `test_x` にデータが
 `Tensor` 型のオブジェクトとして格納されている.
 
 
@@ -1142,7 +1142,7 @@ val_dataset = TensorDataset(val_x, val_y)
 
 をやってくれる
 
---- 
+---
 
 <!-- _header: 3-1. 確率的勾配降下法の準備 -->
 
@@ -1186,7 +1186,7 @@ for inputs, targets in train_dataloader:
 <div style="text-align: center;">
 
 
-⇩ 
+⇩
 
 </div>
 
@@ -1275,7 +1275,7 @@ val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 
 <!-- _header: 3.2 確率的勾配降下法の実装: 損失関数の設定 -->
 
-今回の評価指標 👉 **正解率！**  
+今回の評価指標 👉 **正解率！**
 
 ---
 
@@ -1300,7 +1300,7 @@ val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 <!-- _header: 3.2 確率的勾配降下法の実装: 損失関数の設定 -->
 
 正解率は直接最適化できる？
-# ⇨ <span style="color: red;">No!!</span> 
+# ⇨ <span style="color: red;">No!!</span>
 
 ---
 
@@ -1310,7 +1310,7 @@ val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 **パラメータを微小に変化させても
 正解率は変化しない！**
 
-⇨ 正解率は,
+⇨ 正解率は
 
 - **ほとんどの点で微分係数 $0$**
 - **変わるところも微分不可能**
@@ -1327,7 +1327,7 @@ val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 
 <div class="cite">
 
-右のグラフは, 適当に作った二値分類 ($\mathbb{R}^2 \to \{0, 1\}$) のタスクをロジスティック回帰というモデルで解いたときの、パラメータ平面上の正解率をプロットしてみたものです。これを見ればほとんどのところが微分係数が $0$ ($\leftrightarrow$ 平坦) で、変わるところも微分不可 ($\leftrightarrow$ 鋭い) ことがわかります。
+右のグラフは適当に作った二値分類 ($\mathbb{R}^2 \to \{0, 1\}$) のタスクをロジスティック回帰というモデルで解いたときの、パラメータ平面上の正解率をプロットしてみたものです。これを見ればほとんどのところが微分係数が $0$ ($\leftrightarrow$ 平坦) で、変わるところも微分不可 ($\leftrightarrow$ 鋭い) ことがわかります。
 </div>
 
 ---
@@ -1366,7 +1366,7 @@ $$
 $$
 
 
-### 確認してほしいこと: 
+### 確認してほしいこと:
 
 <div class="columns">
 
@@ -1375,7 +1375,7 @@ $$
 
 - 正解 $y_i$ と予測 $f(x_i)$ が近いほど値は小さくなっている.
 ( $y_i \in \{0, 1\}$　なのでそれぞれの場合について考えてみるとわかる)
-  
+
 - 微分可能である
 
 
@@ -1403,7 +1403,7 @@ $$
 
 <!-- _header: Binary Cross Entropy Loss -->
 
-## ✅ PyTorch では, `torch.nn.BCELoss` で使える！
+## ✅ PyTorch では `torch.nn.BCELoss` で使える！
 
 ```python
 import torch
@@ -1415,7 +1415,7 @@ pred = torch.tensor([0.1, 0.9, 0.2])
 
 loss = criterion(pred, y)
 print(loss)   # => tensor(0.6067)
-```  
+```
 
 
 ---
@@ -1449,24 +1449,24 @@ print(loss)   # => tensor(0.6067)
 <!-- _header: 3.2 確率的勾配降下法の実装 -->
 
 
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
 
 
 
@@ -1503,7 +1503,7 @@ loss.backward()
 
 <!-- _header: 3.2 確率的勾配降下法の実装 -->
 
-### ✔︎ チェックポイント 
+### ✔︎ チェックポイント
 1. `loss` に対する勾配を計算している
 
 ```python
@@ -1560,7 +1560,7 @@ for epoch in range(epochs):
 
 <!-- _header: 3.2 確率的勾配降下法の実装 -->
 
-これまでは,我々が手動(?)で更新するコードを書いていた
+これまでは我々が手動(?)で更新するコードを書いていた
 
 # ⇨ ![h:50](img/torch.png) < 私がやります
 
@@ -1579,7 +1579,7 @@ for epoch in range(epochs):
 
 
 **(⚠️: 完成版ではない)**
- 
+
 ```python
 optimizer = optim.SGD(model.parameters(), lr=lr)
 
@@ -1594,7 +1594,7 @@ for epoch in range(epochs):
 
         # backward
         loss.backward()
-        
+
         # パラメータの更新
         optimizer.step()
 ```
@@ -1619,7 +1619,7 @@ for epoch in range(epochs):
 
 ⇩
 
-勾配を計算したあとに `optimizer.step()` を呼ぶと, 
+勾配を計算したあとに `optimizer.step()` を呼ぶと
 各 `Tensor` に載っている勾配の値を使ってパラメータを更新してくれる
 
 
@@ -1725,19 +1725,19 @@ for epoch in range(n_epoch):
 
 <!-- _header: 3.2 確率的勾配降下法の実装 -->
 
-- 13行目. `loss.backward()` .... 勾配の計算です.これによって`model`のパラメータに **損失に対する** 勾配が記録されます
+- 13行目. `loss.backward()` .... 勾配の計算です.これによって `model`のパラメータに **損失に対する** 勾配が記録されます
 - 16行目. `optimizer.step()` .... `optimizer`が記録された勾配に基づいてパラメータを更新します.
-- 18行目. `running_loss += loss.item()` .... 1バッチ分の損失を`running_loss`に足しておきます.
-  
-- 20行目~25行目. 1エポック分の学習が終わったらバリデーションデータでの損失を計算します. バリデーションデータの内容は学習に影響させないので勾配を計算する必要がありません.したがって`torch.no_grad()`の中で計算します.
+- 18行目. `running_loss += loss.item()` .... 1バッチ分の損失を `running_loss`に足しておきます.
+
+- 20行目~25行目. 1エポック分の学習が終わったらバリデーションデータでの損失を計算します. バリデーションデータの内容は学習に影響させないので勾配を計算する必要がありません.したがって `torch.no_grad()`の中で計算します.
 
 ---
 
 
 <!-- _header: 3.2 確率的勾配降下法の実装 -->
 
-- 28行目〜30行目. 1エポック分の学習が終わったら, 訓練データと検証データの損失を表示します. `len(train_dataloader)`は訓練データが何個のミニバッチに分割されたかを表す数, `len(val_dataloader)`は検証データが何個のミニバッチに分割されたかを表す数です. これで割って平均の値にします.
-  
+- 28行目〜30行目. 1エポック分の学習が終わったら訓練データと検証データの損失を表示します. `len(train_dataloader)`は訓練データが何個のミニバッチに分割されたかを表す数，`len(val_dataloader)`は検証データが何個のミニバッチに分割されたかを表す数です. これで割って平均の値にします.
+
 - 32行目. 損失を出力します.
 
 ---
@@ -1800,7 +1800,7 @@ train_losses = []
 val_losses = []
 ```
 
-1. 先ほどの学習のコードの中に,損失を記録するコードを追加する
+1. 先ほどの学習のコードの中に損失を記録するコードを追加する
 
 ```python
 train_loss = running_loss / len(train_dataloader)
@@ -1887,7 +1887,7 @@ def write_pred(predictions, filename='submit.csv'):
 ```
 
 をコピペ
-→ 
+→
 
 ---
 
@@ -1899,13 +1899,13 @@ def write_pred(predictions, filename='submit.csv'):
 pred = model(test_x) > 0.5
 ```
 
-を作って,
+を作って
 
 ```python
 write_pred(pred)
 ```
 
-すると,
+すると
 
 ---
 
@@ -1915,7 +1915,7 @@ write_pred(pred)
 
 ができる！
 
-👉 ダウンロードして, submit から投稿！ <span class="lined">**順位表に乗ろう!**</span>
+👉 ダウンロードして submit から投稿！ <span class="lined">**順位表に乗ろう!**</span>
 
 ![bg right h:450](img/image-19.png)
 

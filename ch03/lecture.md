@@ -23,10 +23,10 @@ math: mathjax
 
 <!-- _header: 前回のまとめ　-->
 
-- 損失関数の最小化を考える上で, 一般の関数の最小化を考えることにした
-- 損失関数の厳密な最小値を求める必要はなく, また損失関数は非常に複雑になりうるので, 広い範囲の関数に対してそこそこ上手くいく方法を考えることにした
-- たいていの関数に対して, 導関数を求めることさえできればそれなりに小さい値を探しに行けるようになった
-- 逆に, <span class="lined">**「導関数」は自分で求める必要がある**</span>
+- 損失関数の最小化を考える上で一般の関数の最小化を考えることにした
+- 損失関数の厳密な最小値を求める必要はなくまた損失関数は非常に複雑になりうるので広い範囲の関数に対してそこそこ上手くいく方法を考えることにした
+- たいていの関数に対して導関数を求めることさえできればそれなりに小さい値を探しに行けるようになった
+- 逆に<span class="lined">**「導関数」は自分で求める必要がある**</span>
 
 ---
 
@@ -71,7 +71,7 @@ $$
 
 <br>
 
-(特にニューラルネットワーク以降は) **非常に複雑になりうる** 
+(特にニューラルネットワーク以降は) **非常に複雑になりうる**
 
 $$
 \mathcal{L}(\mathbf{W^{(1)}}, \mathbf{W^{(2)}}, \cdots, \mathbf{W^{(n)}}, \mathbf{b^{(1)}}, \mathbf{b^{(2)}}, \cdots, \mathbf{b^{(n)}}) = \dfrac{1}{n} \sum_{i=0}^{n-1} \left( y_i - {W^{(n)}}^T \sigma \left( \cdots \sigma \left( {W^{(1)}}^T x_i + b^{(1)} \right) \cdots + b^{(n-1)} \right) \right)^2, \ \sigma(x) = \dfrac{1}{1 + e^{-x}}
@@ -110,7 +110,7 @@ $$
 
 <div class="cite">
 
-正確には「自動微分」は, コンピュータに自動で微分を行わせる手法のうち, とくに関数を単純な関数の合成と見て連鎖律を利用して, 陽に導関数を求めることなく微分を行う手法を指します. (より狭義に, back propagationを用いるもののみを指すこともあるようです).　
+正確には「自動微分」はコンピュータに自動で微分を行わせる手法のうちとくに関数を単純な関数の合成と見て連鎖律を利用して陽に導関数を求めることなく微分を行う手法を指します. (より狭義にback propagationを用いるもののみを指すこともあるようです).　
 
 </div>
 
@@ -147,7 +147,7 @@ $$
 >>> x = torch.tensor(2.0, requires_grad=True)
 >>> def f(x):
 ...     return x ** 2 + 4 * x + 3
-... 
+...
 >>> y = f(x)
 >>> y.backward()
 >>> x.grad
@@ -161,7 +161,7 @@ tensor(8.)
 
 <!-- _header: そもそもPyTorchとは？　〜深層学習フレームワーク〜 -->
 
-事実: 
+事実:
 
 <div class="def">
 
@@ -185,7 +185,7 @@ tensor(8.)
 <!-- _header: そもそもPyTorchとは？　〜深層学習フレームワーク〜 -->
 
 
-例) 新しい車を開発するときも,部品は大体同じ,組み立ても大体同じ
+例) 新しい車を開発するときも, 部品は大体同じ, 組み立ても大体同じ
 
 <div style="text-align: center;">
 
@@ -205,7 +205,7 @@ tensor(8.)
 
 - TensorFlow
     - (主に) Googleが開発したフレームワーク
-    - 産業界で人気 (が, 最近はPyTorchに押され気味)
+    - 産業界で人気 (が最近はPyTorchに押され気味)
 - PyTorch
     - (主に) Facebookが開発したフレームワーク
     - 研究界で人気 (最近はみんなこれ？)
@@ -223,7 +223,7 @@ tensor(8.)
 <div style="text-align: center;">
 
 どれがいいの？
-⇨ PyTorchを使っておけば間違いない (と, 思います)
+⇨ PyTorchを使っておけば間違いない (と思います)
 
 
 </div>
@@ -250,8 +250,8 @@ tensor(8.)
 
 <div class="cite">
 
-大体の有名フレームワークにそこまで致命的な速度差はなく, 記述に関しては好みによるところも多いです.PyTorchの差別化ポイントは, 有名モデルの実装サンプルが大体存在するという点です.
-実際に論文を読んで実装するのは骨の折れる作業なので, サンプルが充実していのはとても大きな利点です.
+大体の有名フレームワークにそこまで致命的な速度差はなく記述に関しては好みによるところも多いです.PyTorchの差別化ポイントは有名モデルの実装サンプルが大体存在するという点です.
+実際に論文を読んで実装するのは骨の折れる作業なのでサンプルが充実していのはとても大きな利点です.
 
 </div>
 
@@ -262,7 +262,7 @@ tensor(8.)
 <div style="text-align: center;">
 
 
-✅ 自動微分ライブラリとしての PyTorch の使い方を習得して,
+✅ 自動微分ライブラリとしての PyTorch の使い方を習得して
 
 
 ## 手で微分するのをやめる
@@ -274,7 +274,7 @@ tensor(8.)
 
 <!-- _header: `Tensor` 型 -->
 
-数学の 「数」 に対応するオブジェクトとして,PyTorchでは
+数学の 「数」 に対応するオブジェクトとしてPyTorchでは
 
 <div style="text-align: center;">
 
@@ -291,7 +291,7 @@ tensor(8.)
 
 <div class="def">
 
-### Tensor (テンソル) 
+### Tensor (テンソル)
 
 スカラー ▶︎ ベクトル　▶︎ 行列 ... を一般化したもの。
 
@@ -305,8 +305,8 @@ tensor(8.)
 <!-- _header: Tensor とは？ -->
 
 - スカラー: 添字 $0$ 個で値が決まる $\rightarrow$ $0$ 階のテンソル
-- ベクトル: 添字 $1$ 個で値が決まる $\rightarrow$ $1$ 階のテンソル (`v = [1, 2, 3], v[0] = 1`) 
-- 行列: 添字 2 個で値が決まる $\rightarrow$ $2$ 階のテンソル 
+- ベクトル: 添字 $1$ 個で値が決まる $\rightarrow$ $1$ 階のテンソル (`v = [1, 2, 3], v[0] = 1`)
+- 行列: 添字 2 個で値が決まる $\rightarrow$ $2$ 階のテンソル
 (`M = [[1, 2], [3, 4]], M[0][0] = 1`)
 
 <div style="text-align: center;">
@@ -359,7 +359,7 @@ $n$ 枚の画像をまとめたものは $4$ 階のテンソル.
   - リスト, タプル, NumPy配列, スカラ, ...
 - `requires_grad`: 勾配 (gradient)を保持するかどうかのフラグ
   - デフォルトは `False`
-  - 勾配の計算(自動微分)を行う場合は `True` にする 
+  - 勾配の計算(自動微分)を行う場合は `True` にする
   - このあとこいつを微分の計算に使いますよ〜という表明
 
 
@@ -383,7 +383,7 @@ $(1.0, 2.0, 3.0)$ というベクトルを保持する `Tensor` 型のオブジ�
 
 <div class="cite">
 
-かつては自動微分には `Variable` という名前の型が使われていて, (現在は `Tensor` 型に統合)　`Tensor` と数学の変数の概念にある程度の対応があることがわかります.
+かつては自動微分には `Variable` という名前の型が使われていて(現在は `Tensor` 型に統合)　`Tensor` と数学の変数の概念にある程度の対応があることがわかります.
 
 
 </div>
@@ -399,7 +399,7 @@ $(1.0, 2.0, 3.0)$ というベクトルを保持する `Tensor` 型のオブジ�
 $\begin{pmatrix} 1.0 & 2.0 & 3.0 \\ 4.0 & 5.0 & 6.0 \end{pmatrix}$ という行列を保持する`Tensor` 型のオブジェクトを作成
 
 
-(`requires_grad=True`とすれば, 勾配計算が可能な `Tensor` 型を作成できる)
+(`requires_grad=True`とすれば勾配計算が可能な `Tensor` 型を作成できる)
 
 ---
 
@@ -411,7 +411,7 @@ $\begin{pmatrix} 1.0 & 2.0 & 3.0 \\ 4.0 & 5.0 & 6.0 \end{pmatrix}$ という行�
 2. $\vec{x} = (3.0, 4.0, 5.0)$
 3. $X = \begin{pmatrix} 3.0 & 4.0 & 5.0 \\ 6.0 & 7.0 & 8.0 \end{pmatrix}$
 
-(このページの内容は, 実際にやらなくてもやり方がわかればOKです)
+(このページの内容は実際にやらなくてもやり方がわかればOKです)
 
 ↓ 問題の続き次のページへ
 
@@ -422,7 +422,7 @@ $\begin{pmatrix} 1.0 & 2.0 & 3.0 \\ 4.0 & 5.0 & 6.0 \end{pmatrix}$ という行�
 
 (実際にやってください)
 
-4. **整数** $x = 3$ を勾配計算が可能な`Tensor` 型として表現することを試みてください.また,その結果を確認して説明できるようにしてください.
+4. **整数** $x = 3$ を勾配計算が可能な`Tensor` 型として表現することを試みてください.またその結果を確認して説明できるようにしてください.
 
 <div style="text-align: center;">
 
@@ -433,9 +433,9 @@ $\begin{pmatrix} 1.0 & 2.0 & 3.0 \\ 4.0 & 5.0 & 6.0 \end{pmatrix}$ という行�
 
 <!-- _header: 演習1 ヒント -->
 
-**1, 2, 3**: 講義資料を遡って, `torch.tensor`の第一引数と作成される`Tensor` 型の対応を見比べてみましょう.
+**1, 2, 3**: 講義資料を遡って `torch.tensor`の第一引数と作成される`Tensor` 型の対応を見比べてみましょう.
 
-**4**: Pythonのエラーは, 
+**4**: Pythonのエラーは
 ```
 ~~たくさん書いてある~
 ~~Error: {ここにエラーの端的な内容が書いてある}
@@ -466,7 +466,7 @@ x = torch.tensor([[3.0, 4.0, 5.0], [6.0, 7.0, 8.0]], requires_grad=True)
 
 <!-- _header: 演習1: 解答 -->
 
-4.  
+4.
 ```python
 x = torch.tensor(3, requires_grad=True)
 ```
@@ -490,7 +490,7 @@ x = torch.tensor(2.0, requires_grad=True)
 例) 四則演算
 
 ```python
-x + 2 
+x + 2
 # -> tensor(4., grad_fn=<AddBackward0>)
 ```
 ```python
@@ -509,12 +509,12 @@ torch.sqrt(x)
 # -> tensor(1.4142, grad_fn=<SqrtBackward0>)
 ```
 
-```python   
-torch.sin(x)    
+```python
+torch.sin(x)
 # -> tensor(0.9093, grad_fn=<SinBackward0>)
 ```
 
-```python   
+```python
 torch.exp(x)
 # -> tensor(7.3891, grad_fn=<ExpBackward0>)
 ```
@@ -562,7 +562,7 @@ y = x + 2
 print(y)
 ```
 
-これの出力は,
+これの出力は
 
 <div class="thm">
 
@@ -585,7 +585,7 @@ print(y)
 <!-- _header: PyTorch と 自動微分 -->
 
 
-普通の Pythonの数値では,
+普通の Pythonの数値では
 ```python
 x = 2
 y = x + 2
@@ -707,7 +707,7 @@ print(x.grad) # -> tensor(1.)
 <div class="proof" style="border-radius: 100px;">
 
 <!-- gray -->
-#### 2. 記録された演算を辿って勾配を計算する 
+#### 2. 記録された演算を辿って勾配を計算する
 
 </div>
 
@@ -722,7 +722,7 @@ print(x.grad) # -> tensor(1.)
 1. 変数 (`Tensor` 型)の定義
 2. 計算
 3. backward()
-   
+
 ```python
 # 1. 変数(`Tensor` 型)の定義
 x = torch.tensor(2.0, requires_grad=True)
@@ -740,33 +740,33 @@ y.backward()
 <!-- _header: 演習2: 100回唱えよう！ -->
 
 
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
-定義→計算→backward(),   定義→計算→backward(),   定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
+定義→計算→backward(), 定義→計算→backward(), 定義→計算→backward(), 定義
 
 ---
 
 <!-- _header: ありとあらゆる演算が自動微分可能 -->
 
 例1) $f(x) = \sin((x + 2) + (1 + e^{x^2}))$　の微分
-```python 
+```python
 x = torch.tensor(2.0, requires_grad=True)
-y = y = torch.sin((x + 2) + (1 + torch.exp(x ** 2))) 
+y = y = torch.sin((x + 2) + (1 + torch.exp(x ** 2)))
 y.backward()
 print(x.grad()) # -> tensor(-218.4625)
 ```
@@ -795,7 +795,7 @@ $$
 $$
 
 $$
-y = 2x_1 + 3x_2 + 4x_3 
+y = 2x_1 + 3x_2 + 4x_3
 $$
 
 $$
@@ -878,9 +878,9 @@ if rand() < 0.5:
 else:
     y = g(x)
 ```
-✅  実際に適用される演算は実行してみないとわからない... 
-が, 適用される演算はどう転んでも微分可能な演算なのでOK !
-(if 文があるから, for 文があるから, 自分が定義した関数に渡したから...ということは関係なく, <span class="lined">**実際に Tensor に適用される演算のみが問題になる**</span>)
+✅  実際に適用される演算は実行してみないとわからない...
+が適用される演算はどう転んでも微分可能な演算なのでOK !
+(if 文があるからfor 文があるから自分が定義した関数に渡したから...ということは関係なく<span class="lined">**実際に Tensor に適用される演算のみが問題になる**</span>)
 
 
 
@@ -895,7 +895,7 @@ else:
 - **定義→計算→backward()** の流れ
 - ベクトル, 行列など任意の `Tensor` 型について微分可能. 多変数関数の場合も同様
 - 「実際に適用される演算」さえ微分可能ならOK
-  
+
 ---
 
 <!-- _header: 演習3: 自動微分 -->
@@ -910,7 +910,7 @@ else:
 1. $f(\boldsymbol{x_1}) = \boldsymbol{x_1}^T \begin{pmatrix}
 1 & 2 \\
 2 & 1 \\
-\end{pmatrix} \boldsymbol{x_1}$ の $\boldsymbol{x}_1 = (1.0, 2.0)^T$ における勾配を求めよ.
+\end{pmatrix} \boldsymbol{x_1}$ の $\boldsymbol{x}_1 = (1.0,2.0)^T$ における勾配を求めよ.
 (https://oj.abap34.com/problems/autograd-practice-3)
 
 
@@ -1012,7 +1012,7 @@ for i in range(10001):
 <br>
 <br>
 
-これまでは,導関数 `grad` を我々が計算しなければいけなかった
+これまでは導関数 `grad` を我々が計算しなければいけなかった
 ⇨ 自動微分で置き換えられる！
 
 ```python
@@ -1036,7 +1036,7 @@ for i in range(10001):
 
 
 
-## 今ならこれを倒せるはず 
+## 今ならこれを倒せるはず
 
 
 <div class="def">
@@ -1104,7 +1104,7 @@ def diff(f, x):
 
 
 
-</div>  
+</div>
 
 
 ---
@@ -1154,7 +1154,7 @@ def diff(f, x):
 
 <div>
 
-#### 問題点①. 誤差が出る 
+#### 問題点①. 誤差が出る
 1. 本来極限をとるのに小さい $h$ を
 とって計算しているので誤差が出る
 
@@ -1169,10 +1169,10 @@ def diff(f, x):
 
 #### 問題点②. 勾配ベクトルの計算が非効率
 
-1. $n$ 変数関数の勾配ベクトル $\nabla f(\boldsymbol{x}) \in \mathbb{R}^n$ を計算するには,
-各 $x_i$ について「少し動かす→計算」を繰り返すので $n$ 回 $f$ を評価する. 
-   
-2. 応用では $n$ がとても大きくなり, 
+1. $n$ 変数関数の勾配ベクトル $\nabla f(\boldsymbol{x}) \in \mathbb{R}^n$ を計算するには
+各 $x_i$ について「少し動かす→計算」を繰り返すので $n$ 回 $f$ を評価する.
+
+2. 応用では $n$ がとても大きくなり
 $f$ の評価が重くなりがちなので
 これが <span class="lined">**致命的**</span>
 
@@ -1205,10 +1205,10 @@ $t = x + y, \ z = x \times t$ の計算グラフ　👉
 
 <div class="cite">
 
-単に計算過程を表しただけのものを Kantorovich グラフなどと呼び,
+単に計算過程を表しただけのものを Kantorovich グラフなどと呼び
 これに偏導関数などの情報を加えたものを計算グラフと呼ぶような定義もあります.
 (伊里, 久保田 (1998) に詳しく形式的な定義があります)
-ただ, 単に計算グラフというだけで計算過程を表現するグラフを指すという用法はかなり普及していて一般的と思われます.そのためここでもそれに従って計算過程を表現するグラフを計算グラフと呼びます.
+ただ単に計算グラフというだけで計算過程を表現するグラフを指すという用法はかなり普及していて一般的と思われます.そのためここでもそれに従って計算過程を表現するグラフを計算グラフと呼びます.
 
 </div>
 
@@ -1238,7 +1238,7 @@ torchviz.make_dot(y)
 
 <div class="cite">
 
-PyTorch のように計算と同時に計算グラフを構築する仕組みを **define-by-run** と呼びます. これに対して計算前に計算グラフを構築する方法を **define-and-run** と呼びます. かつての TensorFlow などはこの方式でしたが, 現在では **define-by-run** が主流です. 「適用される演算のみが問題になる」という節からわかるように, この方法だと制御構文などを気にせず柔軟な計算グラフの構築が可能になるからです. 一方で、静的に計算グラフを作るのはパフォーマンスの最適化の観点からは非常にやりやすいというメリットもあります.
+PyTorch のように計算と同時に計算グラフを構築する仕組みを **define-by-run** と呼びます. これに対して計算前に計算グラフを構築する方法を **define-and-run** と呼びます. かつての TensorFlow などはこの方式でしたが現在では **define-by-run** が主流です. 「適用される演算のみが問題になる」という節からわかるようにこの方法だと制御構文などを気にせず柔軟な計算グラフの構築が可能になるからです. 一方で、静的に計算グラフを作るのはパフォーマンスの最適化の観点からは非常にやりやすいというメリットもあります.
 
 </div>
 
@@ -1267,7 +1267,7 @@ PyTorch のように計算と同時に計算グラフを構築する仕組みを
 
 **[連鎖律]**
 
-$u, v$ の関数 $x, y$ による合成関数 $z \left(x(u, v), y(u, v)\right)$ に対して,
+$u, v$ の関数 $x, y$ による合成関数 $z \left(x(u, v), y(u, v)\right)$ に対して
 
 $$
 \frac{\partial z}{\partial u} = \frac{\partial z}{\partial x} \cdot \frac{\partial x}{\partial u} + \frac{\partial z}{\partial y} \cdot \frac{\partial y}{\partial u}
@@ -1300,7 +1300,7 @@ z &= x \cdot y
 \end{split}
 $
 
-のとき, $\dfrac{\partial z}{\partial u}$ を求める
+のとき $\dfrac{\partial z}{\partial u}$ を求める
 
 
 </div>
@@ -1309,7 +1309,7 @@ $
 
 
 
-![bg right h:550](img/cgraph1.png)   
+![bg right h:550](img/cgraph1.png)
 
 
 ---
@@ -1324,7 +1324,7 @@ $$
 
 との対応は
 
-![bg right h:550](img/cgraph1.png) 
+![bg right h:550](img/cgraph1.png)
 
 ---
 
@@ -1332,7 +1332,7 @@ $$
 <!-- _header: 連鎖律と計算グラフの対応 -->
 
 $$
-\frac{\partial z}{\partial u} = \color{red} \frac{\partial z}{\partial x} \cdot \frac{\partial x}{\partial u} 
+\frac{\partial z}{\partial u} = \color{red} \frac{\partial z}{\partial x} \cdot \frac{\partial x}{\partial u}
 \color{black} + \color{blue} \frac{\partial z}{\partial y} \cdot \frac{\partial y}{\partial u}
 $$
 
@@ -1360,7 +1360,7 @@ $$
 $$
 
 
-<div style="font-size: 15px"> 
+<div style="font-size: 15px">
 
 $\hat{P}(u, z)$ は $u$ から $z$ への全ての経路の集合. $(s, t)$ は変数 $s$ から変数 $t$ への辺を表す.
 

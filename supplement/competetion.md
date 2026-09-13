@@ -16,7 +16,7 @@ math: mathjax
 
 - お題: このあと発表
 - 開始: 7/09 18:00~ よりサブミット可能
-- 終了: 7/16 23:59:59 (JST) 
+- 終了: 7/16 23:59:59 (JST)
 - サイト: [dacq.abap34.com](https://dacq.abap34.com/)
 
 
@@ -35,7 +35,7 @@ math: mathjax
 
 <br>
 
-![center h:360](img/image-11.png) ![h:100](img/image.png) < データ分析コンペプラットフォームです. 
+![center h:360](img/image-11.png) ![h:100](img/image.png) < データ分析コンペプラットフォームです.
 
 ---
 
@@ -58,7 +58,7 @@ math: mathjax
 
 <div style="text-align: center;">
 
-(バグ報告は @abap34 の 
+(バグ報告は @abap34 の
 DM までお願いします)
 稼働状況やバグのアナウンスは
 #event/workshop/machine-learning/system-announcement でしています
@@ -73,7 +73,7 @@ DM までお願いします)
 <!-- _header: Private LB と Public LB -->
 
 
-⚠️コンペ期間中に見える LB は <span class="lined">**Public LB**</span> とよばれる <span class="dot-text">暫定スコア</span>　です. 
+⚠️コンペ期間中に見える LB は <span class="lined">**Public LB**</span> とよばれる <span class="dot-text">暫定スコア</span>　です.
 
 ---
 
@@ -104,7 +104,7 @@ DM までお願いします)
 
 <br>
 
-運営があらかじめデータを 
+運営があらかじめデータを
 Public 用 / Private 用に分割
 ↓
 それぞれに対してスコアを計算しPublic Score だけが期間中見られる
@@ -137,15 +137,15 @@ Public 用 / Private 用に分割
 | 7/16 | 0.9 | 0.8 |
 | 7/14 | 0.99 | 0.95 |
 | 7/13 | 0.6 | 0.7 |
-| 7/12 | 0.5 | 0.6 | 
+| 7/12 | 0.5 | 0.6 |
 
 <div>
 
 <br>
 
-の場合、 Public LB の値は 
+の場合、 Public LB の値は
 
-### 0.5→0.6→0.99→0.99→0.99 
+### 0.5→0.6→0.99→0.99→0.99
 
 Private LB に乗る値は
 
